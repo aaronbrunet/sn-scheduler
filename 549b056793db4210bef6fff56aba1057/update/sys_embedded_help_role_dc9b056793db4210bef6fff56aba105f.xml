@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_embedded_help_role">
+    <sys_embedded_help_role action="INSERT_OR_UPDATE">
+        <order>100</order>
+        <role display_value="x_snc_on_call_sc_0.manager" name="x_snc_on_call_sc_0.manager">109b056793db4210bef6fff56aba105d</role>
+        <sys_class_name>sys_embedded_help_role</sys_class_name>
+        <sys_created_by>aaron.brunet</sys_created_by>
+        <sys_created_on>2024-07-15 20:20:38</sys_created_on>
+        <sys_id>dc9b056793db4210bef6fff56aba105f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>109b056793db4210bef6fff56aba105d</sys_name>
+        <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
+        <sys_update_name>sys_embedded_help_role_dc9b056793db4210bef6fff56aba105f</sys_update_name>
+        <sys_updated_by>aaron.brunet</sys_updated_by>
+        <sys_updated_on>2024-07-15 20:20:38</sys_updated_on>
+    </sys_embedded_help_role>
+</record_update>
