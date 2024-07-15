@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_acl_role">
+    <sys_security_acl_role action="INSERT_OR_UPDATE">
+        <sys_class_name>sys_security_acl_role</sys_class_name>
+        <sys_created_by>aaron.brunet</sys_created_by>
+        <sys_created_on>2024-07-15 20:27:21</sys_created_on>
+        <sys_id>621d01e793db4210bef6fff56aba10d2</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_snc_on_call_sc_0_user.x_snc_on_call_sc_0.admin</sys_name>
+        <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
+        <sys_security_acl display_value="x_snc_on_call_sc_0_user">6e1d01e793db4210bef6fff56aba10c1</sys_security_acl>
+        <sys_update_name>sys_security_acl_role_621d01e793db4210bef6fff56aba10d2</sys_update_name>
+        <sys_updated_by>aaron.brunet</sys_updated_by>
+        <sys_updated_on>2024-07-15 20:27:21</sys_updated_on>
+        <sys_user_role display_value="x_snc_on_call_sc_0.admin" name="x_snc_on_call_sc_0.admin">1c9b056793db4210bef6fff56aba1062</sys_user_role>
+    </sys_security_acl_role>
+</record_update>

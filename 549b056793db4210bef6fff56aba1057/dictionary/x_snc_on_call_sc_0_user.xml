@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="c21dcda793db4210bef6fff56aba108a" label="Team Member" max_length="40" name="x_snc_on_call_sc_0_user" type="collection">
+        <element default="true" label="Active" max_length="255" name="active" type="boolean"/>
+        <element label="Assignment Group" max_length="32" name="assignment_group" reference="x_snc_on_call_sc_0_assignment_group" type="reference"/>
+        <element choice="3" label="Contact Preference" max_length="40" name="contact_preference" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Email" sequence="0" value="email"/>
+                <element inactive_on_update="false" label="Phone" sequence="1" value="phone"/>
+                <element inactive_on_update="false" label="Mattermost" sequence="2" value="mattermost"/>
+                <element inactive_on_update="false" label="Teams" sequence="3" value="teams"/>
+            </choice>
+        </element>
+        <element label="Last On-Call" max_length="40" name="last_on_call" type="glide_date_time"/>
+        <element label="Next On-Call" max_length="40" name="next_on_call" type="glide_date_time"/>
+        <element choice="3" label="Region" max_length="40" name="region" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="US" sequence="0" value="us"/>
+                <element inactive_on_update="false" label="IDC" sequence="1" value="idc"/>
+                <element inactive_on_update="false" label="EMEA" sequence="2" value="emea"/>
+                <element inactive_on_update="false" label="APJ" sequence="3" value="apj"/>
+            </choice>
+        </element>
+        <element choice="3" label="Role" max_length="40" name="role" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Engineer" sequence="0" value="engineer"/>
+                <element inactive_on_update="false" label="Manager" sequence="1" value="manager"/>
+            </choice>
+        </element>
+        <element display="true" label="User" max_length="32" name="user" reference="sys_user" type="reference"/>
+        <index name="index">
+            <element name="assignment_group"/>
+        </index>
+        <index name="index2">
+            <element name="user"/>
+        </index>
+    </element>
+</database>
