@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_snc_on_call_sc_0.OnCallUtils</api_name>
+        <caller_access/>
+        <client_callable>true</client_callable>
+        <description/>
+        <name>OnCallUtils</name>
+        <script><![CDATA[var OnCallUtils = Class.create();
+OnCallUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+    initialize : function(){
+		this.constants = this.getConstants();
+	},
+	getConstants : function(){
+		var constants = {
+			COUNT: 12,
+			TABLE_ROTATIONS: 'x_snc_on_call_sc_0_on_call_rotation',
+			TABLE_SHIFTS: 'x_snc_on_call_sc_0_on_call_shift'
+		};
+		
+		return constants;
+	},
+	buildRotations : function(start,count){
+		if(!count || count == ''){
+			count = this.constants.COUNT;
+		}
+		if(!start || start == ''){
+			start = new GlideDateTime();
+		}
+		try {
+		for(var i=0;i<count;i++){
+			var rgr = new GlideRecord(this.constants.TABLE_ROTATIONS);
+			var s_gdt = new GlideDateTime(start);
+			s_gdt.addDaysLocalTime((i * 7));
+			gs.info(['s_gdt',s_gdt]);
+			var e_gdt = new GlideDateTime(s_gdt);
+			e_gdt.addDaysLocalTime(7);
+			gs.info(['e_gdt',e_gdt]);
+
+			var _start = new GlideDate();
+			_start.setValue(s_gdt.getLocalDate());
+
+			var _end = new GlideDate();
+			_end.setValue(e_gdt.getLocalDate());
+			rgr.initialize();
+			rgr.setValue('from',_start);
+			rgr.setValue('to',_end);
+			rgr.insert();
+			gs.info(JSON.stringify(rgr));
+		}
+		}
+		catch(err){
+			gs.info('Insertion failed due to error: '+err);
+		}
+
+	},
+	type: 'OnCallUtils'
+});]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>aaron.brunet</sys_created_by>
+        <sys_created_on>2024-07-16 00:43:26</sys_created_on>
+        <sys_id>ab4706eb939f4210bef6fff56aba1020</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>OnCallUtils</sys_name>
+        <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
+        <sys_update_name>sys_script_include_ab4706eb939f4210bef6fff56aba1020</sys_update_name>
+        <sys_updated_by>aaron.brunet</sys_updated_by>
+        <sys_updated_on>2024-07-16 01:13:45</sys_updated_on>
+    </sys_script_include>
+</record_update>

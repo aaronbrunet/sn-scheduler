@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
     <element db_object_id="aa9155eb93db4210bef6fff56aba108c" label="On-Call Shift" max_length="40" name="x_snc_on_call_sc_0_on_call_shift" type="collection">
-        <element label="End" max_length="40" name="end" type="glide_date_time"/>
+        <element label="From" max_length="40" name="from" read_only="true" type="glide_date"/>
+        <element label="Name" max_length="100" name="name" type="string"/>
         <element attributes="edge_encryption_enabled=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" type="string"/>
-        <element label="Start" max_length="40" name="start" type="glide_date_time"/>
+        <element label="Rotation" mandatory="true" max_length="32" name="rotation" reference="x_snc_on_call_sc_0_on_call_rotation" type="reference"/>
         <element choice="3" default="scheduled" label="State" max_length="40" name="state" type="choice">
             <choice>
                 <element inactive_on_update="false" label="Scheduled" sequence="0" value="scheduled"/>
@@ -10,12 +11,16 @@
                 <element inactive_on_update="false" label="Cancelled" sequence="2" value="cancelled"/>
             </choice>
         </element>
-        <element label="Team" max_length="32" name="team" reference="x_snc_on_call_sc_0_assignment_group" type="reference"/>
-        <element label="Team Member" max_length="32" name="team_member" reference="x_snc_on_call_sc_0_user" type="reference"/>
+        <element label="Team" mandatory="true" max_length="32" name="team" reference="x_snc_on_call_sc_0_assignment_group" type="reference"/>
+        <element label="Team Member" mandatory="true" max_length="32" name="team_member" reference="x_snc_on_call_sc_0_user" type="reference"/>
+        <element label="To" max_length="40" name="to" read_only="true" type="glide_date"/>
         <index name="index">
-            <element name="team"/>
+            <element name="rotation"/>
         </index>
         <index name="index2">
+            <element name="team"/>
+        </index>
+        <index name="index3">
             <element name="team_member"/>
         </index>
     </element>

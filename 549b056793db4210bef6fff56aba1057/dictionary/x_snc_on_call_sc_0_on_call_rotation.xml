@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="4c293d6f935f4210bef6fff56aba10b3" label="On-Call Rotation" max_length="40" name="x_snc_on_call_sc_0_on_call_rotation" type="collection">
+        <element label="From" mandatory="true" max_length="40" name="from" type="glide_date"/>
+        <element display="true" label="Rotation" max_length="400" name="rotation" read_only="true" type="string"/>
+        <element label="To" mandatory="true" max_length="40" name="to" type="glide_date"/>
+    </element>
+</database>
