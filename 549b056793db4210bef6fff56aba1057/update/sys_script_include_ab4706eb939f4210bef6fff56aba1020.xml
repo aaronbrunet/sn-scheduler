@@ -98,7 +98,7 @@ OnCallUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 			var roster = this.buildTeamRoster(team,role);
 			var ri = 0;
 			var rotations = new GlideRecord(this.constants.TABLE_ROTATIONS);
-			rotations.addEncodedQuery('from>=javascript:gs.dateGenerate("'+start+'","end")');
+			rotations.addEncodedQuery(`from>=javascript:gs.dateGenerate('${start}','end')`);
 			rotations.query();
 			while(rotations.next()){
 				if(!this.checkDuplicateShift(rotations.getUniqueValue(),team,role)){
@@ -117,7 +117,7 @@ OnCallUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 						ri = 0;
 					}
 				} else {
-					gs.info('A duplicate shift already exists for '+rotations.getDisplayValue('rotation')+' for '+team);
+					gs.info(`A duplicate shift already exists for ${rotations.getDisplayValue('rotation')} for ${team}`);
 				}
 			}
 		} catch(err) {
@@ -138,11 +138,9 @@ OnCallUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 		return false;
 	},
 	getRotation : function(date){
-		if(!date){
-			date = new GlideDate();
-		}
+		const _date = date ?? new GlideDate();
 		var rotation = new GlideRecord(this.constants.TABLE_ROTATIONS);
-		rotation.addEncodedQuery("from<=javascript:gs.dateGenerate('"+date+"','start')^to>=javascript:gs.dateGenerate('"+date+"','end')");
+		rotation.addEncodedQuery(`from<=javascript:gs.dateGenerate('${_date}','start')^to>=javascript:gs.dateGenerate('${_date}','end')`);
 		rotation.query();
 		if(rotation.next()){
 			return rotation.getUniqueValue();
@@ -154,13 +152,24 @@ OnCallUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
         <sys_created_by>aaron.brunet</sys_created_by>
         <sys_created_on>2024-07-16 00:43:26</sys_created_on>
         <sys_id>ab4706eb939f4210bef6fff56aba1020</sys_id>
-        <sys_mod_count>7</sys_mod_count>
+        <sys_mod_count>11</sys_mod_count>
         <sys_name>OnCallUtils</sys_name>
         <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
         <sys_update_name>sys_script_include_ab4706eb939f4210bef6fff56aba1020</sys_update_name>
         <sys_updated_by>aaron.brunet</sys_updated_by>
-        <sys_updated_on>2024-07-17 01:01:35</sys_updated_on>
+        <sys_updated_on>2024-07-17 01:16:48</sys_updated_on>
     </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>ab4706eb939f4210bef6fff56aba1020</id>
+        <sys_created_by>aaron.brunet</sys_created_by>
+        <sys_created_on>2024-07-17 01:12:30</sys_created_on>
+        <sys_id>15f71b7b93534210bef6fff56aba107b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>aaron.brunet</sys_updated_by>
+        <sys_updated_on>2024-07-17 01:12:30</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
 </record_update>
