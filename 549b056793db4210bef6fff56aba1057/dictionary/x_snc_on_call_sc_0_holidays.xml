@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="a19c677f93934210bef6fff56aba10b9" label="Holidays" max_length="40" name="x_snc_on_call_sc_0_holidays" type="collection">
+        <element choice="3" label="Type" max_length="40" name="type" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Wellness Day" sequence="1" value="wellness_day"/>
+                <element inactive_on_update="false" label="Holiday" sequence="0" value="holiday"/>
+                <element inactive_on_update="false" label="Other" sequence="2" value="other"/>
+            </choice>
+        </element>
+        <element choice="3" label="Region" max_length="40" name="region" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="US" sequence="0" value="us"/>
+                <element inactive_on_update="false" label="IDC" sequence="1" value="idc"/>
+            </choice>
+        </element>
+        <element display="true" label="Date" max_length="255" name="date" type="glide_date"/>
+        <element label="Name" max_length="150" name="name" type="string"/>
+    </element>
+</database>

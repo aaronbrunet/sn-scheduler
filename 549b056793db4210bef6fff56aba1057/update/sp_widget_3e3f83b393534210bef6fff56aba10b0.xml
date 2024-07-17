@@ -68,17 +68,31 @@ tr.manager-row{&#13;
 	};
 
 	var managers = ocu.getManagersByRotation(rotation.getUniqueValue());
-	console.log(['all managers',managers]);
 	data.us_manager = managers.find(m => m.region == 'US');
 	data.idc_manager = managers.find(m => m.region == 'IDC');
 	var now_manager = ocu.getManagersByDate();
-	console.log(["Today's manager",now_manager]);
+
+	var holidays = ocu.getAllHolidaysForRotation(rotation.getUniqueValue());
+	var holidays_us = holidays?.filter(h => h.region == 'US');
+	var holidays_idc = holidays?.filter(h => h.region == 'IDC');
+	
+	var us_wellness = holidays_us?.filter(h => h.type == 'wellness_day').map(h => h.formatted_date);
+	data.us_wellness = us_wellness.join(', ');
+
+	var us_holidays = holidays_us?.filter(h => h.type == 'holiday').map(h => h.formatted_date);
+	data.us_holidays = us_holidays.join(', ');
+
+	var idc_wellness = holidays_idc?.filter(h => h.type == 'wellness_day').map(h => h.formatted_date);
+	data.idc_wellness = idc_wellness.join(', ');
+
+	var idc_holidays = holidays_idc?.filter(h => h.type == 'holiday').map(h => h.formatted_date);
+	data.idc_holidays = idc_holidays.join(', ');
 
 	data.shifts = ocu.getAllShiftsForRotation(rotation.getUniqueValue());
-	console.log(data.shifts);
 	if(data.shifts?.length < 1){
 		data.shifts = ocu.getAllTeams();
 	}
+
 	
 })();]]></script>
         <servicenow>false</servicenow>
@@ -86,14 +100,14 @@ tr.manager-row{&#13;
         <sys_created_by>aaron.brunet</sys_created_by>
         <sys_created_on>2024-07-17 00:36:13</sys_created_on>
         <sys_id>3e3f83b393534210bef6fff56aba10b0</sys_id>
-        <sys_mod_count>41</sys_mod_count>
+        <sys_mod_count>68</sys_mod_count>
         <sys_name>On Call Schedule - Week</sys_name>
         <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
         <sys_policy/>
         <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
         <sys_update_name>sp_widget_3e3f83b393534210bef6fff56aba10b0</sys_update_name>
         <sys_updated_by>aaron.brunet</sys_updated_by>
-        <sys_updated_on>2024-07-17 02:40:05</sys_updated_on>
+        <sys_updated_on>2024-07-17 03:25:08</sys_updated_on>
         <template><![CDATA[<div ng-if="!data.rotation.rotation">
   <h1>No On-Call rotation schedule</h1>
 </div>
@@ -113,7 +127,7 @@ tr.manager-row{&#13;
       <tr class="manager-row"> 
         <th>IDC Manager</th>
         <td>{{data.idc_manager.name || 'No manager scheduled'}}</td>
-        <td>{{data.idc_Manager.phone}}</td>
+        <td>{{data.idc_Manager.phone}} {{data.holidays.us.wellness}}</td>
       </tr>
 	  <tr ng-repeat="shift in data.shifts" class="team-row">
         <th>{{shift.team}}</th>
@@ -121,20 +135,20 @@ tr.manager-row{&#13;
         <td>{{shift.phone}}</td>
       </tr>
       <tr class="holiday-row">
-        <th>US Wellness Day</td>
-        <td colspan="2">None</td>
+        <th>US Wellness Day</th>
+        <td colspan="2">{{data.us_wellness || 'None'}}</td>
       </tr>
       <tr class="holiday-row">
-        <th>US Holidays</td>
-        <td colspan="2">None</td>
+        <th>US Holidays</th>
+        <td colspan="2">{{data.us_holidays || 'None'}}</td>
       </tr>
       <tr class="holiday-row">
-        <th>IDC Wellness Day</td>
-        <td colspan="2">None</td>
+        <th>IDC Wellness Day</th>
+        <td colspan="2">{{data.idc_wellness || 'None'}}</td>
       </tr>
       <tr class="holiday-row">
-        <th>IDC Holidays</td>
-        <td colspan="2">None</td>
+        <th>IDC Holidays</th>
+        <td colspan="2">{{data.idc_holidays || 'None'}}</td>
       </tr>
       </tbody>
     </table>
