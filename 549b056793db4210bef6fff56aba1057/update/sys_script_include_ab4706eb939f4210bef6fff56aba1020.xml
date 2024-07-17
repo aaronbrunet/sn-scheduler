@@ -15,11 +15,11 @@ OnCallUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 		this.constants = this.getConstants();
 	},
 	getConstants : function(){
-		var constants = {
+		const constants = {
 			COUNT: 12,
 			TABLE_ROTATIONS: 'x_snc_on_call_sc_0_on_call_rotation',
 			TABLE_SHIFTS: 'x_snc_on_call_sc_0_on_call_shift',
-			TABLE_TEAM: 'x_snc_on_call_sc_0_assignment_group',
+			TABLE_TEAMS: 'x_snc_on_call_sc_0_assignment_group',
 			TABLE_TEAM_MEMBERS: 'x_snc_on_call_sc_0_user'
 		};
 		
@@ -164,7 +164,6 @@ OnCallUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 				region:shifts.getDisplayValue('team_member.region')
 			};
 			managers.push(manager);
-			console.log(managers);
 		}
 		return managers;
 	},
@@ -174,20 +173,71 @@ OnCallUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 		return this.getManagersByRotation(rotation);
 		
 	},
+	getTeamShiftByDate : function(team,date){
+		var _date = date ?? new GlideDate();
+		var rotation = this.getRotation(_date);
+		return this.getTeamShiftByRotation(team,rotation);
+	},
+	getTeamShiftByRotation : function(team,rotation){
+		var shift = new GlideRecord(this.constants.TABLE_SHIFTS);
+		shift.addEncodedQuery(`rotation=${rotation}^team=${team}^state!=cancelled^type=engineer`);
+		shift.query();
+		if(shift.next()){
+			return {
+				id:shift.team_member.getValue('sys_id'),
+				team:shift.getDisplayValue('team'),
+				name:shift.getDisplayValue('team_member'),
+				email:shift.getDisplayValue('team_member.user.email'),
+				phone:shift.getDisplayValue('team_member.user.phone'),
+				shift_id:shift.getUniqueValue(),
+				region:shift.getDisplayValue('team_member.region')
+			};
+		}
+	},
+	getAllShiftsForRotation : function(rotation){
+		var engs = [];
+		var shifts = new GlideRecord(this.constants.TABLE_SHIFTS);
+		shifts.addEncodedQuery(`rotation=${rotation}^state!=cancelled^type=engineer`);
+		shifts.query();
+		while(shifts.next()){
+			let eng = {
+				id:shifts.team_member.getValue('sys_id'),
+				team:shifts.getDisplayValue('team'),
+				team_id:shifts.getValue('team'),
+				name:shifts.getDisplayValue('team_member'),
+				email:shifts.getDisplayValue('team_member.user.email'),
+				phone:shifts.getDisplayValue('team_member.user.phone'),
+				shift_id:shifts.getUniqueValue(),
+				region:shifts.getDisplayValue('team_member.region')
+			};
+			engs.push(eng);
+		}
+		return engs;
+	},
+	getAllTeams : function(){
+		var teams = [];
+		var tr = new GlideRecord(this.constants.TABLE_TEAMS);
+		tr.addQuery('active',true);
+		tr.query();
+		while(tr.next()){
+			teams.push({team:tr.getDisplayValue(),team_id:tr.getUniqueValue()});
+		}
+		return teams;
+	},
 	type: 'OnCallUtils'
 });]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>aaron.brunet</sys_created_by>
         <sys_created_on>2024-07-16 00:43:26</sys_created_on>
         <sys_id>ab4706eb939f4210bef6fff56aba1020</sys_id>
-        <sys_mod_count>17</sys_mod_count>
+        <sys_mod_count>22</sys_mod_count>
         <sys_name>OnCallUtils</sys_name>
         <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
         <sys_update_name>sys_script_include_ab4706eb939f4210bef6fff56aba1020</sys_update_name>
         <sys_updated_by>aaron.brunet</sys_updated_by>
-        <sys_updated_on>2024-07-17 02:03:10</sys_updated_on>
+        <sys_updated_on>2024-07-17 02:33:36</sys_updated_on>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>ab4706eb939f4210bef6fff56aba1020</id>
