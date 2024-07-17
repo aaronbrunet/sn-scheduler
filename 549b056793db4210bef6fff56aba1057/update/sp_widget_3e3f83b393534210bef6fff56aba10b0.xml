@@ -49,7 +49,7 @@ tr.manager-row{&#13;
   
 }]]></link>
         <name>On Call Schedule - Week</name>
-        <option_schema/>
+        <option_schema>[{"displayValue":"On-Call Rotation","name":"rotation","section":"Data","label":"Rotation","type":"reference","value":"x_snc_on_call_sc_0_on_call_rotation","ed":{"reference":"x_snc_on_call_sc_0_on_call_rotation"}}]</option_schema>
         <public>false</public>
         <roles/>
         <script><![CDATA[(function() {
@@ -58,8 +58,17 @@ tr.manager-row{&#13;
 	var ocu = new x_snc_on_call_sc_0.OnCallUtils();
 	var constants = ocu.getConstants();
 
+	
 	var rotation = new GlideRecord(constants.TABLE_ROTATIONS);
-	rotation.get(ocu.getRotation());
+	if(input && input?.rotation !=''){
+		console.log(['input',input.rotation]);
+		rotation.get(input.rotation);
+	} else if(options?.rotation) {
+		console.log(['options',options?.rotation]);
+		rotation.get(options?.rotation);
+	} else {
+		rotation.get(ocu.getRotation());
+	}
 	data.rotation = {
 		id:rotation.getUniqueValue(),
 		rotation:rotation.getDisplayValue('rotation'),
@@ -100,14 +109,14 @@ tr.manager-row{&#13;
         <sys_created_by>aaron.brunet</sys_created_by>
         <sys_created_on>2024-07-17 00:36:13</sys_created_on>
         <sys_id>3e3f83b393534210bef6fff56aba10b0</sys_id>
-        <sys_mod_count>68</sys_mod_count>
+        <sys_mod_count>75</sys_mod_count>
         <sys_name>On Call Schedule - Week</sys_name>
         <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
         <sys_policy/>
         <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
         <sys_update_name>sp_widget_3e3f83b393534210bef6fff56aba10b0</sys_update_name>
         <sys_updated_by>aaron.brunet</sys_updated_by>
-        <sys_updated_on>2024-07-17 03:25:08</sys_updated_on>
+        <sys_updated_on>2024-07-17 18:52:38</sys_updated_on>
         <template><![CDATA[<div ng-if="!data.rotation.rotation">
   <h1>No On-Call rotation schedule</h1>
 </div>
