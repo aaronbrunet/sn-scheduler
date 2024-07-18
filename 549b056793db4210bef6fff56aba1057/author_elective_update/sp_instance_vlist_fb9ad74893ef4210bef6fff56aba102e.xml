@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance_vlist">
+    <sp_instance_vlist action="DELETE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <display_field>rotation</display_field>
+        <field_list/>
+        <filter table="x_snc_on_call_sc_0_on_call_rotation">from&gt;=javascript:gs.beginningOfToday()^EQ<item endquery="false" field="from" goto="false" newquery="false" operator="&gt;=" or="false" value="javascript:gs.beginningOfToday()"/>
+            <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </filter>
+        <glyph>th-list</glyph>
+        <id/>
+        <maximum_entries>12</maximum_entries>
+        <order>1</order>
+        <order_by>from</order_by>
+        <order_direction>asc</order_direction>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="1">478adb4893ef4210bef6fff56aba10c5</sp_column>
+        <sp_page display_value="oc_rotation">45db53c893ef4210bef6fff56aba10e6</sp_page>
+        <sp_widget display_value="Simple List">5b255672cb03020000f8d856634c9c28</sp_widget>
+        <sys_class_name>sp_instance_vlist</sys_class_name>
+        <sys_created_by>aaron.brunet</sys_created_by>
+        <sys_created_on>2024-07-17 20:02:37</sys_created_on>
+        <sys_id>fb9ad74893ef4210bef6fff56aba102e</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
+        <sys_update_name>sp_instance_vlist_fb9ad74893ef4210bef6fff56aba102e</sys_update_name>
+        <sys_updated_by>aaron.brunet</sys_updated_by>
+        <sys_updated_on>2024-07-17 20:11:49</sys_updated_on>
+        <table>x_snc_on_call_sc_0_on_call_rotation</table>
+        <title/>
+        <url/>
+        <widget_parameters><![CDATA[{
+	"always_show": {
+		"value": "",
+		"displayValue": ""
+	},
+	"panel_body_height": {
+		"value": "",
+		"displayValue": ""
+	},
+	"image_field": {
+		"value": "",
+		"displayValue": ""
+	},
+	"secondary_fields": {
+		"value": "sys_updated_on",
+		"displayValue": "sys_updated_on"
+	},
+	"rounded_images": {
+		"value": "",
+		"displayValue": ""
+	},
+	"list_page": {
+		"value": "",
+		"displayValue": ""
+	},
+	"hide_footer": {
+		"value": "true",
+		"displayValue": "true"
+	},
+	"view": {
+		"value": "",
+		"displayValue": ""
+	},
+	"disable_record_watcher": {
+		"value": "",
+		"displayValue": ""
+	},
+	"filter_acls": {
+		"value": "false",
+		"displayValue": "false"
+	}
+}]]></widget_parameters>
+    </sp_instance_vlist>
+    <sys_translated_text action="DELETE" query="documentkey=fb9ad74893ef4210bef6fff56aba102e"/>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</application>
+        <file_path/>
+        <instance_id>6bc7963ddb04515c07072f17d496198d</instance_id>
+        <instance_name>empabrunet02</instance_name>
+        <name>sp_instance_vlist_fb9ad74893ef4210bef6fff56aba102e</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sp_instance_vlist"&gt;&lt;sp_instance_vlist action="INSERT_OR_UPDATE"&gt;&lt;active&gt;true&lt;/active&gt;&lt;class_name/&gt;&lt;color&gt;default&lt;/color&gt;&lt;css/&gt;&lt;display_field&gt;rotation&lt;/display_field&gt;&lt;field_list/&gt;&lt;filter table="x_snc_on_call_sc_0_on_call_rotation"&gt;from&amp;gt;=javascript:gs.beginningOfToday()^EQ&lt;item endquery="false" field="from" goto="false" newquery="false" operator="&amp;gt;=" or="false" value="javascript:gs.beginningOfToday()"/&gt;&lt;item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/&gt;&lt;/filter&gt;&lt;glyph&gt;th-list&lt;/glyph&gt;&lt;id/&gt;&lt;maximum_entries&gt;12&lt;/maximum_entries&gt;&lt;order&gt;1&lt;/order&gt;&lt;order_by&gt;from&lt;/order_by&gt;&lt;order_direction&gt;asc&lt;/order_direction&gt;&lt;roles/&gt;&lt;short_description/&gt;&lt;size&gt;md&lt;/size&gt;&lt;sp_column display_value="1"&gt;478adb4893ef4210bef6fff56aba10c5&lt;/sp_column&gt;&lt;sp_page display_value="oc_rotation"&gt;45db53c893ef4210bef6fff56aba10e6&lt;/sp_page&gt;&lt;sp_widget display_value="Simple List"&gt;5b255672cb03020000f8d856634c9c28&lt;/sp_widget&gt;&lt;sys_class_name&gt;sp_instance_vlist&lt;/sys_class_name&gt;&lt;sys_created_by&gt;aaron.brunet&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2024-07-17 20:02:37&lt;/sys_created_on&gt;&lt;sys_id&gt;fb9ad74893ef4210bef6fff56aba102e&lt;/sys_id&gt;&lt;sys_mod_count&gt;5&lt;/sys_mod_count&gt;&lt;sys_name/&gt;&lt;sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0"&gt;549b056793db4210bef6fff56aba1057&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="On-Call Schedule"&gt;549b056793db4210bef6fff56aba1057&lt;/sys_scope&gt;&lt;sys_update_name&gt;sp_instance_vlist_fb9ad74893ef4210bef6fff56aba102e&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;aaron.brunet&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2024-07-17 20:11:49&lt;/sys_updated_on&gt;&lt;table&gt;x_snc_on_call_sc_0_on_call_rotation&lt;/table&gt;&lt;title/&gt;&lt;url/&gt;&lt;widget_parameters&gt;&lt;![CDATA[{
+	"always_show": {
+		"value": "",
+		"displayValue": ""
+	},
+	"panel_body_height": {
+		"value": "",
+		"displayValue": ""
+	},
+	"image_field": {
+		"value": "",
+		"displayValue": ""
+	},
+	"secondary_fields": {
+		"value": "sys_updated_on",
+		"displayValue": "sys_updated_on"
+	},
+	"rounded_images": {
+		"value": "",
+		"displayValue": ""
+	},
+	"list_page": {
+		"value": "",
+		"displayValue": ""
+	},
+	"hide_footer": {
+		"value": "true",
+		"displayValue": "true"
+	},
+	"view": {
+		"value": "",
+		"displayValue": ""
+	},
+	"disable_record_watcher": {
+		"value": "",
+		"displayValue": ""
+	},
+	"filter_acls": {
+		"value": "false",
+		"displayValue": "false"
+	}
+}]]&gt;&lt;/widget_parameters&gt;&lt;/sp_instance_vlist&gt;&lt;sys_translated_text action="delete_multiple" query="documentkey=fb9ad74893ef4210bef6fff56aba102e"/&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>-925009924</payload_hash>
+        <record_name/>
+        <reverted_from/>
+        <source>311dcda793db4210bef6fff56aba10cc</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>aaron.brunet</sys_created_by>
+        <sys_created_on>2024-07-17 20:11:49</sys_created_on>
+        <sys_id>aabc5fc893ef4210bef6fff56aba1045</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>190c25292d60000001</sys_recorded_at>
+        <sys_updated_by>aaron.brunet</sys_updated_by>
+        <sys_updated_on>2024-07-17 20:11:49</sys_updated_on>
+        <type>Instance of Simple List</type>
+        <update_guid>22bc5fc843ef4210040aa01f6a351445</update_guid>
+        <update_guid_history>22bc5fc843ef4210040aa01f6a351445:-925009924,12ac1fc879ef42101b972b8059e1deed:577871364,b52c17c8d9ef42104f25bdb9cee6f73a:-925009924,6bab9f881fef421080c26b8a31f3de44:-1367384047,1f2b138808ef4210c27a3a222df6e150:-1506460742,779ad7485fef4210e93fe63491a17f31:1792794339</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="">f2fdd34c93ef4210bef6fff56aba10a2</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>aaron.brunet</sys_created_by>
+        <sys_created_on>2024-07-17 20:17:18</sys_created_on>
+        <sys_db_object display_value="" name="sp_instance_vlist">sp_instance_vlist</sys_db_object>
+        <sys_id>0dd052fdd45b4aa483511bdad8213be4</sys_id>
+        <sys_metadata>fb9ad74893ef4210bef6fff56aba102e</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
+        <sys_scope_delete display_value="">2900bc0270514c16b05da9b13e40e229</sys_scope_delete>
+        <sys_update_name>sp_instance_vlist_fb9ad74893ef4210bef6fff56aba102e</sys_update_name>
+        <sys_update_version display_value="sp_instance_vlist_fb9ad74893ef4210bef6fff56aba102e">aabc5fc893ef4210bef6fff56aba1045</sys_update_version>
+        <sys_updated_by>aaron.brunet</sys_updated_by>
+        <sys_updated_on>2024-07-17 20:17:18</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

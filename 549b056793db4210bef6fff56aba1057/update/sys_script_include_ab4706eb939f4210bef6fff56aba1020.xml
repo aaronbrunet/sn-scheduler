@@ -82,6 +82,7 @@ OnCallUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 		while(_tm.next()){
 			_tm_arr.push({
 				id: _tm.getUniqueValue(),
+				name: _tm.getDisplayValue(),
 				order: order
 			});
 			order++;
@@ -106,33 +107,79 @@ OnCallUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 		}
 		
 	},
-	buildShifts : function(start,team,role,roster){
-		if(!start){
+	buildDraftShifts : function(start,team,role,roster){
+		var shifts_draft = [];
+		if(!start || !start.isValid()){
 			start = new GlideDateTime();
 		}
 		if(!role){
 			role = 'engineer';
 		}
-		if(!roster && team && role){
+		if((!roster && team && role) || roster.length == 0){
+			roster = this.buildTeamRoster(team,role);
+		}
+
+		try {	
+			var ri = 0;
+			var rotations = new GlideRecord(this.constants.TABLE_ROTATIONS);
+			//rotations.addEncodedQuery(`from>=javascript:gs.dateGenerate('${start}','end')`);
+			rotations.addEncodedQuery(`from<=javascript:gs.dateGenerate('${start}','start')^to>=javascript:gs.dateGenerate('${start}','end')^NQfrom>=javascript:gs.dateGenerate('${start}','end')`);
+			rotations.orderBy('from');
+			rotations.query();
+			while(rotations.next()){
+				var user = roster[ri];
+				let shift = {
+					rotation:rotations.getDisplayValue('rotation'),
+					team_member:user.name,
+					type:role,
+					from:rotations.getDisplayValue('from'),
+					to:rotations.getDisplayValue('to')
+				};
+				console.log(['shift',shift]);
+				shifts_draft.push(shift);
+				if(ri<roster.length-1){
+					ri++;
+				} else {
+					ri = 0;
+				}
+			}
+		} catch(err) {
+			gs.info('Insertion failed due to error: '+err);
+
+		}
+		console.log(shifts_draft);
+		return shifts_draft;
+	},
+	buildShifts : function(start,team,role,roster,flag){
+		if(!start || !start.isValid()){
+			start = new GlideDateTime();
+		}
+		if(!role){
+			role = 'engineer';
+		}
+		if((!roster && team && role) || roster.length == 0){
 			roster = this.buildTeamRoster(team,role);
 		}
 		try {	
 			var ri = 0;
 			var rotations = new GlideRecord(this.constants.TABLE_ROTATIONS);
-			rotations.addEncodedQuery(`from>=javascript:gs.dateGenerate('${start}','end')`);
+			//rotations.addEncodedQuery(`from>=javascript:gs.dateGenerate('${start}','end')`);
+			rotations.addEncodedQuery(`from<=javascript:gs.dateGenerate('${start}','start')^to>=javascript:gs.dateGenerate('${start}','end')^NQfrom>=javascript:gs.dateGenerate('${start}','end')`);
+			rotations.orderBy('from');
 			rotations.query();
 			while(rotations.next()){
+				console.log(['rotations',ri,rotations.getDisplayValue('rotation')])
 				if(!this.checkDuplicateShift(rotations.getUniqueValue(),team,role)){
 					var user = roster[ri];
-					var shift = new GlideRecord(this.constants.TABLE_SHIFTS);
-					shift.initialize();
-					shift.setValue('rotation',rotations.getUniqueValue());
-					shift.setValue('team',team);			
-					shift.setValue('team_member',user.id);
-					shift.setValue('type',role);
-					shift.setValue('from',rotations.getValue('from'));
-					shift.setValue('to',rotations.getValue('to'));
-					shift.insert();
+						let shift = new GlideRecord(this.constants.TABLE_SHIFTS);
+						shift.initialize();
+						shift.setValue('rotation',rotations.getUniqueValue());
+						shift.setValue('team',team);			
+						shift.setValue('team_member',user.id);
+						shift.setValue('type',role);
+						shift.setValue('from',rotations.getValue('from'));
+						shift.setValue('to',rotations.getValue('to'));
+						shift.insert();
 					if(ri<roster.length-1){
 						ri++;
 					} else {
@@ -280,14 +327,14 @@ OnCallUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
         <sys_created_by>aaron.brunet</sys_created_by>
         <sys_created_on>2024-07-16 00:43:26</sys_created_on>
         <sys_id>ab4706eb939f4210bef6fff56aba1020</sys_id>
-        <sys_mod_count>32</sys_mod_count>
+        <sys_mod_count>54</sys_mod_count>
         <sys_name>OnCallUtils</sys_name>
         <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
         <sys_update_name>sys_script_include_ab4706eb939f4210bef6fff56aba1020</sys_update_name>
         <sys_updated_by>aaron.brunet</sys_updated_by>
-        <sys_updated_on>2024-07-17 18:31:41</sys_updated_on>
+        <sys_updated_on>2024-07-18 01:29:10</sys_updated_on>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>ab4706eb939f4210bef6fff56aba1020</id>
