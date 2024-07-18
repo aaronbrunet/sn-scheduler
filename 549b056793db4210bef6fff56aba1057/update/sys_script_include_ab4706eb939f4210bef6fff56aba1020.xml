@@ -59,30 +59,33 @@ OnCallUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 
 	},
 	buildTeamRoster : function(team,role){
+		console.log([team,role]);
 		if(!team) {
 			return gs.info('No team specified');
 		}
-		if(!role){
-			role = 'engineer';
-		}
-		/*
-		var _team = new GlideRecord(this.constants.TABLE_TEAM);
-		_team.get(team);
-		if(!_team){
-			return gs.info('No team specified');
-		}
-		*/
+		// if(!role){
+		// 	role = 'engineer';
+		// }
+		/**
+		 * If order, sort by order
+		 * If no order, sort by Last On-Call
+		 * If no Last On-Call, sort last
+		 * Allow for manual update??
+		 */
 		var _tm_arr = [];
 		var order = 1;
 		var _tm = new GlideRecord(this.constants.TABLE_TEAM_MEMBERS);
 		_tm.addQuery('active',true);
 		_tm.addQuery('assignment_group',team);
-		_tm.addQuery('role',role);
+		if(role){ _tm.addQuery('role',role); }
 		_tm.query();
 		while(_tm.next()){
 			_tm_arr.push({
 				id: _tm.getUniqueValue(),
 				name: _tm.getDisplayValue(),
+				user: _tm.getValue('user'),
+				role: _tm.getDisplayValue('role'),
+				phone: _tm.getDisplayValue('user.phone'),
 				order: order
 			});
 			order++;
@@ -364,14 +367,14 @@ OnCallUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
         <sys_created_by>aaron.brunet</sys_created_by>
         <sys_created_on>2024-07-16 00:43:26</sys_created_on>
         <sys_id>ab4706eb939f4210bef6fff56aba1020</sys_id>
-        <sys_mod_count>61</sys_mod_count>
+        <sys_mod_count>66</sys_mod_count>
         <sys_name>OnCallUtils</sys_name>
         <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
         <sys_update_name>sys_script_include_ab4706eb939f4210bef6fff56aba1020</sys_update_name>
         <sys_updated_by>aaron.brunet</sys_updated_by>
-        <sys_updated_on>2024-07-18 01:45:58</sys_updated_on>
+        <sys_updated_on>2024-07-18 03:28:49</sys_updated_on>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>ab4706eb939f4210bef6fff56aba1020</id>
