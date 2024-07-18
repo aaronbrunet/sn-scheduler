@@ -84,6 +84,7 @@ OnCallUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 				id: _tm.getUniqueValue(),
 				name: _tm.getDisplayValue(),
 				user: _tm.getValue('user'),
+				region: _tm.getDisplayValue('region'),
 				role: _tm.getDisplayValue('role'),
 				phone: _tm.getDisplayValue('user.phone'),
 				order: order
@@ -166,7 +167,7 @@ OnCallUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 			// rotations.orderBy('from');
 			// rotations.query();
 			for(var i in draft){
-				console.log(draft[i]);
+				//console.log(draft[i]);
 				var ds = draft[i];
 				//var user = roster[ri];
 				let shift = new GlideRecord(this.constants.TABLE_SHIFTS);
@@ -257,7 +258,7 @@ OnCallUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 	},
 	getManagersByRotation : function(rotation,region){
 		var managers = [];
-		var shifts = new GlideRecord(this.constants.TABLE_SHIFTS);
+		var shifts = new GlideRecordSecure(this.constants.TABLE_SHIFTS);
 		shifts.addEncodedQuery(`rotation=${rotation}^type=manager^state!=cancelled`);
 		if(region && region != ''){
 			shifts.addQuery('team_member.region',region);
@@ -267,6 +268,7 @@ OnCallUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 			let manager = {
 				id:shifts.team_member.getValue('sys_id'),
 				name:shifts.getDisplayValue('team_member'),
+				user:shifts.team_member.getValue('user'),
 				email:shifts.getDisplayValue('team_member.user.email'),
 				phone:shifts.getDisplayValue('team_member.user.phone'),
 				shift_id:shifts.getUniqueValue(),
@@ -288,7 +290,7 @@ OnCallUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 		return this.getTeamShiftByRotation(team,rotation);
 	},
 	getTeamShiftByRotation : function(team,rotation){
-		var shift = new GlideRecord(this.constants.TABLE_SHIFTS);
+		var shift = new GlideRecordSecure(this.constants.TABLE_SHIFTS);
 		shift.addEncodedQuery(`rotation=${rotation}^team=${team}^state!=cancelled^type=engineer`);
 		shift.query();
 		if(shift.next()){
@@ -305,7 +307,7 @@ OnCallUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 	},
 	getAllShiftsForRotation : function(rotation){
 		var engs = [];
-		var shifts = new GlideRecord(this.constants.TABLE_SHIFTS);
+		var shifts = new GlideRecordSecure(this.constants.TABLE_SHIFTS);
 		shifts.addEncodedQuery(`rotation=${rotation}^state!=cancelled^type=engineer`);
 		shifts.query();
 		while(shifts.next()){
@@ -314,6 +316,7 @@ OnCallUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 				team:shifts.getDisplayValue('team'),
 				team_id:shifts.getValue('team'),
 				name:shifts.getDisplayValue('team_member'),
+				user:shifts.team_member.user.getValue('sys_id'),
 				email:shifts.getDisplayValue('team_member.user.email'),
 				phone:shifts.getDisplayValue('team_member.user.phone'),
 				shift_id:shifts.getUniqueValue(),
@@ -325,7 +328,7 @@ OnCallUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 	},
 	getAllTeams : function(){
 		var teams = [];
-		var tr = new GlideRecord(this.constants.TABLE_TEAMS);
+		var tr = new GlideRecordSecure(this.constants.TABLE_TEAMS);
 		tr.addQuery('active',true);
 		tr.query();
 		while(tr.next()){
@@ -367,14 +370,14 @@ OnCallUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
         <sys_created_by>aaron.brunet</sys_created_by>
         <sys_created_on>2024-07-16 00:43:26</sys_created_on>
         <sys_id>ab4706eb939f4210bef6fff56aba1020</sys_id>
-        <sys_mod_count>66</sys_mod_count>
+        <sys_mod_count>71</sys_mod_count>
         <sys_name>OnCallUtils</sys_name>
         <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
         <sys_update_name>sys_script_include_ab4706eb939f4210bef6fff56aba1020</sys_update_name>
         <sys_updated_by>aaron.brunet</sys_updated_by>
-        <sys_updated_on>2024-07-18 03:28:49</sys_updated_on>
+        <sys_updated_on>2024-07-18 23:37:06</sys_updated_on>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>ab4706eb939f4210bef6fff56aba1020</id>

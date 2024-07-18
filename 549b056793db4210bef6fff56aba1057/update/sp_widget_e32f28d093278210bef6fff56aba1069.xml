@@ -10,7 +10,24 @@
 
 };]]></client_script>
         <controller_as>c</controller_as>
-        <css/>
+        <css>table {&#13;
+	border: 1px solid grey;&#13;
+  	padding: 2rem;&#13;
+  width: 60%;&#13;
+  border-radius: 20%;&#13;
+} &#13;
+tr {&#13;
+	padding: 1rem;&#13;
+}&#13;
+td,th {&#13;
+	border: 1px solid grey;&#13;
+  padding: 1rem;&#13;
+  width: 33%;&#13;
+}&#13;
+tr.manager-row{&#13;
+  th { background-color:#a2d0e9; }&#13;
+  td { background-color:#e2f5ff; }&#13;
+}</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
         <description/>
@@ -54,6 +71,8 @@
 		}
 		data.team_roster[i] = curr;
 	}
+	data.mgr_roster = data.team_roster.filter(m => m.role == 'Manager');
+	data.team_roster = data.team_roster.filter(m => m.role != 'Manager');
 	console.log(data.team_roster);
 
 })();]]></script>
@@ -62,25 +81,36 @@
         <sys_created_by>aaron.brunet</sys_created_by>
         <sys_created_on>2024-07-18 02:13:09</sys_created_on>
         <sys_id>e32f28d093278210bef6fff56aba1069</sys_id>
-        <sys_mod_count>33</sys_mod_count>
+        <sys_mod_count>37</sys_mod_count>
         <sys_name>On Call Schedule - Manage Team</sys_name>
         <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
         <sys_policy/>
         <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
         <sys_update_name>sp_widget_e32f28d093278210bef6fff56aba1069</sys_update_name>
         <sys_updated_by>aaron.brunet</sys_updated_by>
-        <sys_updated_on>2024-07-18 03:29:50</sys_updated_on>
+        <sys_updated_on>2024-07-18 22:24:41</sys_updated_on>
         <template><![CDATA[<div>
   <h1>Manage {{data.team}}</h1>
   
   <div ng-if="data.team_roster">
     <h2>Team Roster</h2>
-    <div ng-repeat="m in data.team_roster">
-      <div>{{m.name}} |
-      <strong>Phone</strong>  <sp-editable-field editable-by-user="true" table="sys_user" table-id="m.user" field-model="m.userModel.phone"></sp-editable-field> |
-{{m.role}}</div>
-    </div>
-  </div>
+    <table>
+      <tr>
+        <th>Name</th><th>Phone</th><th>Region</th><th>Role</th>
+      </tr>
+      <tr ng-repeat="m in data.mgr_roster" class="manager-row">
+        <td>{{m.name}}</td>
+        <td><sp-editable-field editable-by-user="true" table="sys_user" table-id="m.user" field-model="m.userModel.phone"></sp-editable-field></td>
+        <td>{{m.region}}</td>
+        <td>{{m.role}}</td>
+      </tr>
+    <tr ng-repeat="m in data.team_roster">
+      <td>{{m.name}}</td>
+      <td><sp-editable-field editable-by-user="true" table="sys_user" table-id="m.user" field-model="m.userModel.phone"></sp-editable-field></td>
+      <td>{{m.region}}</td>
+      <td>{{m.role}}</td>
+    </tr>
+  </table>
   
   
   
