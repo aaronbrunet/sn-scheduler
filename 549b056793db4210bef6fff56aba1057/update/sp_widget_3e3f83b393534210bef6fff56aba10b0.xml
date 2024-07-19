@@ -88,13 +88,17 @@ tr.manager-row{&#13;
 	};
 
 	var managers = ocu.getManagersByRotation(rotation.getUniqueValue());
-console.log(managers);
+	for(let i in managers) {
+		managers[i].shiftForm = $sp.getForm(constants.TABLE_SHIFTS, managers[i].shift_id);
+		managers[i].shiftModel = managers[i].shiftForm._fields;
+		managers[i].userForm = $sp.getForm('sys_user',managers[i].user);
+		managers[i].userModel = managers[i].userForm._fields;
+	}
+	console.log(managers);
+
 	data.us_manager = managers.find(m => m.region == 'US');
-
-	data.us_manager.shiftForm = $sp.getForm(constants.TABLE_SHIFTS, data.us_manager.shift_id);
-	data.us_manager.shiftModel = data.us_manager.shiftForm._fields;
-
 	data.idc_manager = managers.find(m => m.region == 'IDC');
+
 	var now_manager = ocu.getManagersByDate();
 
 	var holidays = ocu.getAllHolidaysForRotation(rotation.getUniqueValue());
@@ -118,7 +122,7 @@ console.log(managers);
 		data.shifts = ocu.getAllTeams();
 	}
 
-	for(var i in data.shifts){
+	for(let i in data.shifts){
 		var curr = data.shifts[i];
 		curr.shiftForm = $sp.getForm(constants.TABLE_SHIFTS, curr.shift_id);
 		curr.shiftView = curr.shiftForm._view;
@@ -139,14 +143,14 @@ console.log(managers);
         <sys_created_by>aaron.brunet</sys_created_by>
         <sys_created_on>2024-07-17 00:36:13</sys_created_on>
         <sys_id>3e3f83b393534210bef6fff56aba10b0</sys_id>
-        <sys_mod_count>103</sys_mod_count>
+        <sys_mod_count>107</sys_mod_count>
         <sys_name>On Call Schedule - Week</sys_name>
         <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
         <sys_policy/>
         <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
         <sys_update_name>sp_widget_3e3f83b393534210bef6fff56aba10b0</sys_update_name>
         <sys_updated_by>aaron.brunet</sys_updated_by>
-        <sys_updated_on>2024-07-18 23:39:48</sys_updated_on>
+        <sys_updated_on>2024-07-19 00:28:04</sys_updated_on>
         <template><![CDATA[<div ng-if="!data.rotation.rotation">
   <h1>No On-Call rotation schedule</h1>
 </div>
@@ -160,7 +164,8 @@ console.log(managers);
       </tr>
       <tr class="manager-row"> 
         <th>US Manager</th>
-<!--        <td>{{data.us_manager.name || 'No manager scheduled'}}</td>-->
+        <td ng-if="!data.us_manager">No manager scheduled</td>
+        <td ng-if="!data.us_manager"></td>
         <td>
         	<sp-editable-field 
 				editable-by-user="true" 
@@ -169,12 +174,35 @@ console.log(managers);
                 field-model="data.us_manager.shiftModel.team_member">
           </sp-editable-field>
         </td>
-        <td>{{data.us_manager.phone || 'No phone # listed'}}</td>
+        <td>
+        	<sp-editable-field 
+                editable-by-user="true" 
+                table="sys_user" 
+                table-id="data.us_manager.user" 
+                field-model="data.us_manager.userModel.phone">
+          </sp-editable-field>   
+        </td>
       </tr>
       <tr class="manager-row"> 
         <th>IDC Manager</th>
-        <td>{{data.idc_manager.name || 'No manager scheduled'}}</td>
-        <td>{{data.idc_Manager.phone || 'No phone # listed'}}</td>
+        <td ng-if="!data.idc_manager">No manager scheduled</td>
+        <td ng-if="!data.idc_manager"></td>
+        <td ng-if="data.idc_manager">
+        	<sp-editable-field 
+				editable-by-user="true" 
+				table={{data.constants.TABLE_SHIFTS}} 
+                table-id="data.idc_manager.shift_id" 
+                field-model="data.idc_manager.shiftModel.team_member">
+          </sp-editable-field>
+        </td>
+        <td ng-if="data.idc_manager">
+        	<sp-editable-field 
+                editable-by-user="true" 
+                table="sys_user" 
+                table-id="data.idc_manager.user" 
+                field-model="data.idc_manager.userModel.phone">
+          </sp-editable-field>   
+        </td>
       </tr>
 	  <tr ng-repeat="shift in data.shifts" class="team-row">
         <th>{{shift.team}}</th>

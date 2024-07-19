@@ -3,7 +3,7 @@
         <element label="To" max_length="40" name="to" read_only="true" type="glide_date"/>
         <element label="Rotation" mandatory="true" max_length="32" name="rotation" read_only="true" reference="x_snc_on_call_sc_0_on_call_rotation" type="reference"/>
         <element label="Team" mandatory="true" max_length="32" name="team" reference="x_snc_on_call_sc_0_assignment_group" reference_qual="active=true" reference_qual_condition="active=true" type="reference"/>
-        <element dependent="team" dependent_on_field="team" label="Team Member" mandatory="true" max_length="32" name="team_member" reference="x_snc_on_call_sc_0_user" type="reference" use_dependent_field="true"/>
+        <element dependent="team" dependent_on_field="team" label="Team Member" mandatory="true" max_length="32" name="team_member" reference="x_snc_on_call_sc_0_user" reference_qual="javascript:'role=^ORrole='+current.type" type="reference" use_dependent_field="true" use_reference_qualifier="advanced"/>
         <element label="Name" max_length="100" name="name" type="string"/>
         <element choice="3" label="Type" max_length="40" name="type" type="choice">
             <choice>
