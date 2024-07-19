@@ -8,25 +8,27 @@
   spUtil.recordWatch($scope, $scope.data.constants.TABLE_TEAM_MEMBERS, "team=" + $scope.data.team_id);
 
 
+
 };]]></client_script>
         <controller_as>c</controller_as>
-        <css>table {&#13;
+        <css>table.oc-table {&#13;
 	border: 1px solid grey;&#13;
   	padding: 2rem;&#13;
   width: 60%;&#13;
   border-radius: 20%;&#13;
-} &#13;
-tr {&#13;
-	padding: 1rem;&#13;
-}&#13;
-td,th {&#13;
-	border: 1px solid grey;&#13;
-  padding: 1rem;&#13;
-  width: 33%;&#13;
-}&#13;
-tr.manager-row{&#13;
-  th { background-color:#a2d0e9; }&#13;
-  td { background-color:#e2f5ff; }&#13;
+&#13;
+  tr {&#13;
+      padding: 1rem;&#13;
+  }&#13;
+  td, th {&#13;
+      border: 1px solid grey;&#13;
+    padding: 1rem;&#13;
+    width: 33%;&#13;
+  }&#13;
+  tr.manager-row{&#13;
+    th { background-color:#a2d0e9; }&#13;
+    td { background-color:#e2f5ff; }&#13;
+  }&#13;
 }</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
@@ -75,26 +77,73 @@ tr.manager-row{&#13;
 	data.team_roster = data.team_roster.filter(m => m.role != 'Manager');
 	console.log(data.team_roster);
 
+	var trl = {};
+	trl.options = {};
+	trl.options.table = data.constants.TABLE_TEAM_MEMBERS;
+	trl.options.fields = 'user,user.phone,region,role';//data.field_list;
+	trl.options.column_labels = {
+		role: "Role",
+		region: "Region",
+		user: "Name",
+		"user.phone": "Phone"
+	};
+	trl.options.filter = 'active=true^assignment_group='+team_id;
+	trl.options.useInstanceTitle = true; // to make sure Data Table widget uses headerTitle always
+	trl.options.show_breadcrumbs=false;
+	data.trlWidget = $sp.getWidget('widget-data-table', trl.options);
+
+//id=form&table=x_snc_on_call_sc_0_on_call_shift&sys_id=458d360093af4210bef6fff56aba10dd&view=sp
+
+	
+	var esl = {};
+	esl.options = {};
+	esl.options.table = data.constants.TABLE_SHIFTS;
+	esl.options.fields = 'rotation,from,team_member';
+	esl.options.filter = 'team='+team_id+'^type=^ORtype=engineer';
+	//esl.options.sp_page = sp_page;
+	esl.options.sp_page = 'oc_form';
+	esl.options.sp_page_dv = 'oc_form';
+	
+	esl.page_id = esl.options.page_id;
+	esl.options.show_breadcrumbs=false;
+	esl.options.useInstanceTitle = true;
+	esl.options.headerTitle = 'Engineer On-Call Shifts';
+	esl.options.sys_class_name = "sp_instance_table";
+	data.eslWidget = $sp.getWidget('widget-data-table',esl.options);
+	
+	var msl = {};
+	msl.options = {};
+	msl.options.table = data.constants.TABLE_SHIFTS;
+	msl.options.fields = 'rotation,from,team_member';
+	msl.options.filter = 'team='+team_id+'^type=manager';
+	msl.options.show_breadcrumbs=false;
+	msl.options.useInstanceTitle = true;
+	msl.options.headerTitle = 'Manager On-Call Shifts';
+	data.mslWidget = $sp.getWidget('widget-data-table',msl.options);
+
 })();]]></script>
         <servicenow>false</servicenow>
         <sys_class_name>sp_widget</sys_class_name>
         <sys_created_by>aaron.brunet</sys_created_by>
         <sys_created_on>2024-07-18 02:13:09</sys_created_on>
         <sys_id>e32f28d093278210bef6fff56aba1069</sys_id>
-        <sys_mod_count>43</sys_mod_count>
+        <sys_mod_count>71</sys_mod_count>
         <sys_name>On Call Schedule - Manage Team</sys_name>
         <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
         <sys_policy/>
         <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
         <sys_update_name>sp_widget_e32f28d093278210bef6fff56aba1069</sys_update_name>
         <sys_updated_by>aaron.brunet</sys_updated_by>
-        <sys_updated_on>2024-07-19 00:49:25</sys_updated_on>
+        <sys_updated_on>2024-07-19 03:00:13</sys_updated_on>
         <template><![CDATA[<div>
-  <h1>Manage {{data.team}}</h1>
+  <h1>{{data.team}}</h1>
   
   <div ng-if="data.team_roster">
     <h2>Team Roster</h2>
-    <table>
+    <sp-widget widget="data.trlWidget"></sp-widget>
+    
+    <!--
+    <table class="oc-table">
       <tr>
         <th>Name</th><th>Phone</th><th>Region</th><th>Role</th>
       </tr>
@@ -111,8 +160,11 @@ tr.manager-row{&#13;
       <td>{{m.role}}</td>
     </tr>
   </table>
+-->
   
-  
+  <sp-widget widget="data.eslWidget"></sp-widget>
+  <sp-widget widget="data.mslWidget"></sp-widget>
+
   
 </div>]]></template>
     </sp_widget>
