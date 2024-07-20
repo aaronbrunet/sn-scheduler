@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_email">
+    <sys_script_email action="INSERT_OR_UPDATE">
+        <name>on_call_schedule</name>
+        <new_lines_to_html>false</new_lines_to_html>
+        <script><![CDATA[(function runMailScript(/* GlideRecord */ current, /* TemplatePrinter */ template,
+          /* Optional EmailOutbound */ email, /* Optional GlideRecord */ email_action,
+          /* Optional GlideRecord */ event) {
+    
+	// Add your code here
+	template.print('<table>');
+	template.print(`<tr><th colspan="2">This Week: ${current.rotation}</th><th>Phone</th></tr>`);
+
+	var ocu = new x_snc_on_call_sc_0.OnCallUtils();
+
+	var managers = ocu.getManagersByRotation(current.sys_id);
+	template.print(`<tr><th>US Manager</th><td>`);
+	if(managers.some(m => m.region == 'US')){
+		template.print(managers.find(m=>m.region == 'US').name);
+	} else {
+		template.print('No manager scheduled');
+	}
+	template.print('</td>');
+	template.print(`<td>${managers.find(m=>m.region == 'US').phone}</td>`);
+	template.print('</tr>');
+
+	var shifts = ocu.getAllShiftsForRotation(current.sys_id);
+	for(var i in shifts){
+		var shift = shifts[i];
+		//template.print(JSON.stringify(shift));
+		template.print(`<tr><th>${shift.team.toString()}</th>`);
+		template.print(`<td>${shift.name.toString()}</td><td>${shift.phone.toString()}</td></tr>`);
+	}
+
+	template.print('</table>');
+
+
+})(current, template, email, email_action, event);]]></script>
+        <sys_class_name>sys_script_email</sys_class_name>
+        <sys_created_by>aaron.brunet</sys_created_by>
+        <sys_created_on>2024-07-20 18:32:38</sys_created_on>
+        <sys_id>01126e8d93a34610bef6fff56aba102d</sys_id>
+        <sys_mod_count>15</sys_mod_count>
+        <sys_name>on_call_schedule</sys_name>
+        <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
+        <sys_update_name>sys_script_email_01126e8d93a34610bef6fff56aba102d</sys_update_name>
+        <sys_updated_by>aaron.brunet</sys_updated_by>
+        <sys_updated_on>2024-07-20 20:04:26</sys_updated_on>
+    </sys_script_email>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>01126e8d93a34610bef6fff56aba102d</id>
+        <sys_created_by>aaron.brunet</sys_created_by>
+        <sys_created_on>2024-07-20 18:32:38</sys_created_on>
+        <sys_id>b2c2e2cd93a34610bef6fff56aba106c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>aaron.brunet</sys_updated_by>
+        <sys_updated_on>2024-07-20 18:32:38</sys_updated_on>
+        <table>sys_script_email</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>
