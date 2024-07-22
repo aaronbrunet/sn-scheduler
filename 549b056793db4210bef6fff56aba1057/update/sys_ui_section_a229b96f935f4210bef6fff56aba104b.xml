@@ -4,13 +4,13 @@
             <element>.begin_split</element>
             <position>0</position>
             <sys_created_by>aaron.brunet</sys_created_by>
-            <sys_created_on>2024-07-15 23:45:45</sys_created_on>
-            <sys_id>4d8ab5ef935f4210bef6fff56aba1024</sys_id>
+            <sys_created_on>2024-07-20 21:21:14</sys_created_on>
+            <sys_id>ec69838193674610bef6fff56aba109b</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_snc_on_call_sc_0_on_call_rotation" sys_domain="global" view="Default view">a229b96f935f4210bef6fff56aba104b</sys_ui_section>
             <sys_updated_by>aaron.brunet</sys_updated_by>
-            <sys_updated_on>2024-07-15 23:45:45</sys_updated_on>
+            <sys_updated_on>2024-07-20 21:21:14</sys_updated_on>
             <sys_user/>
             <type>.begin_split</type>
         </sys_ui_element>
@@ -18,13 +18,13 @@
             <element>from</element>
             <position>1</position>
             <sys_created_by>aaron.brunet</sys_created_by>
-            <sys_created_on>2024-07-15 23:45:45</sys_created_on>
-            <sys_id>c18ab5ef935f4210bef6fff56aba1025</sys_id>
+            <sys_created_on>2024-07-20 21:21:14</sys_created_on>
+            <sys_id>6c69838193674610bef6fff56aba109c</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_snc_on_call_sc_0_on_call_rotation" sys_domain="global" view="Default view">a229b96f935f4210bef6fff56aba104b</sys_ui_section>
             <sys_updated_by>aaron.brunet</sys_updated_by>
-            <sys_updated_on>2024-07-15 23:45:45</sys_updated_on>
+            <sys_updated_on>2024-07-20 21:21:14</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -32,13 +32,13 @@
             <element>.split</element>
             <position>2</position>
             <sys_created_by>aaron.brunet</sys_created_by>
-            <sys_created_on>2024-07-15 23:45:45</sys_created_on>
-            <sys_id>458ab5ef935f4210bef6fff56aba1025</sys_id>
+            <sys_created_on>2024-07-20 21:21:14</sys_created_on>
+            <sys_id>6469838193674610bef6fff56aba109d</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_snc_on_call_sc_0_on_call_rotation" sys_domain="global" view="Default view">a229b96f935f4210bef6fff56aba104b</sys_ui_section>
             <sys_updated_by>aaron.brunet</sys_updated_by>
-            <sys_updated_on>2024-07-15 23:45:45</sys_updated_on>
+            <sys_updated_on>2024-07-20 21:21:14</sys_updated_on>
             <sys_user/>
             <type>.split</type>
         </sys_ui_element>
@@ -46,13 +46,13 @@
             <element>to</element>
             <position>3</position>
             <sys_created_by>aaron.brunet</sys_created_by>
-            <sys_created_on>2024-07-15 23:45:45</sys_created_on>
-            <sys_id>c58ab5ef935f4210bef6fff56aba1025</sys_id>
+            <sys_created_on>2024-07-20 21:21:14</sys_created_on>
+            <sys_id>6c69838193674610bef6fff56aba109d</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_snc_on_call_sc_0_on_call_rotation" sys_domain="global" view="Default view">a229b96f935f4210bef6fff56aba104b</sys_ui_section>
             <sys_updated_by>aaron.brunet</sys_updated_by>
-            <sys_updated_on>2024-07-15 23:45:45</sys_updated_on>
+            <sys_updated_on>2024-07-20 21:21:14</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -60,13 +60,13 @@
             <element>.end_split</element>
             <position>4</position>
             <sys_created_by>aaron.brunet</sys_created_by>
-            <sys_created_on>2024-07-15 23:45:45</sys_created_on>
-            <sys_id>498ab5ef935f4210bef6fff56aba1025</sys_id>
+            <sys_created_on>2024-07-20 21:21:14</sys_created_on>
+            <sys_id>6469838193674610bef6fff56aba109e</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_snc_on_call_sc_0_on_call_rotation" sys_domain="global" view="Default view">a229b96f935f4210bef6fff56aba104b</sys_ui_section>
             <sys_updated_by>aaron.brunet</sys_updated_by>
-            <sys_updated_on>2024-07-15 23:45:45</sys_updated_on>
+            <sys_updated_on>2024-07-20 21:21:14</sys_updated_on>
             <sys_user/>
             <type>.end_split</type>
         </sys_ui_element>
@@ -74,13 +74,27 @@
             <element>rotation</element>
             <position>5</position>
             <sys_created_by>aaron.brunet</sys_created_by>
-            <sys_created_on>2024-07-15 23:45:45</sys_created_on>
-            <sys_id>c98ab5ef935f4210bef6fff56aba1025</sys_id>
+            <sys_created_on>2024-07-20 21:21:14</sys_created_on>
+            <sys_id>6c69838193674610bef6fff56aba109e</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_snc_on_call_sc_0_on_call_rotation" sys_domain="global" view="Default view">a229b96f935f4210bef6fff56aba104b</sys_ui_section>
             <sys_updated_by>aaron.brunet</sys_updated_by>
-            <sys_updated_on>2024-07-15 23:45:45</sys_updated_on>
+            <sys_updated_on>2024-07-20 21:21:14</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>assignees</element>
+            <position>6</position>
+            <sys_created_by>aaron.brunet</sys_created_by>
+            <sys_created_on>2024-07-20 21:21:14</sys_created_on>
+            <sys_id>6469838193674610bef6fff56aba109f</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_snc_on_call_sc_0_on_call_rotation" sys_domain="global" view="Default view">a229b96f935f4210bef6fff56aba104b</sys_ui_section>
+            <sys_updated_by>aaron.brunet</sys_updated_by>
+            <sys_updated_on>2024-07-20 21:21:14</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>

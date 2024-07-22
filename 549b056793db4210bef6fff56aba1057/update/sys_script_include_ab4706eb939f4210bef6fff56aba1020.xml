@@ -258,7 +258,7 @@ OnCallUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 	},
 	getManagersByRotation : function(rotation,region){
 		var managers = [];
-		var shifts = new GlideRecordSecure(this.constants.TABLE_SHIFTS);
+		var shifts = new GlideRecord(this.constants.TABLE_SHIFTS);
 		shifts.addEncodedQuery(`rotation=${rotation}^type=manager^state!=cancelled`);
 		if(region && region != ''){
 			shifts.addQuery('team_member.region',region);
@@ -290,7 +290,7 @@ OnCallUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 		return this.getTeamShiftByRotation(team,rotation);
 	},
 	getTeamShiftByRotation : function(team,rotation){
-		var shift = new GlideRecordSecure(this.constants.TABLE_SHIFTS);
+		var shift = new GlideRecord(this.constants.TABLE_SHIFTS);
 		shift.addEncodedQuery(`rotation=${rotation}^team=${team}^state!=cancelled^type=engineer`);
 		shift.query();
 		if(shift.next()){
@@ -307,7 +307,7 @@ OnCallUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 	},
 	getAllShiftsForRotation : function(rotation){
 		var engs = [];
-		var shifts = new GlideRecordSecure(this.constants.TABLE_SHIFTS);
+		var shifts = new GlideRecord(this.constants.TABLE_SHIFTS);
 		shifts.addEncodedQuery(`rotation=${rotation}^state!=cancelled^type=engineer`);
 		shifts.query();
 		while(shifts.next()){
@@ -326,6 +326,21 @@ OnCallUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 		}
 		return engs;
 	},
+	getAssigneesByRotation : function(rotation) {
+		var ids = [];
+		var shifts = new GlideRecord(this.constants.TABLE_SHIFTS);
+		shifts.addEncodedQuery('rotation='+rotation+'^state!=cancelled');
+		//gs.info('rotation='+rotation+'^state!=cancelled');
+		shifts.query();
+		while(shifts.next()){
+			//ids.push(shifts.team_member.user);
+			var user = shifts.getValue('team_member');
+			ids.push(user);
+		}
+		//gs.info(ids);
+		//gs.info('sys_idIN'+ids.join(','));
+		return ids;
+	},
 	getAllTeams : function(){
 		var teams = [];
 		var tr = new GlideRecordSecure(this.constants.TABLE_TEAMS);
@@ -336,10 +351,7 @@ OnCallUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 		}
 		return teams;
 	},
-	getAllHolidaysForRegion : function(region,type){
-
-	},
-	getAllHolidaysForRotation : function(rotation){
+	getAllHolidaysForRotation : function(rotation,region){
 		var _rotation = new GlideRecord(this.constants.TABLE_ROTATIONS);
 		_rotation.get(rotation);
 		let from = _rotation.getDisplayValue('from');
@@ -348,6 +360,9 @@ OnCallUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 		var holidays = [];
 		var hr = new GlideRecord(this.constants.TABLE_HOLIDAYS);
 		hr.addEncodedQuery(`dateBETWEENjavascript:gs.dateGenerate('${from}','start')@javascript:gs.dateGenerate('${to}','end')`);
+		if(region){
+			hr.addQuery('region',region);
+		}
 		hr.orderBy('date');
 		hr.query();
 		while(hr.next()){
@@ -364,20 +379,77 @@ OnCallUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 		}
 		return holidays;
 	},
+	getReadonlyTable : function(rotation) {
+		var _rotation = new GlideRecord(this.constants.TABLE_ROTATIONS);
+		_rotation.get(rotation);
+
+		var managers = this.getManagersByRotation(rotation);
+		var html = '<table class="rotation-table">';
+		html += '<tr class="title-row"><th colspan="2">This Week: '+_rotation.rotation+'</th><th>Phone</th></tr>';
+
+		html += '<tr class="manager-row"><th>US Manager</th>';
+		if(managers.some(m => m.region == 'US')){
+			html+='<td>'+managers.find(m=>m.region == 'US').name+'</td>';
+		} else {
+			html+='<td>No manager scheduled</td>';
+		}
+		if(managers.some(m => m.region == 'US')){
+			html+='<td>'+managers.find(m=>m.region == 'US').phone+'</td></tr>';
+		} else {
+			html+='<td></td></tr>';
+		}
+
+		html += '<tr class="manager-row"><th>IDC Manager</th>';
+		if(managers.some(m => m.region == 'IDC')){
+			html+='<td>'+managers.find(m=>m.region == 'IDC').name+'</td>';
+		} else {
+			html+='<td>No manager scheduled</td>';
+		}
+		if(managers.some(m => m.region == 'IDC')){
+			html+='<td>'+managers.find(m=>m.region == 'IDC').phone+'</td></tr>';
+		} else {
+			html+='<td></td></tr>';
+		}
+
+		var shifts = this.getAllShiftsForRotation(rotation);
+		for(var i=0;i < shifts.length; i++){
+			var shift = shifts[i];
+			html+='<tr><th>'+shift.team+'</th><td>'+shift.name+'</td><td>'+shift.phone+'</td></tr>';
+		}
+
+		var holidays_us = this.getAllHolidaysForRotation(rotation,'US');
+		var holidays_idc = this.getAllHolidaysForRotation(rotation,'IDC');
+		
+		var us_wellness = holidays_us?.filter(h => h.type == 'wellness_day').map(h => h.formatted_date).join(', ') || 'None';
+
+		var us_holidays = holidays_us?.filter(h => h.type == 'holiday').map(h => h.formatted_date).join(', ') || 'None';
+
+		var idc_wellness = holidays_idc?.filter(h => h.type == 'wellness_day').map(h => h.formatted_date).join(', ') || 'None';
+
+		var idc_holidays = holidays_idc?.filter(h => h.type == 'holiday').map(h => h.formatted_date).join(', ') || 'None';
+
+
+		html+= '<tr class="holiday-row"><th>US Wellness Day</th><td colspan="2">'+us_wellness+'</td></tr>';
+		html += '<tr class="holiday-row"><th>US Holidays</th><td colspan="2">'+us_holidays+'</td></tr>';
+		html += '<tr class="holiday-row"><th>IDC Wellness Day</th><td colspan="2">'+idc_wellness+'</td></tr>';
+		html +=	'<tr class="holiday-row"><th>IDC Holidays</th><td colspan="2">'+idc_holidays+'</td></tr>';
+		html += '</table>';
+	return html;
+	},
 	type: 'OnCallUtils'
 });]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>aaron.brunet</sys_created_by>
         <sys_created_on>2024-07-16 00:43:26</sys_created_on>
         <sys_id>ab4706eb939f4210bef6fff56aba1020</sys_id>
-        <sys_mod_count>74</sys_mod_count>
+        <sys_mod_count>91</sys_mod_count>
         <sys_name>OnCallUtils</sys_name>
         <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
         <sys_update_name>sys_script_include_ab4706eb939f4210bef6fff56aba1020</sys_update_name>
         <sys_updated_by>aaron.brunet</sys_updated_by>
-        <sys_updated_on>2024-07-19 00:13:32</sys_updated_on>
+        <sys_updated_on>2024-07-22 18:52:36</sys_updated_on>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>ab4706eb939f4210bef6fff56aba1020</id>

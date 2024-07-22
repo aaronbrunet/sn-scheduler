@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_user_role_contains">
+    <sys_user_role_contains action="INSERT_OR_UPDATE">
+        <contains display_value="x_snc_on_call_sc_0.manager" name="x_snc_on_call_sc_0.manager">109b056793db4210bef6fff56aba105d</contains>
+        <role display_value="x_snc_on_call_sc_0.admin" name="x_snc_on_call_sc_0.admin">1c9b056793db4210bef6fff56aba1062</role>
+        <sys_class_name>sys_user_role_contains</sys_class_name>
+        <sys_created_by>aaron.brunet</sys_created_by>
+        <sys_created_on>2024-07-20 20:25:24</sys_created_on>
+        <sys_id>269c3e8593274610bef6fff56aba10d2</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_snc_on_call_sc_0.manager.x_snc_on_call_sc_0.admin</sys_name>
+        <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
+        <sys_update_name>sys_user_role_contains_269c3e8593274610bef6fff56aba10d2</sys_update_name>
+        <sys_updated_by>aaron.brunet</sys_updated_by>
+        <sys_updated_on>2024-07-20 20:25:24</sys_updated_on>
+    </sys_user_role_contains>
+</record_update>
