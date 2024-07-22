@@ -14,6 +14,11 @@ OnCallUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
     initialize : function(){
 		this.constants = this.getConstants();
 	},
+	/**
+	 * getConstants(): Used in widgets, BRs, Fix Scripts, reference qualifiers, and this Script Include for constant values rather than create & use a list of system properties; needs one-time modification on app install to ensure table names are accurate
+	 * returns: const array of x_ app table names
+	 * TODO: add constants as needed
+	 */
 	getConstants : function(){
 		const constants = {
 			COUNT: 12,
@@ -26,6 +31,32 @@ OnCallUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 		
 		return constants;
 	},
+	/**
+	 * BUILD Functions
+	 * 
+	 * buildRotations(GlideDateTime, int): generate sequential Rotation records based on starting date and number of iterations and insert them
+	 * returns: null
+	 * TODO: change build to return draft, stand up different function to insert
+	 * 
+	 * buildTeamRoster(Team sys_id, Role string(Engineer || Manager)): generate ordered list of members based on input team and role (optional)
+	 * returns: array of objects mimicking Team Member table
+	 * TODO: allow for array order modification and pre-sort based on inputs
+	 * 
+	 * buildManagerShifts(GlideDateTime, Region string ('US' || 'IDC')): builds list of active manageres and uses buildShifts() to generate sequential manager shifts (since these are not per-team)
+	 * TODO: allow for draft
+	 * 
+	 * buildDraftShifts(GlideDateTime, Team sys_id, string, array from buildTeamRoster): generate shifts for sequential rotations based on start value, repeating through the roster until all rotations have an associated shift - DRAFT, no insert
+	 * returns: array of records viable for insertion into the Shifts table
+	 * TODO:
+	 * 
+	 * buildShiftsFromDraft(array from buildDraftShifts): inserts the draft shifts from builDraftShifts into the Shifts table. This should serve as an example build-insert model for the other build functions.
+	 * returns: null
+	 * TODO:
+	 * 
+	 * buildShifts(GlideDateTime, Team sys_id, string, Team roster array, Boolean (unused)) - DEPRECATED: replaced by buildShiftsFromDraft(). Proceeds directly to build and insert shifts sight-unseen
+	 * returns: null
+	 * TODO: deprecate & remove
+	 */
 	buildRotations : function(start,count){
 		if(!count || count == ''){
 			count = this.constants.COUNT;
@@ -162,14 +193,8 @@ OnCallUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 			return;
 		}
 		try {	
-			// var rotations = new GlideRecord(this.constants.TABLE_ROTATIONS);
-			// rotations.addEncodedQuery(`from<=javascript:gs.dateGenerate('${start}','start')^to>=javascript:gs.dateGenerate('${start}','end')^NQfrom>=javascript:gs.dateGenerate('${start}','end')`);
-			// rotations.orderBy('from');
-			// rotations.query();
 			for(var i in draft){
-				//console.log(draft[i]);
 				var ds = draft[i];
-				//var user = roster[ri];
 				let shift = new GlideRecord(this.constants.TABLE_SHIFTS);
 				shift.initialize();
 				shift.setValue('rotation',ds.rotation_id);
@@ -179,11 +204,6 @@ OnCallUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 				shift.setValue('from',ds.from);
 				shift.setValue('to',ds.to);
 				shift.insert();
-				// if(ri<roster.length-1){
-				// 	ri++;
-				// } else {
-				// 	ri = 0;
-				// }
 			}
 				
 		} catch(err) {
@@ -209,7 +229,7 @@ OnCallUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 			rotations.orderBy('from');
 			rotations.query();
 			while(rotations.next()){
-				console.log(['rotations',ri,rotations.getDisplayValue('rotation')])
+				console.log(['rotations',ri,rotations.getDisplayValue('rotation')]);
 				if(!this.checkDuplicateShift(rotations.getUniqueValue(),team,role)){
 					var user = roster[ri];
 						let shift = new GlideRecord(this.constants.TABLE_SHIFTS);
@@ -236,6 +256,47 @@ OnCallUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 		}
 		
 	},
+	/**
+	 * CHECK & GET Helper Functions
+	 * 
+	 * checkDuplicateShift(Rotation sys_id, Team sys_id, Role string): checks Shift table for an existing shift of the same rotation & team
+	 * returns: Boolean
+	 * TODO: add flags for duplicate check-level (team, engineer)
+	 * 
+	 * getRotation(GlideDateTime): get sys_id of rotation during input date
+	 * returns: Rotation sys_id
+	 * 
+	 * getManagersByRotation(Rotation sys_id, Region string): get array of Team Member records with role 'Manager' assigned to Shifts during given Rotation
+	 * returns: Team Member array
+	 *  
+	 * getManagersByDate(GlideDate): uses getManagersByRotation to fetch assigned managers by date in case of unknown or unnecessary rotation (such as 'Today's On-shift Manager' widget idea)
+	 * returns: Team Member array
+	 * 
+	 * getTeamShiftByDate(Team sys_id, GlideDate): uses getRotation and getTeamShiftByRotation to fetch team Shift by the current date (similar concept to getManagersByDate)
+	 * returns: object built from Shift record
+	 * TODO: Determine useage/deprecation
+	 * 
+	 * getTeamShiftByRotation(Team sys_id, Rotation sys_id): fetches single Shift record for provided Team and Rotation for uncancelled 'Engineer' Shifts
+	 * returns: object built from Shift record
+	 * TODO: add multiple record return
+	 * 
+	 * getAllShiftsForRotation(Rotation sys_id): fetches all Shift records for provided Rotation of uncancelled state and type 'Engineer'
+	 * returns: Array of Shifts
+	 * TODO: Allow role input?
+	 * 
+	 * getAssigneesByRotation(Rotation sys_id): fetches array of Team Member sys_ids from given Rotation. Used in BR and reference qualifier for use with email notification
+	 * returns: Array of sys_id
+	 * 
+	 * getAllTeams(): fetches name & sys_id for all active Team records
+	 * returns: Array of objects built from Team name and sys_id
+	 * 
+	 * getAllHolidaysForRotation(Rotation sys_id, Region string): fetches all Holidays records for provided Rotation and Region
+	 * returns: Array of objects built from Holiday records
+	 * 
+	 * getReadonlyTable(Rotation sys_id): fetchs Rotation, Shift, and Team Member information from provided Rotation and returns HTML table for use in email notification and widget
+	 * returns: String of rendered HTML table
+	 * 
+	 */
 	checkDuplicateShift : function(rotation,team,role){
 		var shift = new GlideRecord(this.constants.TABLE_SHIFTS);
 		shift.addQuery('rotation',rotation);
@@ -330,15 +391,11 @@ OnCallUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 		var ids = [];
 		var shifts = new GlideRecord(this.constants.TABLE_SHIFTS);
 		shifts.addEncodedQuery('rotation='+rotation+'^state!=cancelled');
-		//gs.info('rotation='+rotation+'^state!=cancelled');
 		shifts.query();
 		while(shifts.next()){
-			//ids.push(shifts.team_member.user);
 			var user = shifts.getValue('team_member');
 			ids.push(user);
 		}
-		//gs.info(ids);
-		//gs.info('sys_idIN'+ids.join(','));
 		return ids;
 	},
 	getAllTeams : function(){
@@ -442,14 +499,14 @@ OnCallUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
         <sys_created_by>aaron.brunet</sys_created_by>
         <sys_created_on>2024-07-16 00:43:26</sys_created_on>
         <sys_id>ab4706eb939f4210bef6fff56aba1020</sys_id>
-        <sys_mod_count>91</sys_mod_count>
+        <sys_mod_count>92</sys_mod_count>
         <sys_name>OnCallUtils</sys_name>
         <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
         <sys_update_name>sys_script_include_ab4706eb939f4210bef6fff56aba1020</sys_update_name>
         <sys_updated_by>aaron.brunet</sys_updated_by>
-        <sys_updated_on>2024-07-22 18:52:36</sys_updated_on>
+        <sys_updated_on>2024-07-22 19:45:06</sys_updated_on>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>ab4706eb939f4210bef6fff56aba1020</id>
