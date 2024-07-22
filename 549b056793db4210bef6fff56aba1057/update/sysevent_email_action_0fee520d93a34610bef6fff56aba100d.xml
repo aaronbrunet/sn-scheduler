@@ -32,17 +32,18 @@
         <force_delivery>false</force_delivery>
         <from/>
         <generation_type>engine</generation_type>
-        <importance/>
+        <importance>high</importance>
         <include_attachments>false</include_attachments>
         <item>event.parm1</item>
         <item_table/>
         <mandatory>false</mandatory>
         <message/>
-        <message_html><![CDATA[<p>${mail_script:on_call_schedule.table}<br>${mail_script:on_call_schedule.link}</p>]]></message_html>
+        <message_html><![CDATA[<p><span style="font-family: arial, helvetica, sans-serif;">Please see below for the UXC P1 On-call Schedule for ${rotation}.</span><br><br><span style="font-family: arial, helvetica, sans-serif;">${mail_script:on_call_schedule.table}<br></span><br><span style="font-family: arial, helvetica, sans-serif;">Please see the ${mail_script:on_call_schedule.link} for more details.</span></p>
+<p><span style="font-family: arial, helvetica, sans-serif;">Team managers can make any necessary changes on their <a href="/oncall?id=oc_manage_team" target="_blank" rel="noopener"><strong>team management page</strong></a>.</span><br><span style="font-family: arial, helvetica, sans-serif;">For assistance or to report a technical issue with this week's rotation, please reach out to <strong><a href="mailto:admin@example.com">admin@example.com</a>.</strong></span><br><br><span style="font-family: arial, helvetica, sans-serif;"><em>This mailbox is not monitored; please do not reply to this message.</em></span></p>]]></message_html>
         <message_list/>
         <message_text/>
         <name>On Call Weekly Schedule</name>
-        <omit_watermark>false</omit_watermark>
+        <omit_watermark>true</omit_watermark>
         <order>100</order>
         <push_message_only>false</push_message_only>
         <recipient_fields>assignees</recipient_fields>
@@ -60,7 +61,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>0fee520d93a34610bef6fff56aba100d</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>10</sys_mod_count>
         <sys_name>On Call Weekly Schedule</sys_name>
         <sys_overrides/>
         <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
@@ -68,10 +69,21 @@
         <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
         <sys_update_name>sysevent_email_action_0fee520d93a34610bef6fff56aba100d</sys_update_name>
         <sys_updated_by>aaron.brunet</sys_updated_by>
-        <sys_updated_on>2024-07-22 18:53:48</sys_updated_on>
+        <sys_updated_on>2024-07-22 19:19:36</sys_updated_on>
         <sys_version>2</sys_version>
         <template display_value="Unsubscribe and Preferences">7ed0481f3b0b2200c869c2c703efc487</template>
         <type>email</type>
         <weight>0</weight>
     </sysevent_email_action>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>0fee520d93a34610bef6fff56aba100d</id>
+        <sys_created_by>aaron.brunet</sys_created_by>
+        <sys_created_on>2024-07-22 19:07:09</sys_created_on>
+        <sys_id>84edbc799367c610bef6fff56aba10e7</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>aaron.brunet</sys_updated_by>
+        <sys_updated_on>2024-07-22 19:07:09</sys_updated_on>
+        <table>sysevent_email_action</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
 </record_update>
