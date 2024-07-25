@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
         <category>custom</category>
-        <client_script><![CDATA[api.controller=function(spUtil,$scope) {
+        <client_script><![CDATA[api.controller=function(spUtil,$scope,spAriaFocusManager,$location) {
   /* widget controller */
   var c = this;
 
   spUtil.recordWatch($scope, $scope.data.constants.TABLE_TEAM_MEMBERS, "team=" + $scope.data.team_id);
+
+  $scope.$on('data_table.click', function(e, parms){
+	console.log([e,parms]);
+	var p = $scope.data.page_id || 'oc_form';
+	var s = {id: p, table: parms.table, sys_id: parms.sys_id, view: 'sp'};
+	var newURL = $location.search(s);
+	spAriaFocusManager.navigateToLink(newURL.url());
+	});
 
 
 
@@ -46,6 +54,7 @@
         <public>false</public>
         <roles/>
         <script><![CDATA[(function() {
+	console.log(gs.getUserID());
 	var ocu = new x_snc_on_call_sc_0.OnCallUtils();
 	var constants = ocu.getConstants();
 	data.constants = constants;
@@ -54,7 +63,8 @@
 	if($sp.getParameter('team')){
 		team_id = $sp.getParameter('team');
 	} else {
-		team_id = ocu.getTeamFromUser(gs.getUserID);
+		team_id = ocu.getTeamFromUser(gs.getUserID());
+		console.log('Getting team from user: '+team_id);
 	}
 
 
@@ -77,8 +87,8 @@
 		}
 		data.team_roster[i] = curr;
 	}
-	data.mgr_roster = data.team_roster.filter(m => m.role == 'Manager');
-	data.team_roster = data.team_roster.filter(m => m.role != 'Manager');
+	data.mgr_roster = data.team_roster?.filter(m => m.role == 'Manager');
+	data.team_roster = data.team_roster?.filter(m => m.role != 'Manager');
 	console.log(data.team_roster);
 
 	var trl = {};
@@ -91,6 +101,8 @@
 		user: "Name",
 		"user.phone": "Phone"
 	};
+	trl.options.o = 'role';
+	trl.options.d = 'desc';
 	trl.options.filter = 'active=true^assignment_group='+team_id;
 	trl.options.useInstanceTitle = true; // to make sure Data Table widget uses headerTitle always
 	trl.options.show_breadcrumbs=false;
@@ -107,7 +119,6 @@
 	//esl.options.sp_page = sp_page;
 	esl.options.sp_page = 'oc_form';
 	esl.options.sp_page_dv = 'oc_form';
-	
 	esl.page_id = esl.options.page_id;
 	esl.options.show_breadcrumbs=false;
 	esl.options.useInstanceTitle = true;
@@ -131,14 +142,14 @@
         <sys_created_by>aaron.brunet</sys_created_by>
         <sys_created_on>2024-07-18 02:13:09</sys_created_on>
         <sys_id>e32f28d093278210bef6fff56aba1069</sys_id>
-        <sys_mod_count>72</sys_mod_count>
+        <sys_mod_count>79</sys_mod_count>
         <sys_name>On Call Schedule - Manage Team</sys_name>
         <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
         <sys_policy/>
         <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
         <sys_update_name>sp_widget_e32f28d093278210bef6fff56aba1069</sys_update_name>
         <sys_updated_by>aaron.brunet</sys_updated_by>
-        <sys_updated_on>2024-07-22 19:22:14</sys_updated_on>
+        <sys_updated_on>2024-07-25 01:13:51</sys_updated_on>
         <template><![CDATA[<div>
   <h1>{{data.team}}</h1>
   

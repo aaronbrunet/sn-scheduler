@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller=function() {
+  /* widget controller */
+  var c = this;
+};]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>oc-go-to-rotation-btn</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
+  
+}]]></link>
+        <name>On Call Schedule - Go To Rotation</name>
+        <option_schema>[{"name":"title","section":"Presentation","label":"Title","type":"string"}]</option_schema>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  var ocu = new x_snc_on_call_sc_0.OnCallUtils();
+  var constants = ocu.getConstants();
+
+  var shift_page = $sp.getParameter('table') == constants.TABLE_SHIFTS;
+  if(shift_page){
+	data.shift_page = shift_page;
+
+	var shift = $sp.getRecord();
+
+	if(shift){
+		//console.log(JSON.stringify(shift));
+		data.rotation_id = shift.rotation.getValue('sys_id');
+	}
+  }
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>aaron.brunet</sys_created_by>
+        <sys_created_on>2024-07-25 01:20:46</sys_created_on>
+        <sys_id>ad55e8ae93eb4a10bef6fff56aba109c</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_name>On Call Schedule - Go To Rotation</sys_name>
+        <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
+        <sys_update_name>sp_widget_ad55e8ae93eb4a10bef6fff56aba109c</sys_update_name>
+        <sys_updated_by>aaron.brunet</sys_updated_by>
+        <sys_updated_on>2024-07-25 01:30:45</sys_updated_on>
+        <template><![CDATA[<div ng-if="data.shift_page">
+<a href="?id=oc_rotation&sys_id={{data.rotation_id}}" target="_blank" class="btn btn-primary">{{options.title}}</a>
+</div>]]></template>
+    </sp_widget>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>ad55e8ae93eb4a10bef6fff56aba109c</id>
+        <sys_created_by>aaron.brunet</sys_created_by>
+        <sys_created_on>2024-07-25 01:20:45</sys_created_on>
+        <sys_id>9496ecae93eb4a10bef6fff56aba101f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>aaron.brunet</sys_updated_by>
+        <sys_updated_on>2024-07-25 01:20:45</sys_updated_on>
+        <table>sp_widget</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

@@ -66,7 +66,10 @@ tr.manager-row{&#13;
 	var constants = ocu.getConstants();
 	data.constants = constants;
 
-	
+	data.is_manager = true;
+
+	data.admin_errors = [];
+
 	var rotation = new GlideRecord(constants.TABLE_ROTATIONS);
 	if(input && input?.rotation !=''){
 		console.log(['input',input.rotation]);
@@ -86,56 +89,61 @@ tr.manager-row{&#13;
 		from:rotation.getDisplayValue('from'),
 		to:rotation.getDisplayValue('to')
 	};
+	if(data.rotation?.rotation){
 
-	var managers = ocu.getManagersByRotation(rotation.getUniqueValue());
-	for(let i in managers) {
-		managers[i].shiftForm = $sp.getForm(constants.TABLE_SHIFTS, managers[i].shift_id);
-		managers[i].shiftModel = managers[i].shiftForm._fields;
-		managers[i].userForm = $sp.getForm('sys_user',managers[i].user);
-		managers[i].userModel = managers[i].userForm._fields;
-	}
-	console.log(managers);
-
-	data.us_manager = managers.find(m => m.region == 'US');
-	data.idc_manager = managers.find(m => m.region == 'IDC');
-
-	var now_manager = ocu.getManagersByDate();
-
-	var holidays = ocu.getAllHolidaysForRotation(rotation.getUniqueValue());
-	var holidays_us = holidays?.filter(h => h.region == 'US');
-	var holidays_idc = holidays?.filter(h => h.region == 'IDC');
-	
-	var us_wellness = holidays_us?.filter(h => h.type == 'wellness_day').map(h => h.formatted_date);
-	data.us_wellness = us_wellness.join(', ');
-
-	var us_holidays = holidays_us?.filter(h => h.type == 'holiday').map(h => h.formatted_date);
-	data.us_holidays = us_holidays.join(', ');
-
-	var idc_wellness = holidays_idc?.filter(h => h.type == 'wellness_day').map(h => h.formatted_date);
-	data.idc_wellness = idc_wellness.join(', ');
-
-	var idc_holidays = holidays_idc?.filter(h => h.type == 'holiday').map(h => h.formatted_date);
-	data.idc_holidays = idc_holidays.join(', ');
-
-	data.shifts = ocu.getAllShiftsForRotation(rotation.getUniqueValue());
-	if(data.shifts?.length < 1){
-		data.shifts = ocu.getAllTeams();
-	}
-
-	for(let i in data.shifts){
-		var curr = data.shifts[i];
-		curr.shiftForm = $sp.getForm(constants.TABLE_SHIFTS, curr.shift_id);
-		curr.shiftView = curr.shiftForm._view;
-		curr.shiftModel = curr.shiftForm._fields;
-		if(curr.shiftModel.team_member){
-			curr.userForm = $sp.getForm('sys_user',curr.user);
-			curr.userView = curr.userForm._view;
-			curr.userModel = curr.userForm._fields;
+		var managers = ocu.getManagersByRotation(rotation.getUniqueValue());
+		for(let i in managers) {
+			managers[i].shiftForm = $sp.getForm(constants.TABLE_SHIFTS, managers[i].shift_id);
+			managers[i].shiftModel = managers[i].shiftForm._fields;
+			managers[i].userForm = $sp.getForm('sys_user',managers[i].user);
+			managers[i].userModel = managers[i].userForm._fields;
 		}
-		data.shifts[i] = curr;
-		console.log(data.shifts[i])
-	}
 
+		data.us_manager = managers.find(m => m.region == 'US');
+		data.idc_manager = managers.find(m => m.region == 'IDC');
+		if(!data.us_manager){data.admin_errors.push({error:'manager',msg:'No US Manager found'});}
+		if(!data.idc_manager){data.admin_errors.push({error:'manager',msg:'No IDC Manager found'});}
+
+
+		var now_manager = ocu.getManagersByDate();
+
+		var holidays = ocu.getAllHolidaysForRotation(rotation.getUniqueValue());
+		var holidays_us = holidays?.filter(h => h.region == 'US');
+		var holidays_idc = holidays?.filter(h => h.region == 'IDC');
+		
+		var us_wellness = holidays_us?.filter(h => h.type == 'wellness_day').map(h => h.formatted_date);
+		data.us_wellness = us_wellness.join(', ');
+
+		var us_holidays = holidays_us?.filter(h => h.type == 'holiday').map(h => h.formatted_date);
+		data.us_holidays = us_holidays.join(', ');
+
+		var idc_wellness = holidays_idc?.filter(h => h.type == 'wellness_day').map(h => h.formatted_date);
+		data.idc_wellness = idc_wellness.join(', ');
+
+		var idc_holidays = holidays_idc?.filter(h => h.type == 'holiday').map(h => h.formatted_date);
+		data.idc_holidays = idc_holidays.join(', ');
+
+		data.shifts = ocu.getAllShiftsForRotation(rotation.getUniqueValue());
+		if(data.shifts?.length < 1){
+			data.shifts = ocu.getAllTeams();
+		}
+
+		for(let i in data.shifts){
+			var curr = data.shifts[i];
+			curr.shiftForm = $sp.getForm(constants.TABLE_SHIFTS, curr.shift_id);
+			curr.shiftView = curr.shiftForm._view;
+			curr.shiftModel = curr.shiftForm._fields;
+			if(curr.shiftModel.team_member){
+				curr.userForm = $sp.getForm('sys_user',curr.user);
+				curr.userView = curr.userForm._view;
+				curr.userModel = curr.userForm._fields;
+			}
+			data.shifts[i] = curr;
+			console.log(data.shifts[i])
+		}
+	} else {
+		data.admin_errors.push({error:'rotation',msg:'No rotation found'});
+	}
 	
 })();]]></script>
         <servicenow>false</servicenow>
@@ -143,14 +151,14 @@ tr.manager-row{&#13;
         <sys_created_by>aaron.brunet</sys_created_by>
         <sys_created_on>2024-07-17 00:36:13</sys_created_on>
         <sys_id>3e3f83b393534210bef6fff56aba10b0</sys_id>
-        <sys_mod_count>114</sys_mod_count>
+        <sys_mod_count>125</sys_mod_count>
         <sys_name>On Call Schedule - Week</sys_name>
         <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
         <sys_policy/>
         <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
         <sys_update_name>sp_widget_3e3f83b393534210bef6fff56aba10b0</sys_update_name>
         <sys_updated_by>aaron.brunet</sys_updated_by>
-        <sys_updated_on>2024-07-20 20:21:17</sys_updated_on>
+        <sys_updated_on>2024-07-25 01:09:18</sys_updated_on>
         <template><![CDATA[<div ng-if="!data.rotation.rotation">
   <h1>No On-Call rotation schedule</h1>
 </div>
@@ -166,13 +174,14 @@ tr.manager-row{&#13;
         <th>US Manager</th>
         <td ng-if="!data.us_manager">No manager scheduled</td>
         <td ng-if="!data.us_manager"></td>
+        
         <td ng-if="data.us_manager">
-        	<sp-editable-field 
+              <sp-editable-field 
 				editable-by-user="true" 
 				table={{data.constants.TABLE_SHIFTS}} 
                 table-id="data.us_manager.shift_id" 
                 field-model="data.us_manager.shiftModel.team_member">
-          </sp-editable-field>
+          	</sp-editable-field>
         </td>
         <td ng-if="data.us_manager">
         	<sp-editable-field 
@@ -205,7 +214,7 @@ tr.manager-row{&#13;
         </td>
       </tr>
 	  <tr ng-repeat="shift in data.shifts" class="team-row">
-        <th>{{shift.team}}</th>
+        <th><a href="?id=oc_manage_team&sys_id={{shift.team_id}}" target="_blank">{{shift.team}}</a></th>
         <!--<td ng-if="!shift.name">No engineer scheduled</td>-->
         <td>
           <sp-editable-field 
