@@ -5,7 +5,7 @@
         <element label="Team" mandatory="true" max_length="32" name="team" reference="x_snc_on_call_sc_0_assignment_group" reference_qual="active=true" reference_qual_condition="active=true" type="reference"/>
         <element dependent="team" dependent_on_field="team" label="Team Member" mandatory="true" max_length="32" name="team_member" reference="x_snc_on_call_sc_0_user" reference_qual="javascript:'role=^ORrole='+current.type" type="reference" use_dependent_field="true" use_reference_qualifier="advanced"/>
         <element label="Name" max_length="100" name="name" type="string"/>
-        <element choice="3" label="Type" max_length="40" name="type" type="choice">
+        <element choice="3" label="Type" max_length="40" name="type" read_only="true" type="choice">
             <choice>
                 <element inactive_on_update="false" label="Engineer" sequence="0" value="engineer"/>
                 <element inactive_on_update="false" label="Manager" sequence="1" value="manager"/>

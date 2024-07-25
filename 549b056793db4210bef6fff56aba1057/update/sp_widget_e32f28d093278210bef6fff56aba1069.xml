@@ -37,6 +37,9 @@
     th { background-color:#a2d0e9; }&#13;
     td { background-color:#e2f5ff; }&#13;
   }&#13;
+}&#13;
+.title-col {&#13;
+	display: inline-block;&#13;
 }</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
@@ -54,10 +57,11 @@
         <public>false</public>
         <roles/>
         <script><![CDATA[(function() {
-	console.log(gs.getUserID());
+	//console.log(gs.getUserID());
 	var ocu = new x_snc_on_call_sc_0.OnCallUtils();
 	var constants = ocu.getConstants();
 	data.constants = constants;
+
 	var team_id = '-1';
 
 	if($sp.getParameter('team')){
@@ -89,7 +93,17 @@
 	}
 	data.mgr_roster = data.team_roster?.filter(m => m.role == 'Manager');
 	data.team_roster = data.team_roster?.filter(m => m.role != 'Manager');
-	console.log(data.team_roster);
+	//console.log(data.team_roster);
+
+	var gtl = {};
+	gtl.options = {};
+	gtl.options.title = 'See All Teams';
+	var gtl_table = new GlideRecord('sys_db_object');
+	gtl_table.get('name',data.constants.TABLE_TEAMS);
+	gtl.options.table = gtl_table.getValue('sys_id');
+	gtl.options.filter = 'active=true';
+	gtl.options.params = '&o=group';
+	data.gtlWidget = $sp.getWidget('oc-go-to-list-btn', gtl.options);
 
 	var trl = {};
 	trl.options = {};
@@ -115,7 +129,7 @@
 	esl.options = {};
 	esl.options.table = data.constants.TABLE_SHIFTS;
 	esl.options.fields = 'rotation,from,team_member';
-	esl.options.filter = 'team='+team_id+'^type=^ORtype=engineer';
+	esl.options.filter = 'team='+team_id+'^type=^ORtype=engineer^rotation.to>=javascript:gs.beginningOfToday()';
 	//esl.options.sp_page = sp_page;
 	esl.options.sp_page = 'oc_form';
 	esl.options.sp_page_dv = 'oc_form';
@@ -130,7 +144,7 @@
 	msl.options = {};
 	msl.options.table = data.constants.TABLE_SHIFTS;
 	msl.options.fields = 'rotation,from,team_member';
-	msl.options.filter = 'team='+team_id+'^type=manager';
+	msl.options.filter = 'team='+team_id+'^type=manager^rotation.to>=javascript:gs.beginningOfToday()';
 	msl.options.show_breadcrumbs=false;
 	msl.options.useInstanceTitle = true;
 	msl.options.headerTitle = 'Manager On-Call Shifts';
@@ -142,17 +156,23 @@
         <sys_created_by>aaron.brunet</sys_created_by>
         <sys_created_on>2024-07-18 02:13:09</sys_created_on>
         <sys_id>e32f28d093278210bef6fff56aba1069</sys_id>
-        <sys_mod_count>79</sys_mod_count>
+        <sys_mod_count>92</sys_mod_count>
         <sys_name>On Call Schedule - Manage Team</sys_name>
         <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
         <sys_policy/>
         <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
         <sys_update_name>sp_widget_e32f28d093278210bef6fff56aba1069</sys_update_name>
         <sys_updated_by>aaron.brunet</sys_updated_by>
-        <sys_updated_on>2024-07-25 01:13:51</sys_updated_on>
+        <sys_updated_on>2024-07-25 03:16:51</sys_updated_on>
         <template><![CDATA[<div>
-  <h1>{{data.team}}</h1>
-  
+  <div class="title-col"><h1>{{data.team}}</h1></div>
+  <div class="title-col"><sp-widget widget="data.gtlWidget"></sp-widget></div>
+  <div ng-if="data.mgr_roster">
+    <h2>Managers</h2>
+    <div ng-repeat="m in data.mgr_roster">
+      <h4>{{m.name}} ({{m.region}})</h4>
+    </div>
+  </div>
   <div ng-if="data.team_roster">
     <h2>Team Roster</h2>
     <sp-widget widget="data.trlWidget"></sp-widget>
@@ -176,7 +196,7 @@
     </tr>
   </table>
 -->
-  
+  <h2>Team On-Call Shifts</h2>
   <sp-widget widget="data.eslWidget"></sp-widget>
   <sp-widget widget="data.mslWidget"></sp-widget>
 

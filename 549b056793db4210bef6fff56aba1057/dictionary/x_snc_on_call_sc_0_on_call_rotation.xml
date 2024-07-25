@@ -3,6 +3,6 @@
         <element label="To" mandatory="true" max_length="40" name="to" type="glide_date"/>
         <element label="From" mandatory="true" max_length="40" name="from" type="glide_date"/>
         <element display="true" label="Rotation" max_length="50" name="rotation" read_only="true" type="string"/>
-        <element label="Assignees" max_length="1024" name="assignees" reference="x_snc_on_call_sc_0_user" reference_qual="javascript: 'sys_idIN'+new x_snc_on_call_sc_0.OnCallUtils().getAssigneesByRotation(current.sys_id).join(',');" type="glide_list" use_reference_qualifier="advanced"/>
+        <element label="Assignees" max_length="1024" name="assignees" read_only="true" reference="x_snc_on_call_sc_0_user" reference_qual="javascript: 'sys_idIN'+new x_snc_on_call_sc_0.OnCallUtils().getAssigneesByRotation(current.sys_id).join(',');" type="glide_list" use_reference_qualifier="advanced"/>
     </element>
 </database>

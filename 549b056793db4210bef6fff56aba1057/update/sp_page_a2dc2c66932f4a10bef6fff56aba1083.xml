@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_page">
     <sp_page action="INSERT_OR_UPDATE">
-        <category>standard</category>
+        <category>custom</category>
         <css/>
         <draft>false</draft>
-        <dynamic_title_structure>%table %t form</dynamic_title_structure>
+        <dynamic_title_structure>%table %t list</dynamic_title_structure>
         <human_readable_url_structure/>
-        <id>oc_form</id>
+        <id>oc_list</id>
         <internal>false</internal>
         <omit_watcher>false</omit_watcher>
         <public>false</public>
         <roles/>
         <seo_script/>
-        <short_description>Record Form</short_description>
+        <short_description/>
         <sys_class_name>sp_page</sys_class_name>
         <sys_created_by>aaron.brunet</sys_created_by>
-        <sys_created_on>2024-07-19 00:42:41</sys_created_on>
-        <sys_id>085421689327c210bef6fff56aba1073</sys_id>
+        <sys_created_on>2024-07-25 01:48:33</sys_created_on>
+        <sys_id>a2dc2c66932f4a10bef6fff56aba1083</sys_id>
         <sys_mod_count>3</sys_mod_count>
-        <sys_name>oc_form</sys_name>
+        <sys_name>oc_list</sys_name>
         <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
         <sys_policy/>
         <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
-        <sys_update_name>sp_page_085421689327c210bef6fff56aba1073</sys_update_name>
+        <sys_update_name>sp_page_a2dc2c66932f4a10bef6fff56aba1083</sys_update_name>
         <sys_updated_by>aaron.brunet</sys_updated_by>
-        <sys_updated_on>2024-07-25 01:45:27</sys_updated_on>
-        <title>On Call Form</title>
+        <sys_updated_on>2024-07-25 01:59:33</sys_updated_on>
+        <title>On Call List</title>
         <use_seo_script>false</use_seo_script>
     </sp_page>
-    <sys_translated_text action="delete_multiple" query="documentkey=085421689327c210bef6fff56aba1073"/>
+    <sys_translated_text action="delete_multiple" query="documentkey=a2dc2c66932f4a10bef6fff56aba1083"/>
 </record_update>

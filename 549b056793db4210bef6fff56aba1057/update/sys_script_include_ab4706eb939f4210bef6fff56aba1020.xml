@@ -348,6 +348,23 @@ OnCallUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 		return this.getManagersByRotation(rotation);
 		
 	},
+	getManagersByTeam : function(team){
+		managers = [];
+		var mr = new GlideRecord(this.constants.TABLE_TEAM_MEMBERS);
+		mr.addQuery('assignment_group',team);
+		mr.addQuery('role','manager');
+		while(mr.next()){
+			managers.push({
+				id:mr.team_member.getValue('sys_id'),
+				name:mr.getDisplayValue(),
+				user:mr.user.getValue('sys_id'),
+				email:mr.getDisplayValue('user.email'),
+				phone:mr.getDisplayValue('user.phone'),
+				region:mr.getDisplayValue('region')
+			});
+		}
+		return managers;
+	},
 	getTeamShiftByDate : function(team,date){
 		var _date = date ?? new GlideDate();
 		var rotation = this.getRotation(_date);
@@ -521,14 +538,14 @@ OnCallUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
         <sys_created_by>aaron.brunet</sys_created_by>
         <sys_created_on>2024-07-16 00:43:26</sys_created_on>
         <sys_id>ab4706eb939f4210bef6fff56aba1020</sys_id>
-        <sys_mod_count>94</sys_mod_count>
+        <sys_mod_count>95</sys_mod_count>
         <sys_name>OnCallUtils</sys_name>
         <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
         <sys_update_name>sys_script_include_ab4706eb939f4210bef6fff56aba1020</sys_update_name>
         <sys_updated_by>aaron.brunet</sys_updated_by>
-        <sys_updated_on>2024-07-25 00:41:27</sys_updated_on>
+        <sys_updated_on>2024-07-25 02:50:43</sys_updated_on>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>ab4706eb939f4210bef6fff56aba1020</id>
