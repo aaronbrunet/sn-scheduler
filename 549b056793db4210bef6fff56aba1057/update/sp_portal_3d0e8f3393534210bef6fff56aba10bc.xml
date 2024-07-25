@@ -8,7 +8,7 @@
         <enable_certificate_based_authentication>false</enable_certificate_based_authentication>
         <enable_favorites>false</enable_favorites>
         <hide_portal_name>false</hide_portal_name>
-        <homepage display_value="schedule">c29e0b7393534210bef6fff56aba10ba</homepage>
+        <homepage display_value="oc_rotation">45db53c893ef4210bef6fff56aba10e6</homepage>
         <icon/>
         <inactive>false</inactive>
         <kb_knowledge_base/>
@@ -29,14 +29,14 @@
         <sys_created_by>aaron.brunet</sys_created_by>
         <sys_created_on>2024-07-17 00:31:10</sys_created_on>
         <sys_id>3d0e8f3393534210bef6fff56aba10bc</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_name>On-Call</sys_name>
         <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
         <sys_policy/>
         <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
         <sys_update_name>sp_portal_3d0e8f3393534210bef6fff56aba10bc</sys_update_name>
         <sys_updated_by>aaron.brunet</sys_updated_by>
-        <sys_updated_on>2024-07-25 03:24:39</sys_updated_on>
+        <sys_updated_on>2024-07-25 03:34:08</sys_updated_on>
         <theme display_value="La Jolla">a7a6e78277002300a6e592718a10617a</theme>
         <title>On-Call</title>
         <ts_index_group/>
