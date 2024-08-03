@@ -13,11 +13,10 @@
 
 };]]></client_script>
         <controller_as>c</controller_as>
-        <css>table {&#13;
+        <css>&#13;
+table {&#13;
 	border: 1px solid grey;&#13;
   	padding: 2rem;&#13;
-  width: 60%;&#13;
-  border-radius: 20%;&#13;
 } &#13;
 tr {&#13;
 	padding: 1rem;&#13;
@@ -65,6 +64,9 @@ tr.manager-row{&#13;
 	var ocu = new x_snc_on_call_sc_0.OnCallUtils();
 	var constants = ocu.getConstants();
 	data.constants = constants;
+
+	data.options = options;
+	console.log(data.options);
 
 	data.is_manager = true;
 
@@ -151,109 +153,112 @@ tr.manager-row{&#13;
         <sys_created_by>aaron.brunet</sys_created_by>
         <sys_created_on>2024-07-17 00:36:13</sys_created_on>
         <sys_id>3e3f83b393534210bef6fff56aba10b0</sys_id>
-        <sys_mod_count>126</sys_mod_count>
+        <sys_mod_count>137</sys_mod_count>
         <sys_name>On Call Schedule - Week</sys_name>
         <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
         <sys_policy/>
         <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
         <sys_update_name>sp_widget_3e3f83b393534210bef6fff56aba10b0</sys_update_name>
         <sys_updated_by>aaron.brunet</sys_updated_by>
-        <sys_updated_on>2024-07-25 03:26:48</sys_updated_on>
-        <template><![CDATA[<div ng-if="!data.rotation.rotation">
+        <sys_updated_on>2024-08-03 01:09:03</sys_updated_on>
+        <template><![CDATA[<h1>UX Component On-Call Schedule</h1>
+<div ng-if="!data.rotation.rotation">
   <h1>No On-Call rotation schedule</h1>
 </div>
-<div ng-if="data.rotation.rotation">
-  <h1>UX Component On-Call Schedule</h1>
-  <h2>{{data.rotation.rotation}}</h2>
-  <table>
-	<tbody>
-      <tr class="title-row">
-        <th colspan="2">{{options.title}}{{data.rotation.rotation}}</th>
-        <th>Phone</th>
-      </tr>
-      <tr class="manager-row"> 
-        <th>US Manager</th>
-        <td ng-if="!data.us_manager">No manager scheduled</td>
-        <td ng-if="!data.us_manager"></td>
-        
-        <td ng-if="data.us_manager">
+
+  <div ng-if="data.rotation.rotation">
+    <h2>{{data.rotation.rotation}}</h2>
+    <table>
+      <tbody>
+        <tr class="title-row">
+          <th colspan="2">{{options.title}}{{data.rotation.rotation}}</th>
+          <th>Phone</th>
+        </tr>
+        <tr class="manager-row"> 
+          <th>US Manager</th>
+          <td ng-if="!data.us_manager">No manager scheduled</td>
+          <td ng-if="!data.us_manager"></td>
+
+          <td ng-if="data.us_manager">
+                <sp-editable-field 
+                  editable-by-user="true" 
+                  table={{data.constants.TABLE_SHIFTS}} 
+                  table-id="data.us_manager.shift_id" 
+                  field-model="data.us_manager.shiftModel.team_member">
+              </sp-editable-field>
+          </td>
+          <td ng-if="data.us_manager">
               <sp-editable-field 
-				editable-by-user="true" 
-				table={{data.constants.TABLE_SHIFTS}} 
-                table-id="data.us_manager.shift_id" 
-                field-model="data.us_manager.shiftModel.team_member">
-          	</sp-editable-field>
-        </td>
-        <td ng-if="data.us_manager">
-        	<sp-editable-field 
-                editable-by-user="true" 
-                table="sys_user" 
-                table-id="data.us_manager.user" 
-                field-model="data.us_manager.userModel.phone">
-          </sp-editable-field>   
-        </td>
-      </tr>
-      <tr class="manager-row"> 
-        <th>IDC Manager</th>
-        <td ng-if="!data.idc_manager">No manager scheduled</td>
-        <td ng-if="!data.idc_manager"></td>
-        <td ng-if="data.idc_manager">
-        	<sp-editable-field 
-				editable-by-user="true" 
-				table={{data.constants.TABLE_SHIFTS}} 
-                table-id="data.idc_manager.shift_id" 
-                field-model="data.idc_manager.shiftModel.team_member">
-          </sp-editable-field>
-        </td>
-        <td ng-if="data.idc_manager">
-        	<sp-editable-field 
-                editable-by-user="true" 
-                table="sys_user" 
-                table-id="data.idc_manager.user" 
-                field-model="data.idc_manager.userModel.phone">
-          </sp-editable-field>   
-        </td>
-      </tr>
-	  <tr ng-repeat="shift in data.shifts" class="team-row">
-        <th><a href="?id=oc_manage_team&sys_id={{shift.team_id}}" target="_blank">{{shift.team}}</a></th>
-        <!--<td ng-if="!shift.name">No engineer scheduled</td>-->
-        <td>
-          <sp-editable-field 
-				editable-by-user="true" 
-				table={{data.constants.TABLE_SHIFTS}} 
-                table-id="shift.shift_id" 
-                field-model="shift.shiftModel.team_member">
-          </sp-editable-field>
-        </td>
-		<td>
-          <sp-editable-field 
-                editable-by-user="true" 
-                table="sys_user" 
-                table-id="shift.user" 
-                field-model="shift.userModel.phone">
-          </sp-editable-field>    
-		  <span ng-if="!shift.phone && !editable">No phone #</span>
-        </td>
-      </tr>
-      <tr class="holiday-row">
-        <th>US Wellness Day</th>
-        <td colspan="2">{{data.us_wellness || 'None'}}</td>
-      </tr>
-      <tr class="holiday-row">
-        <th>US Holidays</th>
-        <td colspan="2">{{data.us_holidays || 'None'}}</td>
-      </tr>
-      <tr class="holiday-row">
-        <th>IDC Wellness Day</th>
-        <td colspan="2">{{data.idc_wellness || 'None'}}</td>
-      </tr>
-      <tr class="holiday-row">
-        <th>IDC Holidays</th>
-        <td colspan="2">{{data.idc_holidays || 'None'}}</td>
-      </tr>
-      </tbody>
-    </table>
-</div>]]></template>
+                  editable-by-user="true" 
+                  table="sys_user" 
+                  table-id="data.us_manager.user" 
+                  field-model="data.us_manager.userModel.phone">
+            </sp-editable-field>   
+          </td>
+        </tr>
+        <tr class="manager-row"> 
+          <th>IDC Manager</th>
+          <td ng-if="!data.idc_manager">No manager scheduled</td>
+          <td ng-if="!data.idc_manager"></td>
+          <td ng-if="data.idc_manager">
+              <sp-editable-field 
+                  editable-by-user="true" 
+                  table={{data.constants.TABLE_SHIFTS}} 
+                  table-id="data.idc_manager.shift_id" 
+                  field-model="data.idc_manager.shiftModel.team_member">
+            </sp-editable-field>
+          </td>
+          <td ng-if="data.idc_manager">
+              <sp-editable-field 
+                  editable-by-user="true" 
+                  table="sys_user" 
+                  table-id="data.idc_manager.user" 
+                  field-model="data.idc_manager.userModel.phone">
+            </sp-editable-field>   
+          </td>
+        </tr>
+        <tr ng-repeat="shift in data.shifts" class="team-row">
+          <th><a href="?id=oc_manage_team&sys_id={{shift.team_id}}" target="_blank">{{shift.team}}</a></th>
+          <!--<td ng-if="!shift.name">No engineer scheduled</td>-->
+          <td>
+            <sp-editable-field 
+                  editable-by-user="true" 
+                  table={{data.constants.TABLE_SHIFTS}} 
+                  table-id="shift.shift_id" 
+                  field-model="shift.shiftModel.team_member">
+            </sp-editable-field>
+          </td>
+          <td>
+            <sp-editable-field 
+                  editable-by-user="true" 
+                  table="sys_user" 
+                  table-id="shift.user" 
+                  field-model="shift.userModel.phone">
+            </sp-editable-field>    
+            <span ng-if="!shift.phone && !editable">No phone #</span>
+          </td>
+        </tr>
+        <tr class="holiday-row">
+          <th>US Wellness Day</th>
+          <td colspan="2">{{data.us_wellness || 'None'}}</td>
+        </tr>
+        <tr class="holiday-row">
+          <th>US Holidays</th>
+          <td colspan="2">{{data.us_holidays || 'None'}}</td>
+        </tr>
+        <tr class="holiday-row">
+          <th>IDC Wellness Day</th>
+          <td colspan="2">{{data.idc_wellness || 'None'}}</td>
+        </tr>
+        <tr class="holiday-row">
+          <th>IDC Holidays</th>
+          <td colspan="2">{{data.idc_holidays || 'None'}}</td>
+        </tr>
+        </tbody>
+      </table>
+  </div>
+      
+]]></template>
     </sp_widget>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>3e3f83b393534210bef6fff56aba10b0</id>
