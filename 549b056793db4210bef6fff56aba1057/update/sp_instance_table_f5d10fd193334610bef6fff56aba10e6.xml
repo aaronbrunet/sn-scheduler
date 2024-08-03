@@ -3,13 +3,11 @@
         <active>true</active>
         <class_name/>
         <color>default</color>
-        <css>.filter-breadcrumbs {
-display: none;
-}</css>
+        <css/>
         <display_field/>
         <field_list/>
         <filter/>
-        <glyph>empty</glyph>
+        <glyph/>
         <id/>
         <maximum_entries>5</maximum_entries>
         <order>1</order>
@@ -18,21 +16,21 @@ display: none;
         <roles/>
         <short_description/>
         <size>md</size>
-        <sp_column display_value="1">3c0dec66932f4a10bef6fff56aba1014</sp_column>
+        <sp_column display_value="1">71d10fd193334610bef6fff56aba10e3</sp_column>
         <sp_page display_value="oc_form">085421689327c210bef6fff56aba1073</sp_page>
-        <sp_widget display_value="Data Table from URL Definition">8ae61f55cb21020000f8d856634c9c93</sp_widget>
+        <sp_widget display_value="On Call Schedule - List">b151079193334610bef6fff56aba1062</sp_widget>
         <sys_class_name>sp_instance_table</sys_class_name>
         <sys_created_by>aaron.brunet</sys_created_by>
-        <sys_created_on>2024-07-25 01:48:59</sys_created_on>
-        <sys_id>3d0dac66932f4a10bef6fff56aba10a3</sys_id>
-        <sys_mod_count>7</sys_mod_count>
+        <sys_created_on>2024-08-03 01:42:26</sys_created_on>
+        <sys_id>f5d10fd193334610bef6fff56aba10e6</sys_id>
+        <sys_mod_count>1</sys_mod_count>
         <sys_name/>
         <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
         <sys_policy/>
         <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
-        <sys_update_name>sp_instance_table_3d0dac66932f4a10bef6fff56aba10a3</sys_update_name>
+        <sys_update_name>sp_instance_table_f5d10fd193334610bef6fff56aba10e6</sys_update_name>
         <sys_updated_by>aaron.brunet</sys_updated_by>
-        <sys_updated_on>2024-08-03 02:15:31</sys_updated_on>
+        <sys_updated_on>2024-08-03 01:42:54</sys_updated_on>
         <table/>
         <title/>
         <url/>
@@ -44,12 +42,8 @@ display: none;
 	"enable_filter": {
 		"value": "false",
 		"displayValue": "false"
-	},
-     "show_breadcrumbs":{
-       "value": "false",
-		"displayValue": "false"
-     }
+	}
 }]]></widget_parameters>
     </sp_instance_table>
-    <sys_translated_text action="delete_multiple" query="documentkey=3d0dac66932f4a10bef6fff56aba10a3"/>
+    <sys_translated_text action="delete_multiple" query="documentkey=f5d10fd193334610bef6fff56aba10e6"/>
 </record_update>

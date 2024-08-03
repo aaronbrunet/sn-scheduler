@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_db_view">
+    <sys_db_view action="DELETE">
+        <description/>
+        <label/>
+        <name>x_snc_on_call_sc_0_on_call_schedule_collected</name>
+        <plural/>
+        <sys_class_name>sys_db_view</sys_class_name>
+        <sys_created_by>aaron.brunet</sys_created_by>
+        <sys_created_on>2024-08-03 01:37:00</sys_created_on>
+        <sys_id>89804f5193334610bef6fff56aba1069</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_snc_on_call_sc_0_on_call_schedule_collected</sys_name>
+        <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
+        <sys_update_name>sys_db_view_89804f5193334610bef6fff56aba1069</sys_update_name>
+        <sys_updated_by>aaron.brunet</sys_updated_by>
+        <sys_updated_on>2024-08-03 01:37:00</sys_updated_on>
+    </sys_db_view>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</application>
+        <file_path/>
+        <instance_id>6bc7963ddb04515c07072f17d496198d</instance_id>
+        <instance_name>empabrunet02</instance_name>
+        <name>sys_db_view_89804f5193334610bef6fff56aba1069</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_db_view"><sys_db_view action="INSERT_OR_UPDATE"><description/><label/><name>x_snc_on_call_sc_0_on_call_schedule_collected</name><plural/><sys_class_name>sys_db_view</sys_class_name><sys_created_by>aaron.brunet</sys_created_by><sys_created_on>2024-08-03 01:37:00</sys_created_on><sys_id>89804f5193334610bef6fff56aba1069</sys_id><sys_mod_count>0</sys_mod_count><sys_name>x_snc_on_call_sc_0_on_call_schedule_collected</sys_name><sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package><sys_policy/><sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope><sys_update_name>sys_db_view_89804f5193334610bef6fff56aba1069</sys_update_name><sys_updated_by>aaron.brunet</sys_updated_by><sys_updated_on>2024-08-03 01:37:00</sys_updated_on></sys_db_view></record_update>]]></payload>
+        <payload_hash>617457384</payload_hash>
+        <record_name>x_snc_on_call_sc_0_on_call_schedule_collected</record_name>
+        <reverted_from/>
+        <source>311dcda793db4210bef6fff56aba10cc</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>aaron.brunet</sys_created_by>
+        <sys_created_on>2024-08-03 01:37:00</sys_created_on>
+        <sys_id>9690cf5193334610bef6fff56aba103d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>19115e208c00000001</sys_recorded_at>
+        <sys_updated_by>aaron.brunet</sys_updated_by>
+        <sys_updated_on>2024-08-03 01:37:00</sys_updated_on>
+        <type>Database View</type>
+        <update_guid>9a90cf512b3346107ea4adb7a1e83c3c</update_guid>
+        <update_guid_history>9a90cf512b3346107ea4adb7a1e83c3c:617457384</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>aaron.brunet</sys_created_by>
+        <sys_created_on>2024-08-03 01:39:58</sys_created_on>
+        <sys_db_object display_value="" name="sys_db_view">sys_db_view</sys_db_object>
+        <sys_id>143c84b239a545ae82448a02a183a124</sys_id>
+        <sys_metadata>89804f5193334610bef6fff56aba1069</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_snc_on_call_sc_0_on_call_schedule_collected</sys_name>
+        <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
+        <sys_scope_delete display_value="">2900bc0270514c16b05da9b13e40e229</sys_scope_delete>
+        <sys_update_name>sys_db_view_89804f5193334610bef6fff56aba1069</sys_update_name>
+        <sys_update_version display_value="sys_db_view_89804f5193334610bef6fff56aba1069">9690cf5193334610bef6fff56aba103d</sys_update_version>
+        <sys_updated_by>aaron.brunet</sys_updated_by>
+        <sys_updated_on>2024-08-03 01:39:58</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
