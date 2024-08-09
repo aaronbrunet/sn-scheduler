@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
         <category>custom</category>
-        <client_script><![CDATA[api.controller=function(spUtil,$scope) {
+        <client_script><![CDATA[api.controller=function(spUtil,$scope, snAttachmentHandler, $element) {
   /* widget controller */
   var c = this;
 
@@ -10,6 +10,45 @@
 			spUtil.update($scope);//.then(function(){});
    });
 
+var table = document.getElementById('readonly_table');
+table.innerHTML = $scope.data.table_html;
+
+$scope.generateImg = function(id,$event){
+	console.log('clicked button with id '+id);
+	var element = document.getElementById(id);
+	console.log(element);
+	var result = document.getElementById('result');
+	element.style.display = "block";
+			domtoimage.toPng(element)
+				.then(function (dataUrl) {
+			console.log(dataUrl);
+					var img = new Image();
+					img.src = dataUrl;
+	//                document.body.appendChild(img);
+					result.innerHTML = '<img src="'+dataUrl+'" />';
+			element.style.display = "none";
+
+			// $event.stopPropagation();
+			// var $el = $element.find('input[type=file]');
+			// $el.click();
+
+			$scope.uploadImg(dataUrl);
+				})
+				.catch(function (error) {
+					console.error('oops, something went wrong!', error);
+				});
+	};
+
+	$scope.uploadImg = function(file){
+		//var file = files.files[0];
+		console.log([c.data.constants.TABLE_ROTATIONS,rotation,file]);
+		
+		snAttachmentHandler.create(c.data.constants.TABLE_ROTATIONS, c.data.rotation.id).uploadAttachment(file, {
+			sysparm_fieldname: "image"
+		}).then(function(response) {
+			console.log('Uploaded!');
+		});
+	}
 
 };]]></client_script>
         <controller_as>c</controller_as>
@@ -19,6 +58,7 @@
 table {&#13;
 	border: 1px solid grey;&#13;
   	padding: 2rem;&#13;
+  	background-color: white;&#13;
 } &#13;
 tr {&#13;
 	padding: 1rem;&#13;
@@ -94,7 +134,9 @@ tr.manager-row{&#13;
 		to:rotation.getDisplayValue('to')
 	};
 	if(data.rotation?.rotation){
-
+		var table_html = ocu.getReadonlyTable(rotation.getUniqueValue());
+		data.table_html = table_html;
+		
 		var managers = ocu.getManagersByRotation(rotation.getUniqueValue());
 		for(let i in managers) {
 			managers[i].shiftForm = $sp.getForm(constants.TABLE_SHIFTS, managers[i].shift_id);
@@ -149,27 +191,33 @@ tr.manager-row{&#13;
 		data.admin_errors.push({error:'rotation',msg:'No rotation found'});
 	}
 	
+	if(input && input.new_img){
+		var rotation_img = input.new_img;
+		rotation.setValue();
+	}
+
 })();]]></script>
         <servicenow>false</servicenow>
         <sys_class_name>sp_widget</sys_class_name>
         <sys_created_by>aaron.brunet</sys_created_by>
         <sys_created_on>2024-07-17 00:36:13</sys_created_on>
         <sys_id>3e3f83b393534210bef6fff56aba10b0</sys_id>
-        <sys_mod_count>138</sys_mod_count>
+        <sys_mod_count>184</sys_mod_count>
         <sys_name>On Call Schedule - Week</sys_name>
         <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
         <sys_policy/>
         <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
         <sys_update_name>sp_widget_3e3f83b393534210bef6fff56aba10b0</sys_update_name>
         <sys_updated_by>aaron.brunet</sys_updated_by>
-        <sys_updated_on>2024-08-03 02:08:33</sys_updated_on>
-        <template><![CDATA[<div class="schedule-body">
+        <sys_updated_on>2024-08-09 18:26:34</sys_updated_on>
+        <template><![CDATA[<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.js"></script>
+<div class="schedule-body">
   <h1>UX Component On-Call Schedule</h1>
   <div ng-if="!data.rotation.rotation">
     <h1>No On-Call rotation schedule</h1>
   </div>
 
-    <div ng-if="data.rotation.rotation">
+    <div ng-if="data.rotation.rotation" id="schedule">
       <h2>{{data.rotation.rotation}}</h2>
       <table>
         <tbody>
@@ -260,7 +308,22 @@ tr.manager-row{&#13;
           </tbody>
         </table>
     </div>
+  <div id="readonly_table" style="display:none">
+  <div></div>
+	</div>
 </div>
+<!--<div style="display:none">-->
+
+
+ <button id="convert" ng-click="generateImg('readonly_table',$event)">
+      Convert to image
+      </button>
+	<input ng-show="false" type="file" accept="image/png,data/png" ng-file-select="uploadImg({files: $files})" />
+      <div id="result">
+         <!-- Result will appear be here -->
+      </div>
+
+<!--<script type="text/javascript" src="https://github.com/niklasvh/html2canvas/releases/download/0.5.0-alpha1/html2canvas.js"></script>-->
 ]]></template>
     </sp_widget>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
