@@ -456,6 +456,58 @@ OnCallUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 		}
 		return holidays;
 	},
+	getMarkdownTable : function(rotation) {
+		var _rotation = new GlideRecord(this.constants.TABLE_ROTATIONS);
+		var table = '';
+		var newline = '\\n';
+		if(_rotation.get(rotation)){
+			table += '|'+_rotation.rotation +'|Name|Phone|'+newline;
+			table += '|:-|:-:|:-:|'+newline;
+
+			var managers = this.getManagersByRotation(rotation);
+
+			if(managers.some(m => m.region == 'US')){
+				var us_manager = managers.find(m=>m.region == 'US');
+				table+='|US Manager|'+us_manager.name+'|'+us_manager.phone+'|';
+			} else {
+				table+='|US Manager|No manager scheduled||';
+			}
+			table += newline;
+
+			if(managers.some(m => m.region == 'IDC')){
+				var idc_manager = managers.find(m=>m.region == 'IDC');
+				table+='|IDC Manager|'+idc_manager.name+'|'+idc_manager.phone+'|';
+			} else {
+				table+='|IDC Manager|No manager scheduled||';
+			}
+			table += newline;
+
+			var shifts = this.getAllShiftsForRotation(rotation);
+			for(var i=0;i < shifts.length; i++){
+				var shift = shifts[i];
+				table += '|'+shift.team+'|'+shift.name+'|'+shift.phone+'|' + newline;
+				//table += newline;
+			}
+
+			var holidays_us = this.getAllHolidaysForRotation(rotation,'US');
+			var holidays_idc = this.getAllHolidaysForRotation(rotation,'IDC');
+			
+			var us_wellness = holidays_us?.filter(h => h.type == 'wellness_day').map(h => h.formatted_date).join(', ') || 'None';
+
+			var us_holidays = holidays_us?.filter(h => h.type == 'holiday').map(h => h.formatted_date).join(', ') || 'None';
+
+			var idc_wellness = holidays_idc?.filter(h => h.type == 'wellness_day').map(h => h.formatted_date).join(', ') || 'None';
+
+			var idc_holidays = holidays_idc?.filter(h => h.type == 'holiday').map(h => h.formatted_date).join(', ') || 'None';
+
+
+			table += '|US Wellness Day|'+us_wellness+'||' + newline;
+			table += '|US Holidays|'+us_holidays+'||' + newline;
+			table += '|IDC Wellness Day|'+idc_wellness+'||' + newline;
+			table += '|IDC Holidays|'+idc_holidays+'||' + newline;
+		}
+		return table;
+	},
 	getReadonlyTable : function(rotation) {
 		var _rotation = new GlideRecord(this.constants.TABLE_ROTATIONS);
 		_rotation.get(rotation);
@@ -538,14 +590,14 @@ OnCallUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
         <sys_created_by>aaron.brunet</sys_created_by>
         <sys_created_on>2024-07-16 00:43:26</sys_created_on>
         <sys_id>ab4706eb939f4210bef6fff56aba1020</sys_id>
-        <sys_mod_count>95</sys_mod_count>
+        <sys_mod_count>99</sys_mod_count>
         <sys_name>OnCallUtils</sys_name>
         <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
         <sys_update_name>sys_script_include_ab4706eb939f4210bef6fff56aba1020</sys_update_name>
         <sys_updated_by>aaron.brunet</sys_updated_by>
-        <sys_updated_on>2024-07-25 02:50:43</sys_updated_on>
+        <sys_updated_on>2024-08-09 20:10:21</sys_updated_on>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>ab4706eb939f4210bef6fff56aba1020</id>
