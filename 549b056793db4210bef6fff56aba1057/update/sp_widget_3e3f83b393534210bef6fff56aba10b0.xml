@@ -204,14 +204,14 @@ tr.manager-row{&#13;
         <sys_created_by>aaron.brunet</sys_created_by>
         <sys_created_on>2024-07-17 00:36:13</sys_created_on>
         <sys_id>3e3f83b393534210bef6fff56aba10b0</sys_id>
-        <sys_mod_count>192</sys_mod_count>
+        <sys_mod_count>194</sys_mod_count>
         <sys_name>On Call Schedule - Week</sys_name>
         <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
         <sys_policy/>
         <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
         <sys_update_name>sp_widget_3e3f83b393534210bef6fff56aba10b0</sys_update_name>
         <sys_updated_by>aaron.brunet</sys_updated_by>
-        <sys_updated_on>2024-08-09 20:16:21</sys_updated_on>
+        <sys_updated_on>2024-08-09 23:46:59</sys_updated_on>
         <template><![CDATA[<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.js"></script>
 <div class="schedule-body">
   <h1>UX Component On-Call Schedule</h1>
@@ -314,20 +314,17 @@ tr.manager-row{&#13;
   	<div></div>
   </div>
   <div id="markdown_table">
-    <code>
     <pre>
     POST /hooks/xxx-generatedkey-xxx HTTP/1.1
     Host: mattermost.service-now.com
     Content-Type: application/json
-
     {
       "channel": "_P1_CHANNEL_",
       "username": "_P1_CHANNEL_USER_",
       "icon_url": "_ICON_",
       "text": "{{data.mk_table}}"
-      }
+    }
 	</pre>
-    </code>
 </div>
 </div>
 <!--<div style="display:none">-->
