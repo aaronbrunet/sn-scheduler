@@ -47,9 +47,13 @@
 .title-col {&#13;
 	display: inline-block;&#13;
   	margin: 1rem .5rem;&#13;
-  	h1 {&#13;
-      margin-top: 1rem;&#13;
-  	}&#13;
+    h1,h2 {&#13;
+    	margin-top: 1rem !important;&#13;
+    }&#13;
+}&#13;
+&#13;
+.list-block {&#13;
+	padding: 2rem 0;&#13;
 }</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
@@ -118,15 +122,15 @@
 	var trl = {};
 	trl.options = {};
 	trl.options.table = data.constants.TABLE_TEAM_MEMBERS;
-	trl.options.fields = 'user,user.phone,region,role';//data.field_list;
+	trl.options.fields = 'user,user.phone,region,role,order';//data.field_list;
 	trl.options.column_labels = {
 		role: "Role",
 		region: "Region",
 		user: "Name",
 		"user.phone": "Phone"
 	};
-	trl.options.o = 'role';
-	trl.options.d = 'desc';
+	trl.options.o = 'order';
+	trl.options.d = 'asc';
 	trl.options.filter = 'active=true^assignment_group='+team_id;
 	trl.options.useInstanceTitle = true; // to make sure Data Table widget uses headerTitle always
 	trl.options.show_breadcrumbs=false;
@@ -166,14 +170,14 @@
         <sys_created_by>aaron.brunet</sys_created_by>
         <sys_created_on>2024-07-18 02:13:09</sys_created_on>
         <sys_id>e32f28d093278210bef6fff56aba1069</sys_id>
-        <sys_mod_count>98</sys_mod_count>
+        <sys_mod_count>109</sys_mod_count>
         <sys_name>On Call Schedule - Manage Team</sys_name>
         <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
         <sys_policy/>
         <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
         <sys_update_name>sp_widget_e32f28d093278210bef6fff56aba1069</sys_update_name>
         <sys_updated_by>aaron.brunet</sys_updated_by>
-        <sys_updated_on>2024-08-10 00:52:11</sys_updated_on>
+        <sys_updated_on>2024-08-10 02:23:42</sys_updated_on>
         <template><![CDATA[<div>
   <div class="title-row">
     <div class="title-col"><h1>{{data.team}}</h1></div>
@@ -185,9 +189,15 @@
       <h4>{{m.name}} ({{m.region}})</h4>
     </div>
   </div>
+  
   <div ng-if="data.team_roster">
-    <h2>Team Roster</h2>
-    <sp-widget widget="data.trlWidget"></sp-widget>
+    <div class="title-row">
+	  <div class="title-col"><h2>Team Roster</h2></div>
+      <div class="title-col"><button class="btn btn-primary">Update Team Members</button></div>
+    </div>
+    <div class="list-block">
+	    <sp-widget widget="data.trlWidget"></sp-widget>
+    </div>
     
     <!--
     <table class="oc-table">
@@ -209,8 +219,14 @@
   </table>
 -->
   <h2>Team On-Call Shifts</h2>
-  <sp-widget widget="data.eslWidget"></sp-widget>
-  <sp-widget widget="data.mslWidget"></sp-widget>
+  <div class="list-block">
+    <sp-widget widget="data.eslWidget"></sp-widget>
+    <button class="btn btn-primary">Update Shifts</button>
+  </div>
+  <div class="list-block">
+  	<sp-widget widget="data.mslWidget"></sp-widget>
+    <button class="btn btn-primary">Update Manager Shifts</button>
+  </div>
 
   
 </div>]]></template>
