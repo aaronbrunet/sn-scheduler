@@ -1,65 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_theme">
     <sp_theme action="INSERT_OR_UPDATE">
-        <css_variables>.navbar {&#13;
-	border-bottom: 0;&#13;
-    background: $oc-primary;&#13;
-    &#13;
-    display: flex;&#13;
-    flex-direction: row;&#13;
-    align-items: center;&#13;
-    justify-content: flex-end;&#13;
-    &#13;
-    .navbar-header {&#13;
-    	margin-right: auto;&#13;
-    }&#13;
-    &#13;
-    ul.navbar-nav {&#13;
-    	align-items: center;&#13;
-        display: flex;&#13;
-        flex-direction: row;&#13;
-        &#13;
-        li.header-menu-item, li.dropdown {&#13;
-        	&amp;&gt;a, a.toggle-dropdown {&#13;
-            	border-radius: 5rem;&#13;
-                height: 5rem;&#13;
-                align-items: center;&#13;
-                display: flex;&#13;
-                &#13;
-                .navbar-avatar {&#13;
-                	margin: 0 .5rem 0 0;&#13;
-                }&#13;
-            }&#13;
-            &amp;&gt;ul.dropdown-menu {&#13;
-	            margin-top: 1rem;&#13;
-            }&#13;
-        }&#13;
-        &#13;
-    }&#13;
-}&#13;
-&#13;
-.navbar-inverse .navbar-nav &gt; li &gt; a {&#13;
-	color: white;&#13;
-}&#13;
-.navbar-inverse .navbar-nav &gt; li &gt; a:hover, .navbar-inverse .navbar-nav &gt; li &gt; a:focus, .navbar-inverse .navbar-nav &gt; .open &gt; a, .navbar-inverse .navbar-nav &gt; .open &gt; a:hover, .navbar-inverse .navbar-nav &gt; .open &gt; a:focus {&#13;
-	background-color: $oc-secondary !important;&#13;
-}&#13;
-&#13;
-.header-menu-item &gt; ul.dropdown-menu &gt; li {&#13;
-	min-width: auto !important;&#13;
-	&amp;&gt;a {&#13;
-    	width: auto;&#13;
-        &#13;
-    	&amp;&gt;span.block {&#13;
-        	width: max-content;&#13;
-        }&#13;
-    }&#13;
-&#13;
-	sn-time-ago {&#13;
-    	display:none;&#13;
-    }&#13;
-}&#13;
-&#13;
-[accessibility] a:focus, [accessibility] button:focus, [accessibility] [role="slider"]:focus, [accessibility] [role="button"]:focus, [accessibility] .btn:focus {&#13;
+        <css_variables>[accessibility] a:focus, [accessibility] button:focus, [accessibility] [role="slider"]:focus, [accessibility] [role="button"]:focus, [accessibility] .btn:focus {&#13;
     box-shadow: 0 0 0 .15rem $oc-secondary !important;&#13;
 }&#13;
 [accessibility] input:focus, [accessibility] textarea:focus, [accessibility] select:focus {&#13;
@@ -100,6 +41,7 @@ $oc-primary: #181826;&#13;
 $oc-secondary: #47475c;&#13;
 $oc-tertiary: #5052bd;&#13;
 $oc-basic: #293d9e;&#13;
+$oc-bg-grey: #a7a8b2;&#13;
 &#13;
 // Grays&#13;
 $gray-base: #000000;&#13;
@@ -275,14 +217,14 @@ $accessible-placeholder-gray: #565656;&#13;
         <sys_created_by>aaron.brunet</sys_created_by>
         <sys_created_on>2024-08-09 23:55:04</sys_created_on>
         <sys_id>116ce22b87f786104c1fc99d0ebb3590</sys_id>
-        <sys_mod_count>33</sys_mod_count>
+        <sys_mod_count>38</sys_mod_count>
         <sys_name>On Call Theme</sys_name>
         <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
         <sys_policy/>
         <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
         <sys_update_name>sp_theme_116ce22b87f786104c1fc99d0ebb3590</sys_update_name>
         <sys_updated_by>aaron.brunet</sys_updated_by>
-        <sys_updated_on>2024-08-10 01:13:48</sys_updated_on>
+        <sys_updated_on>2024-08-10 01:34:07</sys_updated_on>
         <turn_off_scss_compilation>false</turn_off_scss_compilation>
     </sp_theme>
 </record_update>

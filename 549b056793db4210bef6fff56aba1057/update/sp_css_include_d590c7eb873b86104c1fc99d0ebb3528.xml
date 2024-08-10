@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_css_include">
+    <sp_css_include action="INSERT_OR_UPDATE">
+        <lazy_load>false</lazy_load>
+        <name>Breakpoints</name>
+        <rtl_css_file_url/>
+        <source>local</source>
+        <sp_css display_value="oc-breakpoints">a3b0472f873b86104c1fc99d0ebb356d</sp_css>
+        <sys_class_name>sp_css_include</sys_class_name>
+        <sys_created_by>aaron.brunet</sys_created_by>
+        <sys_created_on>2024-08-10 01:23:30</sys_created_on>
+        <sys_id>d590c7eb873b86104c1fc99d0ebb3528</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>Breakpoints</sys_name>
+        <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
+        <sys_update_name>sp_css_include_d590c7eb873b86104c1fc99d0ebb3528</sys_update_name>
+        <sys_updated_by>aaron.brunet</sys_updated_by>
+        <sys_updated_on>2024-08-10 01:24:18</sys_updated_on>
+        <url/>
+    </sp_css_include>
+</record_update>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_css">
+    <sp_css action="INSERT_OR_UPDATE">
+        <css>@media screen and (max-width:992px) {&#13;
+	.navbar, .navbar ul.navbar-nav, li.header-menu-item, li.dropdown {&#13;
+    	display: block;&#13;
+    }&#13;
+  .navbar ul.navbar-nav {&#13;
+        &#13;
+        li.header-menu-item, li.dropdown {&#13;
+        	&amp;&gt;a, a.toggle-dropdown {&#13;
+            	border-radius: 0;&#13;
+          }&#13;
+    }&#13;
+  }&#13;
+&#13;
+}</css>
+        <name>oc-breakpoints</name>
+        <sys_class_name>sp_css</sys_class_name>
+        <sys_created_by>aaron.brunet</sys_created_by>
+        <sys_created_on>2024-08-10 01:24:11</sys_created_on>
+        <sys_id>a3b0472f873b86104c1fc99d0ebb356d</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>oc-breakpoints</sys_name>
+        <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
+        <sys_update_name>sp_css_a3b0472f873b86104c1fc99d0ebb356d</sys_update_name>
+        <sys_updated_by>aaron.brunet</sys_updated_by>
+        <sys_updated_on>2024-08-10 01:35:09</sys_updated_on>
+        <turn_off_scss_compilation>false</turn_off_scss_compilation>
+    </sp_css>
+</record_update>
