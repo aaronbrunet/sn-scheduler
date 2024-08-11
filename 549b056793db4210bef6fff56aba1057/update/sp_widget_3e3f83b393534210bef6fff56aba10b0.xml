@@ -18,25 +18,27 @@ table.innerHTML = $scope.data.table_html;
 
 //TODO: Figure out if this is necessary
 $scope.generateImg = function(id){
-	console.log('clicked button with id '+id);
-	var element = document.getElementById(id);
-	console.log(element);
+	//console.log('clicked button with id '+id);
+	var parent = document.getElementById(id);
+	console.log(parent);
 	var result = document.getElementById('result');
-	element.style.display = "block";
-			domtoimage.toPng(element)
+	parent.style.display = "block";
+	var table = document.getElementById('rotation-table-readonly');
+			domtoimage.toPng(table)
 				.then(function (dataUrl) {
-			console.log(dataUrl);
-					var img = new Image();
-					img.src = dataUrl;
-	//                document.body.appendChild(img);
-					result.innerHTML = '<img src="'+dataUrl+'" />';
-			element.style.display = "none";
 
-			// $event.stopPropagation();
-			// var $el = $element.find('input[type=file]');
-			// $el.click();
+					var link = document.createElement('a');
+					link.download = $scope.data.rotation.rotation+'-schedule.png';
+					link.href = dataUrl;
+					link.click();
 
-			$scope.uploadImg(dataUrl);
+			// console.log(dataUrl);
+			// 		var img = new Image();
+			// 		img.src = dataUrl;
+			// 		result.innerHTML = '<a id="screenshot" style="display:none" href="'+dataUrl+'">Save Screenshot</a>';
+			// 		var link = document.getElementById('screenshot');
+			// 		link.click();
+					parent.style.display = "none";
 				})
 				.catch(function (error) {
 					console.error('oops, something went wrong!', error);
@@ -59,17 +61,33 @@ $scope.generateImg = function(id){
         <css>.schedule-body {&#13;
   margin: 2rem 0;&#13;
   padding: 2rem 0;&#13;
+  &#13;
+  display: flex;&#13;
+  flex-direction: column;&#13;
+  align-items: center;&#13;
+  &#13;
+  &amp;&gt;*{&#13;
+  	min-width: 50rem;&#13;
+  }&#13;
+  &#13;
+  .schedule-row {&#13;
+  	margin: 1rem 0;&#13;
+    display: flex;&#13;
+    flex-direction: row;&#13;
+  }&#13;
+  &#13;
 table {&#13;
 	border: 1px solid grey;&#13;
   	padding: 2rem;&#13;
   	background-color: white;&#13;
+	white-space: nowrap;&#13;
 } &#13;
 tr {&#13;
 	padding: 1rem;&#13;
 }&#13;
 td,th {&#13;
 	border: 1px solid grey;&#13;
-  padding: 1rem;&#13;
+  padding: 1rem 2rem;&#13;
   width: 33%;&#13;
 }&#13;
 &#13;
@@ -88,7 +106,29 @@ tr.manager-row{&#13;
   td { background-color:#e2f5ff; }&#13;
 }&#13;
 }&#13;
-</css>
+&#13;
+#readonly_table {&#13;
+	display:none;&#13;
+	position: absolute;&#13;
+    width: 100%;&#13;
+    top: -500px;&#13;
+}&#13;
+&#13;
+#markdown_table {&#13;
+	width: 50rem;&#13;
+}&#13;
+&#13;
+@media screen and (max-width:992px){&#13;
+	.schedule-body {&#13;
+	    &amp;&gt; * {&#13;
+	 		width: auto;&#13;
+    		min-width: auto;&#13;
+  		}&#13;
+      table {&#13;
+      	white-space: normal;&#13;
+      }&#13;
+  	}&#13;
+}</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
         <description/>
@@ -204,23 +244,31 @@ tr.manager-row{&#13;
         <sys_created_by>aaron.brunet</sys_created_by>
         <sys_created_on>2024-07-17 00:36:13</sys_created_on>
         <sys_id>3e3f83b393534210bef6fff56aba10b0</sys_id>
-        <sys_mod_count>194</sys_mod_count>
+        <sys_mod_count>215</sys_mod_count>
         <sys_name>On Call Schedule - Week</sys_name>
         <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
         <sys_policy/>
         <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
         <sys_update_name>sp_widget_3e3f83b393534210bef6fff56aba10b0</sys_update_name>
         <sys_updated_by>aaron.brunet</sys_updated_by>
-        <sys_updated_on>2024-08-09 23:46:59</sys_updated_on>
+        <sys_updated_on>2024-08-11 00:57:18</sys_updated_on>
         <template><![CDATA[<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.js"></script>
 <div class="schedule-body">
-  <h1>UX Component On-Call Schedule</h1>
+  <h1>UX Component On-Call Rotation</h1>
   <div ng-if="!data.rotation.rotation">
     <h1>No On-Call rotation schedule</h1>
   </div>
 
     <div ng-if="data.rotation.rotation" id="schedule">
-      <h2>{{data.rotation.rotation}}</h2>
+      <div class="schedule-row">
+        <h3>Week of {{data.rotation.rotation}}</h3>
+      </div>
+      <div class="schedule-row">
+        <a role="button" class="btn btn-primary" href="?id=oc_list&table={{data.constants.TABLE_ROTATIONS}}&filter=to%3E%3Djavascript:gs.beginningOfToday()%5Eactive%3Dtrue&view=sp&o=from&link=oc_rotation">All Upcoming Rotations</a>
+        <button id="convert" ng-click="generateImg('readonly_table')" class="btn btn-primary">
+        Save Screenshot
+        </button>
+      </div>
       <table>
         <tbody>
           <tr class="title-row">
@@ -310,9 +358,6 @@ tr.manager-row{&#13;
           </tbody>
         </table>
     </div>
-  <div id="readonly_table" style="display:none">
-  	<div></div>
-  </div>
   <div id="markdown_table">
     <pre>
     POST /hooks/xxx-generatedkey-xxx HTTP/1.1
@@ -325,18 +370,16 @@ tr.manager-row{&#13;
       "text": "{{data.mk_table}}"
     }
 	</pre>
+  </div>
+  <div id="readonly_table">
+  </div>
+  
 </div>
-</div>
-<!--<div style="display:none">-->
-
-<!--
-
- <button id="convert" ng-click="generateImg('readonly_table')">
-      Convert to image
-      </button>
       <div id="result">
       </div>
--->
+
+
+
 
 <!--<script type="text/javascript" src="https://github.com/niklasvh/html2canvas/releases/download/0.5.0-alpha1/html2canvas.js"></script>-->
 ]]></template>

@@ -513,7 +513,7 @@ OnCallUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 		_rotation.get(rotation);
 
 		var managers = this.getManagersByRotation(rotation);
-		var html = '<table class="rotation-table">';
+		var html = '<table class="rotation-table" id="rotation-table-readonly">';
 		html += '<tr class="title-row"><th colspan="2">This Week: '+_rotation.rotation+'</th><th>Phone</th></tr>';
 
 		html += '<tr class="manager-row"><th>US Manager</th>';
@@ -606,14 +606,14 @@ OnCallUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
         <sys_created_by>aaron.brunet</sys_created_by>
         <sys_created_on>2024-07-16 00:43:26</sys_created_on>
         <sys_id>ab4706eb939f4210bef6fff56aba1020</sys_id>
-        <sys_mod_count>103</sys_mod_count>
+        <sys_mod_count>104</sys_mod_count>
         <sys_name>OnCallUtils</sys_name>
         <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
         <sys_update_name>sys_script_include_ab4706eb939f4210bef6fff56aba1020</sys_update_name>
         <sys_updated_by>aaron.brunet</sys_updated_by>
-        <sys_updated_on>2024-08-10 02:07:27</sys_updated_on>
+        <sys_updated_on>2024-08-11 00:17:12</sys_updated_on>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>ab4706eb939f4210bef6fff56aba1020</id>
