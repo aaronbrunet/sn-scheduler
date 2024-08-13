@@ -25,8 +25,7 @@
         <script><![CDATA[(function() {
 	var ocu = new x_snc_on_call_sc_0.OnCallUtils();
 	var draft_shifts = ocu.buildDraftShifts(new GlideDateTime(),'86e519ef93db4210bef6fff56aba10b1');
-
-	ocu.buildShiftsFromDraft(draft_shifts);
+	//ocu.buildShiftsFromDraft(draft_shifts);
 
 	data.draft_shifts = draft_shifts;
 	//function(start,team,role,roster,flag){
@@ -36,14 +35,14 @@
         <sys_created_by>aaron.brunet</sys_created_by>
         <sys_created_on>2024-07-18 00:37:53</sys_created_on>
         <sys_id>f2d85c9c93a38210bef6fff56aba10cf</sys_id>
-        <sys_mod_count>27</sys_mod_count>
+        <sys_mod_count>32</sys_mod_count>
         <sys_name>On Call Schedule - Draft Shifts</sys_name>
         <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
         <sys_policy/>
         <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
         <sys_update_name>sp_widget_f2d85c9c93a38210bef6fff56aba10cf</sys_update_name>
         <sys_updated_by>aaron.brunet</sys_updated_by>
-        <sys_updated_on>2024-07-18 02:13:36</sys_updated_on>
+        <sys_updated_on>2024-08-13 01:49:56</sys_updated_on>
         <template><![CDATA[<div>
 <div ng-repeat="shift in data.draft_shifts">
   {{shift}}

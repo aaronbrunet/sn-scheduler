@@ -72,6 +72,7 @@
         <roles/>
         <script><![CDATA[(function() {
 	//console.log(gs.getUserID());
+	
 	var ocu = new x_snc_on_call_sc_0.OnCallUtils();
 	var constants = ocu.getConstants();
 	data.constants = constants;
@@ -106,6 +107,11 @@
 		data.team_roster[i] = curr;
 	}
 	data.mgr_roster = data.team_roster?.filter(m => m.role == 'Manager');
+
+	data.canManage = (gs.hasRole('x_snc_on_call_sc_0.admin') || gs.isMemberOf('On Call Admins')) || ((gs.hasRole('x_snc_on_call_sc_0.manager') || gs.isMemberOf('On Call Managers')) && data.mgr_roster.some(m => m.id == gs.getUserID()));
+
+
+
 	data.team_roster = data.team_roster?.filter(m => m.role != 'Manager');
 	//console.log(data.team_roster);
 
@@ -170,14 +176,14 @@
         <sys_created_by>aaron.brunet</sys_created_by>
         <sys_created_on>2024-07-18 02:13:09</sys_created_on>
         <sys_id>e32f28d093278210bef6fff56aba1069</sys_id>
-        <sys_mod_count>112</sys_mod_count>
+        <sys_mod_count>113</sys_mod_count>
         <sys_name>On Call Schedule - Manage Team</sys_name>
         <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
         <sys_policy/>
         <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
         <sys_update_name>sp_widget_e32f28d093278210bef6fff56aba1069</sys_update_name>
         <sys_updated_by>aaron.brunet</sys_updated_by>
-        <sys_updated_on>2024-08-13 00:10:15</sys_updated_on>
+        <sys_updated_on>2024-08-13 00:38:36</sys_updated_on>
         <template><![CDATA[<div>
   <div class="title-row">
     <div class="title-col"><h1>{{data.team}}</h1></div>

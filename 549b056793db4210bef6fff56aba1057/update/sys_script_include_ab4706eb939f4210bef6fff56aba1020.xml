@@ -57,6 +57,58 @@ OnCallUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 	 * returns: null
 	 * TODO: deprecate & remove
 	 */
+	buildDraftRotations : function(start,count){
+		var rotations_draft = [];
+		if(!count || count == ''){
+			return;
+		}
+		if(!start || start == ''){
+			start = new GlideDateTime();
+		}
+			for(var i=0; i<count; i++){
+				//var rgr = new GlideRecord(this.constants.TABLE_ROTATIONS);
+				let s_gdt = new GlideDateTime(start);
+				s_gdt.addDaysLocalTime((i * 7));
+				let _start = new GlideDate();
+				_start.setValue(s_gdt.getLocalDate());
+
+				let _end = new GlideDate();
+				let e_gdt = new GlideDateTime(s_gdt);
+				e_gdt.addDaysLocalTime(7);
+				_end.setValue(e_gdt.getLocalDate());
+
+				let from = new GlideDate();
+				from = _start.getByFormat('MMM d');
+				
+				let to = new GlideDate();
+				to = _end.getByFormat('MMM d');
+				
+				var name = `${from} - ${to}`;
+								
+				let rotation = {
+					from:_start.toString(),
+					to:_end.toString(),
+					name:name
+				};
+				rotations_draft.push(rotation);
+			}
+			return rotations_draft;
+	},
+	buildRotationsFromDraft : function(draft){
+		for(var i=0; i<draft.length; i++){
+			try {
+				var rgr = new GlideRecord(this.constants.TABLE_ROTATIONS);
+				rgr.initialize();
+				rgr.setValue('from',draft[i].from);
+				rgr.setValue('to',draft[i].to);
+				rgr.insert();
+				gs.info(JSON.stringify(rgr));
+			}
+			catch(err){
+				gs.info('Insertion failed due to error: '+err);
+			}
+		}
+	},
 	buildRotations : function(start,count){
 		if(!count || count == ''){
 			count = this.constants.COUNT;
@@ -76,9 +128,7 @@ OnCallUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 				var e_gdt = new GlideDateTime(s_gdt);
 				e_gdt.addDaysLocalTime(7);
 				_end.setValue(e_gdt.getLocalDate());
-				
-				
-				
+			
 				rgr.initialize();
 				rgr.setValue('from',_start);
 				rgr.setValue('to',_end);
@@ -619,14 +669,14 @@ OnCallUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
         <sys_created_by>aaron.brunet</sys_created_by>
         <sys_created_on>2024-07-16 00:43:26</sys_created_on>
         <sys_id>ab4706eb939f4210bef6fff56aba1020</sys_id>
-        <sys_mod_count>111</sys_mod_count>
+        <sys_mod_count>136</sys_mod_count>
         <sys_name>OnCallUtils</sys_name>
         <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
         <sys_update_name>sys_script_include_ab4706eb939f4210bef6fff56aba1020</sys_update_name>
         <sys_updated_by>aaron.brunet</sys_updated_by>
-        <sys_updated_on>2024-08-12 23:52:20</sys_updated_on>
+        <sys_updated_on>2024-08-13 02:43:42</sys_updated_on>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>ab4706eb939f4210bef6fff56aba1020</id>

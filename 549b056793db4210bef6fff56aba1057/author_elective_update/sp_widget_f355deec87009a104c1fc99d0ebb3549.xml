@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="DELETE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller=function() {
+  /* widget controller */
+  var c = this;
+};]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>on-call-build-rotations</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
+  
+}]]></link>
+        <name>On Call Schedule - Build Rotations</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+	console.log([options,input,data]);
+	var ocu = new x_snc_on_call_sc_0.OnCallUtils();
+	var now = new GlideDateTime();
+	var drafts = ocu.buildDraftRotations(now,8);
+	console.log(JSON.stringify(drafts));
+	data.draft_rotations = drafts;
+	console.log(JSON.stringify(data));
+
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>aaron.brunet</sys_created_by>
+        <sys_created_on>2024-08-13 00:50:07</sys_created_on>
+        <sys_id>f355deec87009a104c1fc99d0ebb3549</sys_id>
+        <sys_mod_count>18</sys_mod_count>
+        <sys_name>On Call Schedule - Build Rotations</sys_name>
+        <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
+        <sys_update_name>sp_widget_f355deec87009a104c1fc99d0ebb3549</sys_update_name>
+        <sys_updated_by>aaron.brunet</sys_updated_by>
+        <sys_updated_on>2024-08-13 01:16:28</sys_updated_on>
+        <template><![CDATA[<div>
+  <h1>Rotation draft</h1>
+      <div ng-repeat="r in data.draft_rotations">{{r.from}} to {{r.to}}</div>
+</div>]]></template>
+    </sp_widget>
+    <sys_es_latest_script action="DELETE">
+        <id>f355deec87009a104c1fc99d0ebb3549</id>
+        <sys_created_by>aaron.brunet</sys_created_by>
+        <sys_created_on>2024-08-13 00:50:07</sys_created_on>
+        <sys_id>a4c5deec87009a104c1fc99d0ebb355f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>aaron.brunet</sys_updated_by>
+        <sys_updated_on>2024-08-13 00:50:07</sys_updated_on>
+        <table>sp_widget</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</application>
+        <file_path/>
+        <instance_id>6bc7963ddb04515c07072f17d496198d</instance_id>
+        <instance_name>empabrunet02</instance_name>
+        <name>sp_widget_f355deec87009a104c1fc99d0ebb3549</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sp_widget"&gt;&lt;sp_widget action="INSERT_OR_UPDATE"&gt;&lt;category&gt;custom&lt;/category&gt;&lt;client_script&gt;&lt;![CDATA[api.controller=function() {
+  /* widget controller */
+  var c = this;
+};]]&gt;&lt;/client_script&gt;&lt;controller_as&gt;c&lt;/controller_as&gt;&lt;css/&gt;&lt;data_table&gt;sp_instance&lt;/data_table&gt;&lt;demo_data/&gt;&lt;description/&gt;&lt;docs/&gt;&lt;field_list/&gt;&lt;has_preview&gt;false&lt;/has_preview&gt;&lt;id&gt;on-call-build-rotations&lt;/id&gt;&lt;internal&gt;false&lt;/internal&gt;&lt;link&gt;&lt;![CDATA[function link(scope, element, attrs, controller) {
+  
+}]]&gt;&lt;/link&gt;&lt;name&gt;On Call Schedule - Build Rotations&lt;/name&gt;&lt;option_schema/&gt;&lt;public&gt;false&lt;/public&gt;&lt;roles/&gt;&lt;script&gt;&lt;![CDATA[(function() {
+	console.log([options,input,data]);
+	var ocu = new x_snc_on_call_sc_0.OnCallUtils();
+	var now = new GlideDateTime();
+	var drafts = ocu.buildDraftRotations(now,8);
+	console.log(JSON.stringify(drafts));
+	data.draft_rotations = drafts;
+	console.log(JSON.stringify(data));
+
+})();]]&gt;&lt;/script&gt;&lt;servicenow&gt;false&lt;/servicenow&gt;&lt;sys_class_name&gt;sp_widget&lt;/sys_class_name&gt;&lt;sys_created_by&gt;aaron.brunet&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2024-08-13 00:50:07&lt;/sys_created_on&gt;&lt;sys_id&gt;f355deec87009a104c1fc99d0ebb3549&lt;/sys_id&gt;&lt;sys_mod_count&gt;18&lt;/sys_mod_count&gt;&lt;sys_name&gt;On Call Schedule - Build Rotations&lt;/sys_name&gt;&lt;sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0"&gt;549b056793db4210bef6fff56aba1057&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="On-Call Schedule"&gt;549b056793db4210bef6fff56aba1057&lt;/sys_scope&gt;&lt;sys_update_name&gt;sp_widget_f355deec87009a104c1fc99d0ebb3549&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;aaron.brunet&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2024-08-13 01:16:28&lt;/sys_updated_on&gt;&lt;template&gt;&lt;![CDATA[&lt;div&gt;
+  &lt;h1&gt;Rotation draft&lt;/h1&gt;
+      &lt;div ng-repeat="r in data.draft_rotations"&gt;{{r.from}} to {{r.to}}&lt;/div&gt;
+&lt;/div&gt;]]&gt;&lt;/template&gt;&lt;/sp_widget&gt;&lt;sys_es_latest_script action="INSERT_OR_UPDATE"&gt;&lt;id&gt;f355deec87009a104c1fc99d0ebb3549&lt;/id&gt;&lt;sys_created_by&gt;aaron.brunet&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2024-08-13 00:50:07&lt;/sys_created_on&gt;&lt;sys_id&gt;a4c5deec87009a104c1fc99d0ebb355f&lt;/sys_id&gt;&lt;sys_mod_count&gt;0&lt;/sys_mod_count&gt;&lt;sys_updated_by&gt;aaron.brunet&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2024-08-13 00:50:07&lt;/sys_updated_on&gt;&lt;table&gt;sp_widget&lt;/table&gt;&lt;use_es_latest&gt;true&lt;/use_es_latest&gt;&lt;/sys_es_latest_script&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>548591035</payload_hash>
+        <record_name>On Call Schedule - Build Rotations</record_name>
+        <reverted_from/>
+        <source>311dcda793db4210bef6fff56aba10cc</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>aaron.brunet</sys_created_by>
+        <sys_created_on>2024-08-13 01:16:28</sys_created_on>
+        <sys_id>7ecb122887409a104c1fc99d0ebb3558</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>191494ed3f20000001</sys_recorded_at>
+        <sys_updated_by>aaron.brunet</sys_updated_by>
+        <sys_updated_on>2024-08-13 01:16:28</sys_updated_on>
+        <type>Widget</type>
+        <update_guid>f2cb12282d409a100dc530821087dd58</update_guid>
+        <update_guid_history>f2cb12282d409a100dc530821087dd58:548591035,62abdae452409a103c14d32812681123:1352546952,117b9ae451409a10c468d0ff00738ae6:-830738491,506b1ae4de409a107cb425e26abf9271:-879335839,61aa1ea448409a10d7b4d4b5b476da90:-529231986,749a1ea4b2409a1002d876c4b917e584:1664509188,7a7ad6a43f409a10375fc7b24b2805e0:-1847892148,c24ad6a48a409a1049f13f69d58c9f6c:308854279,76d912a446409a10d2dcae3d4ec9da53:-65498532,04a91e6428409a10656e3e018cb7f09a:1900412327,8a799a6463409a10c2b1995ec4110e4c:-458029435,1d499264f9409a10a20ff7adc9694139:-1287144505,76e812649e409a10bed029e2a13a5542:2004528743,32c85e2471409a1033b6aadf8c34d7d5:780386251,19389624af409a10e0e063dea1315fa0:1252136226,d7f75224d5409a108a0330eb9ac21759:-1672865587,7807d2e009409a104ffb0a0ef4968194:-2080690744,c636d6a0c2409a10bb79a8fd3a6fdd18:720886836,bf1616a0b1409a10b3691e1907229f8a:-1461159180,f0c59e6043409a10342dd4e2c8d8af98:1845808180</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="On Call Schedule - Build Rotations">cebcd66887409a104c1fc99d0ebb358f</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>aaron.brunet</sys_created_by>
+        <sys_created_on>2024-08-13 01:20:31</sys_created_on>
+        <sys_db_object display_value="" name="sp_widget">sp_widget</sys_db_object>
+        <sys_id>0c19961ec302467888e4db6386d09731</sys_id>
+        <sys_metadata>f355deec87009a104c1fc99d0ebb3549</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>On Call Schedule - Build Rotations</sys_name>
+        <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
+        <sys_scope_delete display_value="">2900bc0270514c16b05da9b13e40e229</sys_scope_delete>
+        <sys_update_name>sp_widget_f355deec87009a104c1fc99d0ebb3549</sys_update_name>
+        <sys_update_version display_value="sp_widget_f355deec87009a104c1fc99d0ebb3549">7ecb122887409a104c1fc99d0ebb3558</sys_update_version>
+        <sys_updated_by>aaron.brunet</sys_updated_by>
+        <sys_updated_on>2024-08-13 01:20:31</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

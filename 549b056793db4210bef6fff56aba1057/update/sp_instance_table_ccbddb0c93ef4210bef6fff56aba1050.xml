@@ -11,27 +11,27 @@
         <glyph>empty</glyph>
         <id/>
         <maximum_entries>5</maximum_entries>
-        <order>1</order>
+        <order>3</order>
         <order_by>from</order_by>
         <order_direction>asc</order_direction>
         <roles/>
         <short_description/>
         <size>md</size>
-        <sp_column display_value="1">478adb4893ef4210bef6fff56aba10c5</sp_column>
+        <sp_column display_value="1">2a2c962887409a104c1fc99d0ebb35b1</sp_column>
         <sp_page display_value="oc_rotation">45db53c893ef4210bef6fff56aba10e6</sp_page>
         <sp_widget display_value="Data Table from Instance Definition">38058ff1cb11020000f8d856634c9c8c</sp_widget>
         <sys_class_name>sp_instance_table</sys_class_name>
         <sys_created_by>aaron.brunet</sys_created_by>
         <sys_created_on>2024-07-17 20:16:01</sys_created_on>
         <sys_id>ccbddb0c93ef4210bef6fff56aba1050</sys_id>
-        <sys_mod_count>12</sys_mod_count>
+        <sys_mod_count>15</sys_mod_count>
         <sys_name>On-Call Rotations</sys_name>
         <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
         <sys_policy/>
         <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
         <sys_update_name>sp_instance_table_ccbddb0c93ef4210bef6fff56aba1050</sys_update_name>
         <sys_updated_by>aaron.brunet</sys_updated_by>
-        <sys_updated_on>2024-07-17 20:20:21</sys_updated_on>
+        <sys_updated_on>2024-08-13 01:51:43</sys_updated_on>
         <table>x_snc_on_call_sc_0_on_call_rotation</table>
         <title>On-Call Rotations</title>
         <url/>

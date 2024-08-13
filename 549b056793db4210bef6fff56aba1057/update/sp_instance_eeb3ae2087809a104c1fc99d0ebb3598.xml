@@ -6,27 +6,27 @@
         <css/>
         <glyph/>
         <id/>
-        <order>3</order>
+        <order>2</order>
         <roles/>
         <short_description/>
         <size>md</size>
-        <sp_column display_value="1">4de91cdc93a38210bef6fff56aba10f3</sp_column>
-        <sp_widget display_value="On Call Schedule - Draft Shifts">f2d85c9c93a38210bef6fff56aba10cf</sp_widget>
+        <sp_column display_value="1">2a2c962887409a104c1fc99d0ebb35b1</sp_column>
+        <sp_widget display_value="">f355deec87009a104c1fc99d0ebb3549</sp_widget>
         <sys_class_name>sp_instance</sys_class_name>
         <sys_created_by>aaron.brunet</sys_created_by>
-        <sys_created_on>2024-07-18 00:39:09</sys_created_on>
-        <sys_id>66e91cdc93a38210bef6fff56aba1064</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_created_on>2024-08-13 01:51:08</sys_created_on>
+        <sys_id>eeb3ae2087809a104c1fc99d0ebb3598</sys_id>
+        <sys_mod_count>0</sys_mod_count>
         <sys_name/>
         <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
         <sys_policy/>
         <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
-        <sys_update_name>sp_instance_66e91cdc93a38210bef6fff56aba1064</sys_update_name>
+        <sys_update_name>sp_instance_eeb3ae2087809a104c1fc99d0ebb3598</sys_update_name>
         <sys_updated_by>aaron.brunet</sys_updated_by>
-        <sys_updated_on>2024-08-13 01:24:23</sys_updated_on>
+        <sys_updated_on>2024-08-13 01:51:08</sys_updated_on>
         <title/>
         <url/>
         <widget_parameters/>
     </sp_instance>
-    <sys_translated_text action="delete_multiple" query="documentkey=66e91cdc93a38210bef6fff56aba1064"/>
+    <sys_translated_text action="delete_multiple" query="documentkey=eeb3ae2087809a104c1fc99d0ebb3598"/>
 </record_update>
