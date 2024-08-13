@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update node_type="sys_portal_page" unload_date="2024-08-13 00:11:09">
+    <sys_portal_page action="INSERT_OR_UPDATE">
+        <layout display_value="layout_2_across">f6defafa0a0a0b12000d5016bd12ff06</layout>
+        <order/>
+        <read_roles>snc_internal</read_roles>
+        <roles/>
+        <selectable>false</selectable>
+        <sys_class_name>sys_portal_page</sys_class_name>
+        <sys_created_by>aaron.brunet</sys_created_by>
+        <sys_created_on>2024-08-12 23:18:55</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>74e00ee887cc5a104c1fc99d0ebb3524</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>catalog_on_call_resources</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
+        <sys_update_name>sys_portal_page_74e00ee887cc5a104c1fc99d0ebb3524</sys_update_name>
+        <sys_updated_by>aaron.brunet</sys_updated_by>
+        <sys_updated_on>2024-08-12 23:18:55</sys_updated_on>
+        <title>catalog_on_call_resources</title>
+        <user/>
+        <view>catalog_on_call_resources</view>
+    </sys_portal_page>
+</record_update>

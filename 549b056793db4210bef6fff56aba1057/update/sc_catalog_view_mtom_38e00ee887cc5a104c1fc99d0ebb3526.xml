@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sc_catalog_view_mtom">
+    <sc_catalog_view_mtom action="INSERT_OR_UPDATE">
+        <default>true</default>
+        <sc_catalog display_value="On Call Resources">2fd0cae887cc5a104c1fc99d0ebb35e0</sc_catalog>
+        <sys_class_name>sc_catalog_view_mtom</sys_class_name>
+        <sys_created_by>aaron.brunet</sys_created_by>
+        <sys_created_on>2024-08-12 23:18:55</sys_created_on>
+        <sys_id>38e00ee887cc5a104c1fc99d0ebb3526</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>On Call Resources.catalog_on_call_resources</sys_name>
+        <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
+        <sys_policy/>
+        <sys_portal_page display_value="catalog_on_call_resources">74e00ee887cc5a104c1fc99d0ebb3524</sys_portal_page>
+        <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
+        <sys_update_name>sc_catalog_view_mtom_38e00ee887cc5a104c1fc99d0ebb3526</sys_update_name>
+        <sys_updated_by>aaron.brunet</sys_updated_by>
+        <sys_updated_on>2024-08-12 23:18:55</sys_updated_on>
+    </sc_catalog_view_mtom>
+</record_update>
