@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="question_choice">
+    <question_choice action="INSERT_OR_UPDATE">
+        <inactive>false</inactive>
+        <order>100</order>
+        <published_ref/>
+        <question display_value="Role">3b6730d587c41e104c1fc99d0ebb35e5</question>
+        <sys_class_name>question_choice</sys_class_name>
+        <sys_created_by>aaron.brunet</sys_created_by>
+        <sys_created_on>2024-08-15 01:54:47</sys_created_on>
+        <sys_id>3cb738d587c41e104c1fc99d0ebb351f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Engineer</sys_name>
+        <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
+        <sys_update_name>question_choice_3cb738d587c41e104c1fc99d0ebb351f</sys_update_name>
+        <sys_updated_by>aaron.brunet</sys_updated_by>
+        <sys_updated_on>2024-08-15 01:54:47</sys_updated_on>
+        <text>Engineer</text>
+        <value>engineer</value>
+    </question_choice>
+    <fx_price action="delete_multiple" query="id=3cb738d587c41e104c1fc99d0ebb351f"/>
+</record_update>
