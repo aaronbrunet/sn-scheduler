@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sysauto_script">
+    <sysauto_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <business_calendar/>
+        <condition/>
+        <conditional>false</conditional>
+        <entered_time>1970-01-01 10:00:00</entered_time>
+        <max_drift/>
+        <name>On Call Post Weekly Schedule</name>
+        <offset/>
+        <offset_type>0</offset_type>
+        <run_as display_value="Aaron Brunet">c6a52aa6876069106e4b11f83cbb359f</run_as>
+        <run_as_tz/>
+        <run_dayofmonth>1</run_dayofmonth>
+        <run_dayofweek>3</run_dayofweek>
+        <run_period/>
+        <run_start>2024-08-15 00:17:35</run_start>
+        <run_time>1970-01-01 15:00:00</run_time>
+        <run_type>weekly</run_type>
+        <script><![CDATA[gs.info('Kicking off weekly on-call schedule');
+var ocu = new x_snc_on_call_sc_0.OnCallUtils();
+
+var rotation_id = ocu.getRotation(new GlideDateTime());//new GlideRecord(ocu.getConstants().TABLE_ROTATIONS);
+
+var rotation = new GlideRecord(ocu.getConstants().TABLE_ROTATIONS);
+if(rotation.get(rotation_id)){
+	var tms = rotation.getValue('assignees');
+	gs.info(['team members',tms]);
+	var users_arr = [];
+	var temp_arr = tms.split(',');
+	for(u in temp_arr){
+		let u_id = ocu.getUserFromMember(temp_arr[u]);
+		users_arr.push(u_id);
+
+	}
+	var users = users_arr.join(',');
+	gs.info(users);
+	gs.eventQueue('x_snc_on_call_sc_0.rotation.started', rotation, users);
+} else {
+	gs.error('No rotation found for this week, aborting execution.');
+}
+
+]]></script>
+        <sys_class_name>sysauto_script</sys_class_name>
+        <sys_created_by>aaron.brunet</sys_created_by>
+        <sys_created_on>2024-08-15 00:18:25</sys_created_on>
+        <sys_id>3f71e81187841e104c1fc99d0ebb35e7</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_name>On Call Post Weekly Schedule</sys_name>
+        <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
+        <sys_update_name>sysauto_script_3f71e81187841e104c1fc99d0ebb35e7</sys_update_name>
+        <sys_updated_by>aaron.brunet</sys_updated_by>
+        <sys_updated_on>2024-08-15 00:50:08</sys_updated_on>
+        <time_zone>US/Eastern</time_zone>
+        <upgrade_safe>false</upgrade_safe>
+    </sysauto_script>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>3f71e81187841e104c1fc99d0ebb35e7</id>
+        <sys_created_by>aaron.brunet</sys_created_by>
+        <sys_created_on>2024-08-15 00:18:25</sys_created_on>
+        <sys_id>b3a12c1187841e104c1fc99d0ebb3533</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>aaron.brunet</sys_updated_by>
+        <sys_updated_on>2024-08-15 00:18:25</sys_updated_on>
+        <table>sysauto_script</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>
