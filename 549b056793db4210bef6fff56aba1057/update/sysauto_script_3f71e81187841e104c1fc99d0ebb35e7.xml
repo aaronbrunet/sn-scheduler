@@ -20,22 +20,38 @@
         <script><![CDATA[gs.info('Kicking off weekly on-call schedule');
 var ocu = new x_snc_on_call_sc_0.OnCallUtils();
 
-var rotation_id = ocu.getRotation(new GlideDateTime());//new GlideRecord(ocu.getConstants().TABLE_ROTATIONS);
+var rotation_id = ocu.getRotation(new GlideDateTime());
 
 var rotation = new GlideRecord(ocu.getConstants().TABLE_ROTATIONS);
 if(rotation.get(rotation_id)){
-	var tms = rotation.getValue('assignees');
-	gs.info(['team members',tms]);
-	var users_arr = [];
-	var temp_arr = tms.split(',');
-	for(u in temp_arr){
-		let u_id = ocu.getUserFromMember(temp_arr[u]);
+	var team_members = rotation.getValue('assignees');
+	gs.info(['team members',team_members]);
+	var users_arr = []; // get sys_user sys_ids for email notification
+	var mm_id_arr = []; // get sys_user user ids for mattermost cc
+	
+	var team_arr = team_members.split(',');
+	for(u in team_arr){
+		let u_id = ocu.getUserFromMember(team_arr[u]);
 		users_arr.push(u_id);
-
+		
+		var mm_id = new GlideRecord('sys_user');
+		if(mm_id.get(u_id)){
+			mm_id_arr.push('@'+mm_id.getValue('user_name'));
+		}
 	}
-	var users = users_arr.join(',');
-	gs.info(users);
-	gs.eventQueue('x_snc_on_call_sc_0.rotation.started', rotation, users);
+
+	var users_str = users_arr.join(',');
+	gs.info(users_str);
+	gs.eventQueue('x_snc_on_call_sc_0.rotation.started', rotation, users_str);
+
+	gs.info(mm_id_arr);
+	var cc_text = 'CC: '+mm_id_arr.join(', ');
+	gs.info(cc_text);
+
+	var markdown_table = ocu.getMarkdownTable(rotation_id);
+
+	var msg = cc_text + '\\n\\n' + markdown_table;
+	gs.info([gs.getProperty('glide.servlet.uri'),msg]);
 } else {
 	gs.error('No rotation found for this week, aborting execution.');
 }
@@ -45,14 +61,14 @@ if(rotation.get(rotation_id)){
         <sys_created_by>aaron.brunet</sys_created_by>
         <sys_created_on>2024-08-15 00:18:25</sys_created_on>
         <sys_id>3f71e81187841e104c1fc99d0ebb35e7</sys_id>
-        <sys_mod_count>6</sys_mod_count>
+        <sys_mod_count>11</sys_mod_count>
         <sys_name>On Call Post Weekly Schedule</sys_name>
         <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
         <sys_policy/>
         <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
         <sys_update_name>sysauto_script_3f71e81187841e104c1fc99d0ebb35e7</sys_update_name>
         <sys_updated_by>aaron.brunet</sys_updated_by>
-        <sys_updated_on>2024-08-15 00:50:08</sys_updated_on>
+        <sys_updated_on>2024-08-15 01:36:34</sys_updated_on>
         <time_zone>US/Eastern</time_zone>
         <upgrade_safe>false</upgrade_safe>
     </sysauto_script>
