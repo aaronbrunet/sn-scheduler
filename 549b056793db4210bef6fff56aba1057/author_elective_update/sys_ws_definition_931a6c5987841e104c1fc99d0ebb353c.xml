@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ws_definition">
+    <sys_ws_definition action="DELETE">
+        <active>true</active>
+        <base_uri>/api/x_snc_on_call_sc_0/mattermost_outbound</base_uri>
+        <consumes>application/json,application/xml,text/xml</consumes>
+        <consumes_customized>false</consumes_customized>
+        <default_version>No active default version</default_version>
+        <doc_link/>
+        <enforce_acl>cf9d01d3e73003009d6247e603f6a990</enforce_acl>
+        <is_versioned>false</is_versioned>
+        <name>Mattermost Outbound</name>
+        <namespace>x_snc_on_call_sc_0</namespace>
+        <produces>application/json,application/xml,text/xml</produces>
+        <produces_customized>false</produces_customized>
+        <service_id>mattermost_outbound</service_id>
+        <short_description/>
+        <sys_class_name>sys_ws_definition</sys_class_name>
+        <sys_created_by>aaron.brunet</sys_created_by>
+        <sys_created_on>2024-08-15 00:55:46</sys_created_on>
+        <sys_id>931a6c5987841e104c1fc99d0ebb353c</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>Mattermost Outbound</sys_name>
+        <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
+        <sys_policy>protected</sys_policy>
+        <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
+        <sys_update_name>sys_ws_definition_931a6c5987841e104c1fc99d0ebb353c</sys_update_name>
+        <sys_updated_by>aaron.brunet</sys_updated_by>
+        <sys_updated_on>2024-08-15 00:55:59</sys_updated_on>
+    </sys_ws_definition>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</application>
+        <file_path/>
+        <instance_id>6bc7963ddb04515c07072f17d496198d</instance_id>
+        <instance_name>empabrunet02</instance_name>
+        <name>sys_ws_definition_931a6c5987841e104c1fc99d0ebb353c</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ws_definition"><sys_ws_definition action="INSERT_OR_UPDATE"><active>true</active><base_uri>/api/x_snc_on_call_sc_0/mattermost_outbound</base_uri><consumes>application/json,application/xml,text/xml</consumes><consumes_customized>false</consumes_customized><default_version>No active default version</default_version><doc_link/><enforce_acl>cf9d01d3e73003009d6247e603f6a990</enforce_acl><is_versioned>false</is_versioned><name>Mattermost Outbound</name><namespace>x_snc_on_call_sc_0</namespace><produces>application/json,application/xml,text/xml</produces><produces_customized>false</produces_customized><service_id>mattermost_outbound</service_id><short_description/><sys_class_name>sys_ws_definition</sys_class_name><sys_created_by>aaron.brunet</sys_created_by><sys_created_on>2024-08-15 00:55:46</sys_created_on><sys_id>931a6c5987841e104c1fc99d0ebb353c</sys_id><sys_mod_count>1</sys_mod_count><sys_name>Mattermost Outbound</sys_name><sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package><sys_policy>protected</sys_policy><sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope><sys_update_name>sys_ws_definition_931a6c5987841e104c1fc99d0ebb353c</sys_update_name><sys_updated_by>aaron.brunet</sys_updated_by><sys_updated_on>2024-08-15 00:55:59</sys_updated_on></sys_ws_definition></record_update>]]></payload>
+        <payload_hash>-247590421</payload_hash>
+        <record_name>Mattermost Outbound</record_name>
+        <reverted_from/>
+        <source>311dcda793db4210bef6fff56aba10cc</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>aaron.brunet</sys_created_by>
+        <sys_created_on>2024-08-15 00:55:59</sys_created_on>
+        <sys_id>0e4ae85987841e104c1fc99d0ebb35da</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1915388ca250000001</sys_recorded_at>
+        <sys_updated_by>aaron.brunet</sys_updated_by>
+        <sys_updated_on>2024-08-15 00:55:59</sys_updated_on>
+        <type>Scripted REST API</type>
+        <update_guid>824ae859b3841e10e8707cd6f4dac1da</update_guid>
+        <update_guid_history>824ae859b3841e10e8707cd6f4dac1da:-247590421,4b3aa459c9841e10c3c9bf27ebefdb80:-1903475221</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>aaron.brunet</sys_created_by>
+        <sys_created_on>2024-08-15 00:58:27</sys_created_on>
+        <sys_db_object display_value="" name="sys_ws_definition">sys_ws_definition</sys_db_object>
+        <sys_id>c4d836b2cefd4a62aa8e067d87ea32f9</sys_id>
+        <sys_metadata>931a6c5987841e104c1fc99d0ebb353c</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Mattermost Outbound</sys_name>
+        <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
+        <sys_parent/>
+        <sys_policy>protected</sys_policy>
+        <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
+        <sys_scope_delete display_value="">2900bc0270514c16b05da9b13e40e229</sys_scope_delete>
+        <sys_update_name>sys_ws_definition_931a6c5987841e104c1fc99d0ebb353c</sys_update_name>
+        <sys_update_version display_value="sys_ws_definition_931a6c5987841e104c1fc99d0ebb353c">0e4ae85987841e104c1fc99d0ebb35da</sys_update_version>
+        <sys_updated_by>aaron.brunet</sys_updated_by>
+        <sys_updated_on>2024-08-15 00:58:27</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

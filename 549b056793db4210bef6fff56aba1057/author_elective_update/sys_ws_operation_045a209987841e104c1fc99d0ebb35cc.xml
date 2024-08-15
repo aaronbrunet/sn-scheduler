@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ws_operation">
+    <sys_ws_operation action="DELETE">
+        <active>true</active>
+        <consumes>application/json,application/xml,text/xml</consumes>
+        <consumes_customized>false</consumes_customized>
+        <default_operation_uri/>
+        <enforce_acl>cf9d01d3e73003009d6247e603f6a990</enforce_acl>
+        <http_method>POST</http_method>
+        <name>MM Webhook</name>
+        <operation_script><![CDATA[(function process(/*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {
+	gs.info(request.body);
+    // implement resource here
+
+})(request, response);]]></operation_script>
+        <operation_uri>/api/x_snc_on_call_sc_0/mattermost_outbound</operation_uri>
+        <produces>application/json,application/xml,text/xml</produces>
+        <produces_customized>false</produces_customized>
+        <relative_path>/</relative_path>
+        <request_example/>
+        <requires_acl_authorization>true</requires_acl_authorization>
+        <requires_authentication>true</requires_authentication>
+        <requires_snc_internal_role>true</requires_snc_internal_role>
+        <short_description/>
+        <sys_class_name>sys_ws_operation</sys_class_name>
+        <sys_created_by>aaron.brunet</sys_created_by>
+        <sys_created_on>2024-08-15 00:56:48</sys_created_on>
+        <sys_id>045a209987841e104c1fc99d0ebb35cc</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>MM Webhook</sys_name>
+        <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
+        <sys_update_name>sys_ws_operation_045a209987841e104c1fc99d0ebb35cc</sys_update_name>
+        <sys_updated_by>aaron.brunet</sys_updated_by>
+        <sys_updated_on>2024-08-15 00:56:48</sys_updated_on>
+        <web_service_definition display_value="Mattermost Outbound">931a6c5987841e104c1fc99d0ebb353c</web_service_definition>
+        <web_service_version/>
+    </sys_ws_operation>
+    <sys_es_latest_script action="DELETE">
+        <id>045a209987841e104c1fc99d0ebb35cc</id>
+        <sys_created_by>aaron.brunet</sys_created_by>
+        <sys_created_on>2024-08-15 00:56:48</sys_created_on>
+        <sys_id>5e7a209987841e104c1fc99d0ebb35e2</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>aaron.brunet</sys_updated_by>
+        <sys_updated_on>2024-08-15 00:56:48</sys_updated_on>
+        <table>sys_ws_operation</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</application>
+        <file_path/>
+        <instance_id>6bc7963ddb04515c07072f17d496198d</instance_id>
+        <instance_name>empabrunet02</instance_name>
+        <name>sys_ws_operation_045a209987841e104c1fc99d0ebb35cc</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sys_ws_operation"&gt;&lt;sys_ws_operation action="INSERT_OR_UPDATE"&gt;&lt;active&gt;true&lt;/active&gt;&lt;consumes&gt;application/json,application/xml,text/xml&lt;/consumes&gt;&lt;consumes_customized&gt;false&lt;/consumes_customized&gt;&lt;default_operation_uri/&gt;&lt;enforce_acl&gt;cf9d01d3e73003009d6247e603f6a990&lt;/enforce_acl&gt;&lt;http_method&gt;POST&lt;/http_method&gt;&lt;name&gt;MM Webhook&lt;/name&gt;&lt;operation_script&gt;&lt;![CDATA[(function process(/*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {
+	gs.info(request.body);
+    // implement resource here
+
+})(request, response);]]&gt;&lt;/operation_script&gt;&lt;operation_uri&gt;/api/x_snc_on_call_sc_0/mattermost_outbound&lt;/operation_uri&gt;&lt;produces&gt;application/json,application/xml,text/xml&lt;/produces&gt;&lt;produces_customized&gt;false&lt;/produces_customized&gt;&lt;relative_path&gt;/&lt;/relative_path&gt;&lt;request_example/&gt;&lt;requires_acl_authorization&gt;true&lt;/requires_acl_authorization&gt;&lt;requires_authentication&gt;true&lt;/requires_authentication&gt;&lt;requires_snc_internal_role&gt;true&lt;/requires_snc_internal_role&gt;&lt;short_description/&gt;&lt;sys_class_name&gt;sys_ws_operation&lt;/sys_class_name&gt;&lt;sys_created_by&gt;aaron.brunet&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2024-08-15 00:56:48&lt;/sys_created_on&gt;&lt;sys_id&gt;045a209987841e104c1fc99d0ebb35cc&lt;/sys_id&gt;&lt;sys_mod_count&gt;0&lt;/sys_mod_count&gt;&lt;sys_name&gt;MM Webhook&lt;/sys_name&gt;&lt;sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0"&gt;549b056793db4210bef6fff56aba1057&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="On-Call Schedule"&gt;549b056793db4210bef6fff56aba1057&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_ws_operation_045a209987841e104c1fc99d0ebb35cc&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;aaron.brunet&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2024-08-15 00:56:48&lt;/sys_updated_on&gt;&lt;web_service_definition display_value="Mattermost Outbound"&gt;931a6c5987841e104c1fc99d0ebb353c&lt;/web_service_definition&gt;&lt;web_service_version/&gt;&lt;/sys_ws_operation&gt;&lt;sys_es_latest_script action="INSERT_OR_UPDATE"&gt;&lt;id&gt;045a209987841e104c1fc99d0ebb35cc&lt;/id&gt;&lt;sys_created_by&gt;aaron.brunet&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2024-08-15 00:56:48&lt;/sys_created_on&gt;&lt;sys_id&gt;5e7a209987841e104c1fc99d0ebb35e2&lt;/sys_id&gt;&lt;sys_mod_count&gt;0&lt;/sys_mod_count&gt;&lt;sys_updated_by&gt;aaron.brunet&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2024-08-15 00:56:48&lt;/sys_updated_on&gt;&lt;table&gt;sys_ws_operation&lt;/table&gt;&lt;use_es_latest&gt;true&lt;/use_es_latest&gt;&lt;/sys_es_latest_script&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>-922286349</payload_hash>
+        <record_name>MM Webhook</record_name>
+        <reverted_from/>
+        <source>311dcda793db4210bef6fff56aba10cc</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>aaron.brunet</sys_created_by>
+        <sys_created_on>2024-08-15 00:56:49</sys_created_on>
+        <sys_id>da7aec5987841e104c1fc99d0ebb35bf</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>19153898d070000001</sys_recorded_at>
+        <sys_updated_by>aaron.brunet</sys_updated_by>
+        <sys_updated_on>2024-08-15 00:56:49</sys_updated_on>
+        <type>Scripted REST Resource</type>
+        <update_guid>de7aec598c841e10274729b1fef3f2be</update_guid>
+        <update_guid_history>de7aec598c841e10274729b1fef3f2be:-922286349</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>aaron.brunet</sys_created_by>
+        <sys_created_on>2024-08-15 00:58:26</sys_created_on>
+        <sys_db_object display_value="" name="sys_ws_operation">sys_ws_operation</sys_db_object>
+        <sys_id>7d92c8b24778418aa077b943fc6c9aa9</sys_id>
+        <sys_metadata>045a209987841e104c1fc99d0ebb35cc</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>MM Webhook</sys_name>
+        <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
+        <sys_scope_delete display_value="">2900bc0270514c16b05da9b13e40e229</sys_scope_delete>
+        <sys_update_name>sys_ws_operation_045a209987841e104c1fc99d0ebb35cc</sys_update_name>
+        <sys_update_version display_value="sys_ws_operation_045a209987841e104c1fc99d0ebb35cc">da7aec5987841e104c1fc99d0ebb35bf</sys_update_version>
+        <sys_updated_by>aaron.brunet</sys_updated_by>
+        <sys_updated_on>2024-08-15 00:58:26</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
