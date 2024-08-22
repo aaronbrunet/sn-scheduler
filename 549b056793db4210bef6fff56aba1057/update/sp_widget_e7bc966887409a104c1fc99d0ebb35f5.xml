@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
         <category>custom</category>
-        <client_script><![CDATA[api.controller=function($scope,spUtil) {
+        <client_script><![CDATA[api.controller=function($scope,spUtil,$timeout) {
   /* widget controller */
   var c = this;
+  	$scope.userDateFormat = g_user_date_format.toUpperCase();
+
 
 	$scope.generateDrafts = function(_count){
 		$scope.server.get({
@@ -15,13 +17,19 @@
 			console.log('done updating server');
         });
 	};
-
-	$scope.customDate = function($event){
-		console.log('hello');
+	var initDate = new moment(new Date($scope.data.latest_rotation.date)).format($scope.userDateFormat);
+	$scope.data.selectedDate = initDate;
+	
+	$scope.datePicker = {label: 'Schedule',
+		name: 'draft_rotation_schedule',
+		value: $scope.data.selectedDate
 	};
-	$scope.field = "test";
-	$scope.label = "hello";
+	
 
+	$scope.customDate = function(e){
+		console.log(e);
+		//$scope.data.selectedDate = $event;
+	};
 };]]></client_script>
         <controller_as>c</controller_as>
         <css/>
@@ -47,15 +55,16 @@
 	data.draft_rotations = [];
 	data.count = 1;
 	data.generated = false;
-	data.datePicker = new GlideDate();
 
 	var latest = new GlideRecord(constants.TABLE_ROTATIONS);
 	latest.orderByDesc('to');
 	latest.setLimit(1);
 	latest.query();
-	if(latest.next()){
-		data.latest_rotation = latest.getValue('rotation');
+	if(latest._next()){
+		data.latest_rotation = {display:latest.getValue('to'),date: latest.getValue('to')+ "T00:00:00"};
+		console.log('Server Date: '+ data.latest_rotation);
 	}
+	
 
 	if(input && input.action == 'generateDrafts'){
 		data.generated = true;
@@ -69,17 +78,17 @@
         <sys_created_by>aaron.brunet</sys_created_by>
         <sys_created_on>2024-08-13 01:20:37</sys_created_on>
         <sys_id>e7bc966887409a104c1fc99d0ebb35f5</sys_id>
-        <sys_mod_count>72</sys_mod_count>
+        <sys_mod_count>130</sys_mod_count>
         <sys_name>On Call Schedule - Draft Rotations</sys_name>
         <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
         <sys_policy/>
         <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
         <sys_update_name>sp_widget_e7bc966887409a104c1fc99d0ebb35f5</sys_update_name>
         <sys_updated_by>aaron.brunet</sys_updated_by>
-        <sys_updated_on>2024-08-13 03:05:57</sys_updated_on>
+        <sys_updated_on>2024-08-22 20:02:23</sys_updated_on>
         <template><![CDATA[<div>
-  <h3>Current latest rotation: {{data.latest_rotation}}</h3>
-  <sp-date-picker field="data.datePicker" ng-model="data.datePicker" sn-change="customDate($event)" sn-include-time="false"></sp-date-picker>
+  <h3>Current latest rotation: {{data.latest_rotation.display}}</h3>
+  <sp-date-picker id="datePickerField" field="datePicker" ng-model="data.selectedDate" sn-change="customDate()" sn-include-time="false"></sp-date-picker>
   <label for="input_count">
     How many weeks do you want to generate rotations for?
   	<input id="input_count" ng-model="data.count" min=1 max=12>  
