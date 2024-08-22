@@ -176,14 +176,14 @@
         <sys_created_by>aaron.brunet</sys_created_by>
         <sys_created_on>2024-07-18 02:13:09</sys_created_on>
         <sys_id>e32f28d093278210bef6fff56aba1069</sys_id>
-        <sys_mod_count>113</sys_mod_count>
+        <sys_mod_count>116</sys_mod_count>
         <sys_name>On Call Schedule - Manage Team</sys_name>
         <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
         <sys_policy/>
         <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
         <sys_update_name>sp_widget_e32f28d093278210bef6fff56aba1069</sys_update_name>
         <sys_updated_by>aaron.brunet</sys_updated_by>
-        <sys_updated_on>2024-08-13 00:38:36</sys_updated_on>
+        <sys_updated_on>2024-08-22 18:35:25</sys_updated_on>
         <template><![CDATA[<div>
   <div class="title-row">
     <div class="title-col"><h1>{{data.team}}</h1></div>
@@ -196,7 +196,7 @@
     </div>
   </div>
   
-  <div ng-if="data.team_roster">
+  <div ng-if="data.team_roster" class="widget-container">
     <div class="title-row">
 	  <div class="title-col"><h2>Team Roster</h2></div>
       <div class="title-col"><a role="button" href="?id=sc_cat_item&sys_id=c6d0cae887cc5a104c1fc99d0ebb3510&sysparm_category=07e04ee887cc5a104c1fc99d0ebb3500" class="btn btn-primary">Update Team Members</a></div>
@@ -224,6 +224,8 @@
     </tr>
   </table>
 -->
+  </div>
+    <div class="widget-container">
   <h2>Team On-Call Shifts</h2>
   <div class="list-block">
     <sp-widget widget="data.eslWidget"></sp-widget>
@@ -233,6 +235,7 @@
   	<sp-widget widget="data.mslWidget"></sp-widget>
     <button class="btn btn-primary">Update Manager Shifts</button>
   </div>
+    </div>
 
   
 </div>]]></template>

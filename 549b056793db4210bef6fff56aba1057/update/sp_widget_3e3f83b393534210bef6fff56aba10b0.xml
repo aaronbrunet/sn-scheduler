@@ -58,7 +58,8 @@ $scope.generateImg = function(id){
 
 };]]></client_script>
         <controller_as>c</controller_as>
-        <css>.schedule-body {&#13;
+        <css>&#13;
+.schedule-body {&#13;
   margin: 2rem 0;&#13;
   padding: 2rem 0;&#13;
   &#13;
@@ -248,16 +249,17 @@ tr.manager-row{&#13;
         <sys_created_by>aaron.brunet</sys_created_by>
         <sys_created_on>2024-07-17 00:36:13</sys_created_on>
         <sys_id>3e3f83b393534210bef6fff56aba10b0</sys_id>
-        <sys_mod_count>217</sys_mod_count>
+        <sys_mod_count>221</sys_mod_count>
         <sys_name>On Call Schedule - Week</sys_name>
         <sys_package display_value="On-Call Schedule" source="x_snc_on_call_sc_0">549b056793db4210bef6fff56aba1057</sys_package>
         <sys_policy/>
         <sys_scope display_value="On-Call Schedule">549b056793db4210bef6fff56aba1057</sys_scope>
         <sys_update_name>sp_widget_3e3f83b393534210bef6fff56aba10b0</sys_update_name>
         <sys_updated_by>aaron.brunet</sys_updated_by>
-        <sys_updated_on>2024-08-12 23:17:07</sys_updated_on>
+        <sys_updated_on>2024-08-22 18:32:35</sys_updated_on>
         <template><![CDATA[<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.js"></script>
-<div class="schedule-body">
+<div class="widget-container">
+  <div class="schedule-body">
   <h1>UX Component On-Call Rotation</h1>
   <div ng-if="!data.rotation.rotation">
     <h1>No On-Call rotation schedule</h1>
@@ -382,7 +384,7 @@ tr.manager-row{&#13;
       <div id="result">
       </div>
 
-
+</div>
 
 
 <!--<script type="text/javascript" src="https://github.com/niklasvh/html2canvas/releases/download/0.5.0-alpha1/html2canvas.js"></script>-->
